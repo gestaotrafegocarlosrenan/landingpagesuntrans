@@ -3086,48 +3086,36 @@
   /* ─── WAVE TIMELINE: Light up steps as ship passes ─── */
   (function() {
     const ANIM_DURATION = 14000; // matches CSS 14s
-    const thresholds = [0, 16.67, 33.33, 50, 66.67, 83.33, 100];
+    // Thresholds alinhados com as posições visuais do barco (0–96 para garantir que o último acende)
+    const thresholds = [0, 16.67, 33.33, 50, 66.67, 83.33, 96];
     const steps = document.querySelectorAll('.wave-step[data-step-index]');
     let start = null;
-    let rafId = null;
-    let visible = true;
 
     function tick(ts) {
-      if (!visible) { rafId = null; return; }
+      // Inicia o timer na primeira chamada — sincronizado com o carregamento da página,
+      // igual à animação CSS sailShip, para que o brilho acompanhe o barco corretamente
       if (!start) start = ts;
       const elapsed = (ts - start) % ANIM_DURATION;
       const pct = (elapsed / ANIM_DURATION) * 100;
 
-      steps.forEach((step) => {
-        const idx = parseInt(step.dataset.stepIndex);
-        if (pct >= thresholds[idx]) {
-          step.classList.add('lit');
-        } else {
-          step.classList.remove('lit');
-        }
-      });
-
+      // Reset visual no início de cada ciclo
       if (elapsed < 100) {
         steps.forEach(s => s.classList.remove('lit'));
+      } else {
+        steps.forEach((step) => {
+          const idx = parseInt(step.dataset.stepIndex);
+          if (pct >= thresholds[idx]) {
+            step.classList.add('lit');
+          } else {
+            step.classList.remove('lit');
+          }
+        });
       }
 
-      rafId = requestAnimationFrame(tick);
+      requestAnimationFrame(tick);
     }
 
-    // Pausa o loop quando a seção sair da viewport (economiza CPU em mobile)
-    const waveSection = document.querySelector('.wave-section');
-    if (waveSection && 'IntersectionObserver' in window) {
-      const io = new IntersectionObserver((entries) => {
-        visible = entries[0].isIntersecting;
-        if (visible && !rafId) {
-          start = null;
-          rafId = requestAnimationFrame(tick);
-        }
-      }, { threshold: 0.1 });
-      io.observe(waveSection);
-    } else {
-      rafId = requestAnimationFrame(tick);
-    }
+    requestAnimationFrame(tick);
   })();
   function toggleFaq(btn) {
     const item = btn.closest('.faq-item');
