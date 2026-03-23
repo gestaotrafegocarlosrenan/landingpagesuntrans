@@ -2208,6 +2208,67 @@
       .wave-section { padding: 72px 20px 56px; }
       .wave-header { margin-bottom: 48px; }
 
+      /* Esconde o caminho SVG e o barco — substituídos pela lista vertical */
+      .wave-path-svg,
+      .wave-ship { display: none; }
+
+      /* Converte a timeline em lista vertical centralizada */
+      .wave-timeline {
+        position: relative;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+      }
+
+      /* Linha conectora vertical entre os steps */
+      .wave-timeline::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: rgba(123, 92, 250, 0.25);
+        transform: translateX(-50%);
+        z-index: 0;
+      }
+
+      /* Reset do posicionamento absoluto de todos os steps */
+      .wave-step,
+      .wave-step:nth-child(2),
+      .wave-step:nth-child(3),
+      .wave-step:nth-child(4),
+      .wave-step:nth-child(5),
+      .wave-step:nth-child(6),
+      .wave-step:nth-child(7),
+      .wave-step:nth-child(8) {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        width: 100%;
+        max-width: 260px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px 0;
+        z-index: 1;
+      }
+
+      /* Todos os steps visíveis no mobile (sem barco para iluminar) */
+      .wave-step { filter: brightness(1) saturate(1); }
+
+      /* Corrige a ordem: círculo sempre primeiro, info depois */
+      .wave-step.step-top .wave-step-info {
+        order: 1;
+        margin-bottom: 0;
+        margin-top: 10px;
+      }
+
+      .wave-step:hover { transform: none; }
+
       /* ── PRODUTOS NÃO IMPORTADOS ── */
       .theme-black .section-title {
         font-size: 1.6rem !important;
