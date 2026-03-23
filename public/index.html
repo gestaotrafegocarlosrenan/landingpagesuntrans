@@ -225,19 +225,7 @@
     }
 
     /* ── Fade suave na transição hero → próxima seção ── */
-    .hero-split::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 220px;
-      pointer-events: none;
-      z-index: 3;
-      background:
-        radial-gradient(ellipse 70% 60% at 50% 100%, rgba(100,60,210,0.35) 0%, transparent 70%),
-        linear-gradient(to bottom, transparent 0%, rgba(10,8,28,0.75) 55%, #100C28 100%);
-    }
-
-    /* ── Névoa de transição — todas as demais dobras ── */
+    .hero-split::after,
     .context::after,
     #para-quem::after,
     #servicos::after,
@@ -245,47 +233,7 @@
     .wave-section::after,
     .quality::after,
     .theme-black::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 220px;
-      pointer-events: none;
-      z-index: 20;
-    }
-    .context::after {
-      background:
-        radial-gradient(ellipse 70% 60% at 50% 100%, rgba(90,50,200,0.30) 0%, transparent 70%),
-        linear-gradient(to bottom, transparent 0%, rgba(8,6,28,0.80) 55%, #0E0B22 100%);
-    }
-    #para-quem::after {
-      background:
-        radial-gradient(ellipse 70% 60% at 50% 100%, rgba(90,50,200,0.30) 0%, transparent 70%),
-        linear-gradient(to bottom, transparent 0%, rgba(12,9,30,0.80) 55%, #100C28 100%);
-    }
-    #servicos::after {
-      background:
-        radial-gradient(ellipse 70% 60% at 50% 100%, rgba(80,40,180,0.30) 0%, transparent 70%),
-        linear-gradient(to bottom, transparent 0%, rgba(8,6,24,0.80) 55%, #080620 100%);
-    }
-    .quem-somos-section::after {
-      background:
-        radial-gradient(ellipse 70% 60% at 50% 100%, rgba(90,50,200,0.30) 0%, transparent 70%),
-        linear-gradient(to bottom, transparent 0%, rgba(10,7,26,0.80) 55%, #0E0B22 100%);
-    }
-    .wave-section::after {
-      background:
-        radial-gradient(ellipse 70% 60% at 50% 100%, rgba(90,50,220,0.30) 0%, transparent 70%),
-        linear-gradient(to bottom, transparent 0%, rgba(14,11,34,0.80) 55%, #0E0B22 100%);
-    }
-    .quality::after {
-      background:
-        radial-gradient(ellipse 70% 60% at 50% 100%, rgba(70,30,160,0.30) 0%, transparent 70%),
-        linear-gradient(to bottom, transparent 0%, rgba(6,4,20,0.80) 55%, #0A0820 100%);
-    }
-    .theme-black::after {
-      background:
-        radial-gradient(ellipse 70% 60% at 50% 100%, rgba(90,50,200,0.30) 0%, transparent 70%),
-        linear-gradient(to bottom, transparent 0%, rgba(10,8,28,0.80) 55%, #0E0B22 100%);
+      display: none;
     }
 
     /* Painel esquerdo container */
