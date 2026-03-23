@@ -2255,6 +2255,38 @@
       .cta-section::after  { width: 450px; height: 450px; }
     }
 
+    /* ── MOBILE PERFORMANCE ── */
+    @media (max-width: 768px) {
+      /* Desativa bolhas de hover (irrelevantes em touch) */
+      .hb-circle { display: none !important; }
+
+      /* Reduz blur pesado dos glows de card (35px → 14px) */
+      .for-card-glow { filter: blur(14px); }
+
+      /* Simplifica box-shadows de hover (triple → single) */
+      .hero-cta-link:hover,
+      .btn-primary:hover {
+        box-shadow: 0 0 28px rgba(123,92,250,0.55);
+      }
+      .for-card.is:hover,
+      .for-card.not:hover {
+        box-shadow: 0 0 24px rgba(80,40,200,0.25);
+      }
+
+      /* GPU hint nas animações contínuas */
+      .btn-glow-inner,
+      .btn-primary,
+      .hero-cta-link {
+        will-change: transform;
+      }
+
+      /* Reduz backdrop-filter do nav (custo alto em mobile) */
+      .nav-menu {
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      }
+    }
+
     @media (max-width: 480px) {
       /* ── HERO ── */
       .hero h1 { font-size: 1.85rem; }
@@ -3054,12 +3086,14 @@
   /* ─── WAVE TIMELINE: Light up steps as ship passes ─── */
   (function() {
     const ANIM_DURATION = 14000; // matches CSS 14s
-    // Step thresholds as % of path (7 evenly spaced points)
     const thresholds = [0, 16.67, 33.33, 50, 66.67, 83.33, 100];
     const steps = document.querySelectorAll('.wave-step[data-step-index]');
     let start = null;
+    let rafId = null;
+    let visible = true;
 
     function tick(ts) {
+      if (!visible) { rafId = null; return; }
       if (!start) start = ts;
       const elapsed = (ts - start) % ANIM_DURATION;
       const pct = (elapsed / ANIM_DURATION) * 100;
@@ -3073,14 +3107,27 @@
         }
       });
 
-      // Reset all when cycle restarts (ship back at start)
       if (elapsed < 100) {
         steps.forEach(s => s.classList.remove('lit'));
       }
 
-      requestAnimationFrame(tick);
+      rafId = requestAnimationFrame(tick);
     }
-    requestAnimationFrame(tick);
+
+    // Pausa o loop quando a seção sair da viewport (economiza CPU em mobile)
+    const waveSection = document.querySelector('.wave-section');
+    if (waveSection && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        visible = entries[0].isIntersecting;
+        if (visible && !rafId) {
+          start = null;
+          rafId = requestAnimationFrame(tick);
+        }
+      }, { threshold: 0.1 });
+      io.observe(waveSection);
+    } else {
+      rafId = requestAnimationFrame(tick);
+    }
   })();
   function toggleFaq(btn) {
     const item = btn.closest('.faq-item');
@@ -3239,8 +3286,11 @@
 
   /* ─── Timeline — removed old card stack JS ─── */
 
-  /* ─── HOVER BUTTON — bolhas de luz ─── */
+  /* ─── HOVER BUTTON — bolhas de luz (apenas desktop/mouse) ─── */
   (function () {
+    // Não executa em dispositivos touch (economiza DOM, blur e rAF em mobile)
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+
     const SEL = '.btn-primary, .hero-cta-link';
     const THROTTLE = 100; // ms entre bolhas
 
@@ -3266,13 +3316,8 @@
         circle.style.top  = y + 'px';
         btn.appendChild(circle);
 
-        // fade in
         requestAnimationFrame(() => circle.classList.add('fade-in'));
-
-        // fade out
         setTimeout(() => circle.classList.replace('fade-in', 'fade-out'), 1000);
-
-        // remove do DOM
         setTimeout(() => circle.remove(), 2200);
       });
     }
