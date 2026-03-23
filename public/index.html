@@ -1,0 +1,3410 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SunRocket — Sua importação em órbita</title>
+  <meta name="description" content="A SunRocket coloca sua operação de importação em órbita — do primeiro produto pesquisado até a aterrissagem no seu estoque. Sourcing, logística, desembaraço e suporte dedicado." />
+  <meta property="og:title" content="SunRocket — Sua importação em órbita" />
+  <meta property="og:description" content="Importação inteligente do início ao fim. Sourcing, projeção de custos, logística e suporte dedicado para empresas brasileiras que querem crescer importando direto." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sunrocket.com.br" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SunRocket — Sua importação em órbita" />
+  <meta name="twitter:description" content="Importação inteligente do início ao fim. Sourcing, logística e suporte dedicado para empresas brasileiras." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='20' y='24' width='60' height='60' rx='4' fill='%231a1f5e'/><g transform='translate(56,44) rotate(45)' fill='white'><ellipse cx='0' cy='-2' rx='10' ry='22'/><polygon points='-10,14 -22,28 0,20'/><polygon points='10,14 22,28 0,20'/><circle cx='0' cy='-8' r='4.5' fill='%231a1f5e'/></g><line x1='8' y1='86' x2='38' y2='62' stroke='white' stroke-width='6.5' stroke-linecap='round'/><line x1='4' y1='74' x2='28' y2='56' stroke='white' stroke-width='4.5' stroke-linecap='round'/></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #100C28;
+      --bg-section: #1C1640;
+      --bg-card: #1E1845;
+      --purple-solid: #5B35E8;
+      --purple-mid: #7B5CFA;
+      --purple-bright: #9B7FFF;
+      --purple-glow: rgba(80,40,220,0.55);
+      --purple-accent: #7B5CFA;
+      --white: #ffffff;
+      --accent: #9B7FFF;
+      --accent-solid: #5B35E8;
+      --border: rgba(123,92,250,0.30);
+      --text-muted: #B8B0D8;
+      --text-dim: rgba(255,255,255,0.85);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: #100C28;
+      color: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      position: relative;
+    }
+
+    /* ─── CAMPO DE ESTRELAS ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 25% 40%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 40% 10%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 60% 70%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 75% 25%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 85% 55%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 92% 80%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 33% 85%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 50% 50%, rgba(200,180,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 18% 65%, rgba(255,255,255,0.35) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(12,10,30,0.90);
+      backdrop-filter: blur(16px);
+      border-bottom: none;
+      box-shadow: 0 1px 30px rgba(80,40,200,0.15);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .logo-mark {
+      width: 44px; /* Tamanho proporcional para o svg do foguete encaixar com o texto */
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-mark svg { width: 100%; height: 100%; }
+
+    .nav-cta {
+      background: #5B35E8;
+      color: var(--white);
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.01em;
+      padding: 10px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      border: none;
+      transition: background 0.2s, transform 0.2s;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .nav-cta:hover {
+      background: #6B45F8;
+      transform: translateY(-1px);
+    }
+    .nav-cta:active { transform: scale(0.97); }
+
+    /* ─── SECTIONS ─── */
+    section {
+      position: relative;
+      padding: 120px 24px;
+      overflow: hidden;
+      --glow-x: 50%;
+      --glow-y: 30%;
+      background:
+        radial-gradient(ellipse at var(--glow-x) var(--glow-y), rgba(80,40,220,0.22) 0%, transparent 60%),
+        #100C28;
+    }
+
+    /* Nebulosa de fundo — posições alternadas por seção */
+    section:nth-child(odd)  { --glow-x: 20%; --glow-y: 40%; }
+    section:nth-child(even) { --glow-x: 80%; --glow-y: 60%; }
+    section:nth-child(3n)   { --glow-x: 50%; --glow-y: 10%; }
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-line {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .section-line::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #7B5CFA;
+      border-radius: 1px;
+      box-shadow: 0 0 10px rgba(91,53,232,0.5);
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #9B7FFF;
+    }
+
+    .section-title {
+      font-size: clamp(1.9rem, 3.8vw, 3rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--text-dim);
+      max-width: 580px;
+      line-height: 1.75;
+    }
+
+    /* ─── HERO SPLIT (Desktop) ─── */
+    .hero-split {
+      position: relative;
+      overflow: hidden;
+      padding: 40px 0 80px;
+      background: radial-gradient(ellipse 80% 100% at 15% 50%, rgba(60, 20, 120, 0.45) 0%, #080620 60%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-split .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hero-split .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: right center;
+      position: absolute;
+      right: 0;
+      top: 0;
+      opacity: 1;
+    }
+
+    .hero-split .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* ── Fade suave na transição hero → próxima seção ── */
+    .hero-split::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 220px;
+      pointer-events: none;
+      z-index: 3;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 100%, rgba(100,60,210,0.35) 0%, transparent 70%),
+        linear-gradient(to bottom, transparent 0%, rgba(10,8,28,0.75) 55%, #100C28 100%);
+    }
+
+    /* ── Névoa de transição — todas as demais dobras ── */
+    .context::after,
+    #para-quem::after,
+    #servicos::after,
+    .quem-somos-section::after,
+    .wave-section::after,
+    .quality::after,
+    .theme-black::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 220px;
+      pointer-events: none;
+      z-index: 20;
+    }
+    .context::after {
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 100%, rgba(90,50,200,0.30) 0%, transparent 70%),
+        linear-gradient(to bottom, transparent 0%, rgba(8,6,28,0.80) 55%, #0E0B22 100%);
+    }
+    #para-quem::after {
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 100%, rgba(90,50,200,0.30) 0%, transparent 70%),
+        linear-gradient(to bottom, transparent 0%, rgba(12,9,30,0.80) 55%, #100C28 100%);
+    }
+    #servicos::after {
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 100%, rgba(80,40,180,0.30) 0%, transparent 70%),
+        linear-gradient(to bottom, transparent 0%, rgba(8,6,24,0.80) 55%, #080620 100%);
+    }
+    .quem-somos-section::after {
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 100%, rgba(90,50,200,0.30) 0%, transparent 70%),
+        linear-gradient(to bottom, transparent 0%, rgba(10,7,26,0.80) 55%, #0E0B22 100%);
+    }
+    .wave-section::after {
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 100%, rgba(90,50,220,0.30) 0%, transparent 70%),
+        linear-gradient(to bottom, transparent 0%, rgba(14,11,34,0.80) 55%, #0E0B22 100%);
+    }
+    .quality::after {
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 100%, rgba(70,30,160,0.30) 0%, transparent 70%),
+        linear-gradient(to bottom, transparent 0%, rgba(6,4,20,0.80) 55%, #0A0820 100%);
+    }
+    .theme-black::after {
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 100%, rgba(90,50,200,0.30) 0%, transparent 70%),
+        linear-gradient(to bottom, transparent 0%, rgba(10,8,28,0.80) 55%, #0E0B22 100%);
+    }
+
+    /* Painel esquerdo container */
+    .hero-left {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      width: 42%;
+      padding: 0 clamp(20px, 3vw, 52px);
+    }
+    .hero-left::before {
+      display: none;
+    }
+
+    /* Conteúdo principal esquerdo */
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      background: linear-gradient(135deg, rgba(8, 6, 32, 0.88) 0%, rgba(14, 11, 45, 0.80) 100%);
+      padding: 36px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 100px;
+      padding: 6px 16px 6px 12px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 36px;
+      background: rgba(28,22,64,0.6);
+      border-color: rgba(123,92,250,0.2);
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: blink 2s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.3; }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 5vw, 4.4rem);
+      font-weight: 900;
+      line-height: 1.06;
+      letter-spacing: -0.04em;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--purple-bright);
+      -webkit-text-fill-color: var(--purple-bright);
+      text-shadow: 0 0 20px rgba(123,92,250,0.5), 0 0 60px rgba(123,92,250,0.2);
+    }
+
+    /* Linha decorativa */
+    .hero-rule {
+      width: 56px;
+      height: 2px;
+      background: var(--purple-accent);
+      margin: 28px 0;
+      box-shadow: 0 0 12px rgba(123,92,250,0.5);
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--text-dim);
+      max-width: 540px;
+      line-height: 1.75;
+      margin-bottom: 40px;
+    }
+
+    .hero-cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      color: var(--white);
+      text-decoration: none;
+      background: #5B35E8;
+      border: 1px solid rgba(155,127,255,0.35);
+      border-radius: 10px;
+      padding: 18px 44px;
+      box-shadow: 0 0 30px rgba(91,53,232,0.55), 0 0 60px rgba(91,53,232,0.25);
+      cursor: pointer;
+      font-family: inherit;
+      transition: transform 0.2s, background 0.2s, box-shadow 0.2s, gap 0.2s;
+    }
+    /* Corner glows for hero CTA */
+    .hero-cta-link::before {
+      content: '';
+      position: absolute;
+      top: -8px; left: -8px;
+      width: 40px; height: 40px;
+      background: radial-gradient(circle, rgba(155,127,255,0.7) 0%, transparent 70%);
+      filter: blur(10px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-cta-link::after {
+      content: '';
+      position: absolute;
+      bottom: -8px; right: -8px;
+      width: 40px; height: 40px;
+      background: radial-gradient(circle, rgba(123,92,250,0.7) 0%, transparent 70%);
+      filter: blur(10px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-cta-link:hover {
+      gap: 16px;
+      transform: translateY(-2px);
+      background: #6B45F8;
+      box-shadow: 0 0 50px rgba(91,53,232,0.8), 0 0 100px rgba(91,53,232,0.35), 0 12px 32px rgba(0,0,0,0.3);
+    }
+
+    .hero-cta-link:active { transform: scale(0.98) translateY(0); }
+
+    .hero-cta-link svg { width: 16px; height: 16px; }
+
+    /* Processo hero */
+    .hero-process {
+      position: relative;
+      z-index: 2;
+      margin-top: 28px;
+      padding: 20px 22px;
+      background: rgba(91,53,232,0.08);
+      border: 1px solid rgba(139,92,246,0.55);
+      border-radius: 18px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 28px rgba(91,53,232,0.18), inset 0 1px 0 rgba(255,255,255,0.07);
+    }
+
+    .hero-process-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: rgba(192,160,255,0.75);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .hero-process-steps {
+      display: flex;
+      align-items: stretch;
+      gap: 12px;
+      flex-wrap: nowrap;
+    }
+
+    .hero-process-step {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      background: rgba(91,53,232,0.22);
+      border: 1px solid rgba(139,92,246,0.55);
+      border-radius: 12px;
+      padding: 14px 16px;
+      flex: 1;
+      box-shadow: 0 4px 16px rgba(91,53,232,0.15);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .hero-process-step:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(91,53,232,0.30);
+    }
+
+    .hero-process-step-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(91,53,232,0.45);
+      border: 1px solid rgba(139,92,246,0.5);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 0 14px rgba(139,92,246,0.30);
+    }
+
+    .hero-process-step-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: #c4b5fd;
+      flex-shrink: 0;
+    }
+
+    .hero-process-step-text {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .hero-process-step-num {
+      font-size: 0.68rem;
+      font-weight: 800;
+      color: #a78bfa;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .hero-process-step-label {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.3;
+    }
+
+    .hero-process-step svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--accent);
+      flex-shrink: 0;
+      opacity: 0.9;
+    }
+
+    .hero-process-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      align-self: center;
+      background: rgba(91,53,232,0.25);
+      border: 1px solid rgba(139,92,246,0.4);
+      border-radius: 50%;
+    }
+    .hero-process-arrow svg {
+      width: 14px;
+      height: 14px;
+      stroke: #a78bfa;
+      flex-shrink: 0;
+      animation: arrow-pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes arrow-pulse {
+      0%, 100% { transform: translateX(0); opacity: 0.7; }
+      50%       { transform: translateX(3px); opacity: 1; }
+    }
+
+    /* Painel direito — imagem */
+    .hero-right {
+      flex: 0 0 45%;
+      position: relative;
+      overflow: hidden;
+      clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+      animation: revealHero 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+    }
+
+    @keyframes revealHero {
+      to { clip-path: polygon(18% 0, 100% 0, 100% 100%, 0% 100%); }
+    }
+
+    .hero-right-img {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1570126618953-d437176e8c79?w=1200&auto=format&fit=crop&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Overlay roxo sobre a imagem */
+    .hero-right-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(16,12,40,0.5) 0%, rgba(91,53,232,0.3) 100%);
+    }
+
+    /* Animações de entrada do conteúdo */
+    .hero-content > * {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    .hero-content .hero-badge    { animation-delay: 0.4s; }
+    .hero-content h1             { animation-delay: 0.55s; }
+    .hero-content .hero-rule     { animation-delay: 0.65s; }
+    .hero-content .hero-sub      { animation-delay: 0.75s; }
+    .hero-content .hero-cta-link { animation-delay: 0.85s; }
+
+    .hero-process {
+      opacity: 0;
+      animation: fadeUp 0.6s ease 1s forwards;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-tag-sep { color: var(--border); }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #5B35E8;
+      color: var(--white);
+      font-weight: 800;
+      font-size: 0.95rem;
+      letter-spacing: 0.01em;
+      padding: 18px 44px;
+      border-radius: 10px;
+      text-decoration: none;
+      border: 1px solid rgba(155,127,255,0.35);
+      transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 30px rgba(91,53,232,0.55), 0 0 60px rgba(91,53,232,0.25);
+      cursor: pointer;
+      font-family: inherit;
+    }
+    /* Corner glows for btn-primary */
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: -8px; left: -8px;
+      width: 40px; height: 40px;
+      background: radial-gradient(circle, rgba(155,127,255,0.7) 0%, transparent 70%);
+      filter: blur(10px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      bottom: -8px; right: -8px;
+      width: 40px; height: 40px;
+      background: radial-gradient(circle, rgba(123,92,250,0.7) 0%, transparent 70%);
+      filter: blur(10px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      background: #6B45F8;
+      box-shadow: 0 0 50px rgba(91,53,232,0.8), 0 0 100px rgba(91,53,232,0.35), 0 12px 32px rgba(0,0,0,0.3);
+    }
+    .btn-primary:active { transform: scale(0.98) translateY(0); }
+    .btn-primary svg { width: 16px; height: 16px; }
+
+    /* ─── ROTATING GLOW WRAPPER ─── */
+    .btn-glow-wrap {
+      position: relative;
+      display: inline-block;
+      border-radius: 13px;
+      padding: 3px;
+      overflow: hidden;
+      /* sem animation aqui — não conflita com o fadeUp herdado */
+    }
+    /* Pulso do halo externo aplicado separadamente no botão hero */
+    .hero-content > .btn-glow-wrap {
+      animation: fadeUp 0.6s ease 0.85s forwards, pulse-glow-shadow 2s ease-in-out 1.5s infinite;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .btn-glow-wrap.mini {
+      border-radius: 11px;
+    }
+    .btn-glow-wrap::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      background: conic-gradient(
+        from 0deg,
+        transparent 0%,
+        transparent 12%,
+        rgba(192,132,252,0.5) 26%,
+        rgba(255,255,255,1) 38%,
+        rgba(255,255,255,1) 50%,
+        rgba(255,255,255,1) 62%,
+        rgba(192,132,252,0.5) 74%,
+        transparent 88%,
+        transparent 100%
+      );
+      animation: btn-spin-glow 2s linear infinite;
+      z-index: 0;
+    }
+    @keyframes btn-spin-glow {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    @keyframes pulse-glow-shadow {
+      0%, 100% {
+        box-shadow: 0 0 8px rgba(192,132,252,0.6),
+                    0 0 20px rgba(192,132,252,0.35),
+                    0 0 40px rgba(192,132,252,0.15);
+      }
+      50% {
+        box-shadow: 0 0 16px rgba(192,132,252,0.95),
+                    0 0 35px rgba(192,132,252,0.6),
+                    0 0 65px rgba(232,121,249,0.3);
+      }
+    }
+    .btn-glow-wrap > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ─── HOVER BUTTON — bolhas de luz ─── */
+    .btn-primary,
+    .hero-cta-link {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hb-circle {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(12px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      background: radial-gradient(circle, rgba(155,127,255,0.9) 0%, rgba(123,92,250,0.5) 60%, transparent 100%);
+    }
+
+    .hb-circle.fade-in  { opacity: 0.7; }
+    .hb-circle.fade-out { opacity: 0; transition: opacity 1.2s ease; }
+
+    /* Garante que conteúdo interno fique acima das bolhas */
+    .btn-primary > *:not(.hb-circle),
+    .hero-cta-link > *:not(.hb-circle) {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ─── DIVIDER — ponte de cor simples entre seções ─── */
+    .divider {
+      width: 100%;
+      height: 0;
+      margin: 0;
+      padding: 0;
+      display: block;
+    }
+    /* Variantes mantidas por compatibilidade mas sem visual */
+    .divider.d-purple-dark,
+    .divider.d-dark-deeper,
+    .divider.d-deeper-navy,
+    .divider.d-same,
+    .divider.d-to-black,
+    .divider.d-from-black,
+    .divider.d-navy-dark { height: 0; }
+
+    /* ─── LUZES DE FUNDO POR SEÇÃO ─── */
+    /* Glows adicionais removidos — agora o radial-gradient está no background de cada section */
+
+    /* ─── THEMES ─── */
+    .theme-white {
+      background:
+        radial-gradient(ellipse at var(--glow-x) var(--glow-y), rgba(80,40,220,0.22) 0%, transparent 60%),
+        #100C28;
+      color: var(--white);
+    }
+    .theme-purple {
+      background:
+        radial-gradient(ellipse 600px 400px at 20% 30%, rgba(91,53,232,0.18) 0%, transparent 100%),
+        radial-gradient(ellipse 500px 350px at 80% 70%, rgba(123,92,250,0.12) 0%, transparent 100%),
+        radial-gradient(ellipse 300px 300px at 50% 50%, rgba(155,127,255,0.06) 0%, transparent 100%),
+        #0E0B22;
+      color: var(--white);
+    }
+
+    /* ─── CONTEXT ─── */
+    .context .container {
+      display: block;
+      max-width: 720px;
+      align-items: center;
+    }
+
+    .context-text p {
+      font-size: 1.05rem;
+      color: var(--text-dim);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .context-text p:last-child { margin-bottom: 0; }
+    .context-text strong { color: var(--white); font-weight: 700; }
+
+    .context-highlight {
+      margin-top: 32px;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #ffffff;
+      border-left: 4px solid #7B5CFA;
+      padding: 14px 20px;
+      line-height: 1.6;
+      background: rgba(91,53,232,0.12);
+      border-radius: 0 12px 12px 0;
+      box-shadow: -4px 0 28px rgba(123,92,250,0.45), inset 0 1px 0 rgba(255,255,255,0.06);
+      text-shadow: 0 0 20px rgba(167,139,250,0.4);
+    }
+
+    .stats-col { display: flex; flex-direction: column; gap: 2px; }
+
+    .stat-item {
+      padding: 28px 32px;
+      border: 1px solid rgba(123,92,250,0.25);
+      position: relative;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: linear-gradient(160deg, rgba(36,27,82,0.5) 0%, rgba(26,20,64,0.5) 100%);
+    }
+
+    .stat-item:first-child { border-radius: 12px 12px 0 0; }
+    .stat-item:last-child  { border-radius: 0 0 12px 12px; }
+
+    .stat-item:hover { border-color: rgba(123,92,250,0.45); box-shadow: 0 0 24px rgba(91,53,232,0.2); }
+
+    .stat-item::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .stat-item:hover::before { opacity: 1; }
+
+    .stat-num {
+      font-size: 2.6rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 6px;
+      color: var(--white);
+      text-shadow: 0 0 30px rgba(123,92,250,0.4);
+    }
+
+    .stat-label { font-size: 0.88rem; color: var(--text-muted); line-height: 1.4; }
+
+    /* ─── FOR WHO ─── */
+    .for-who-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 60px;
+    }
+
+    .for-card {
+      border-radius: 24px;
+      padding: 40px 36px 36px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s;
+    }
+
+    .for-card.is {
+      background: linear-gradient(160deg, #241B52 0%, #1A1440 100%);
+      border: 1px solid rgba(123,92,250,0.50);
+      border-top: 1px solid rgba(155,127,255,0.35);
+      box-shadow: 0 0 40px rgba(91,53,232,0.35), 0 0 80px rgba(123,92,250,0.15), 0 4px 24px rgba(80,40,200,0.25);
+    }
+
+    .for-card.not {
+      background: linear-gradient(160deg, #2A1525 0%, #1A1440 100%);
+      border: 1px solid rgba(239,68,68,0.30);
+      border-top: 1px solid rgba(239,68,68,0.18);
+      box-shadow: 0 4px 24px rgba(80,40,200,0.12);
+    }
+
+    /* Corner glow — tight, crisp light streaks instead of blurry blobs */
+    .for-card-glow {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(35px);
+      z-index: 0;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .for-card.is .for-card-glow.glow-tl { top: -40px; left: -40px; background: rgba(123,92,250,0.45); }
+    .for-card.is .for-card-glow.glow-tr { top: -40px; right: -40px; background: rgba(155,127,255,0.25); }
+    .for-card.is .for-card-glow.glow-bl { bottom: -40px; left: -40px; background: rgba(91,53,232,0.20); }
+    .for-card.is .for-card-glow.glow-br { bottom: -40px; right: -40px; background: rgba(123,92,250,0.30); }
+
+    .for-card.not .for-card-glow.glow-tl { top: -40px; left: -40px; background: rgba(239,68,68,0.28); }
+    .for-card.not .for-card-glow.glow-tr { top: -40px; right: -40px; background: rgba(239,68,68,0.15); }
+    .for-card.not .for-card-glow.glow-bl { bottom: -40px; left: -40px; background: rgba(220,38,38,0.12); }
+    .for-card.not .for-card-glow.glow-br { bottom: -40px; right: -40px; background: rgba(239,68,68,0.22); }
+
+    .for-card:hover .for-card-glow { transform: scale(1.3); opacity: 0.85; }
+
+    /* Subtle top-edge shimmer line */
+    .for-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 10%; right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(155,127,255,0.5), transparent);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .for-card.not::after {
+      background: linear-gradient(90deg, transparent, rgba(239,68,68,0.35), transparent);
+    }
+
+    /* Linha brilhante no topo */
+    .for-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 8%; right: 8%;
+      height: 1px;
+    }
+
+    .for-card.is::before  { background: linear-gradient(90deg, transparent, rgba(123,92,250,0.6), transparent); }
+    .for-card.not::before { background: linear-gradient(90deg, transparent, rgba(239,68,68,0.5), transparent); }
+
+    .for-card:hover { transform: translateY(-5px); }
+    .for-card.is:hover  { border-color: rgba(123,92,250,0.70); box-shadow: 0 0 60px rgba(91,53,232,0.45), 0 0 100px rgba(123,92,250,0.2), 0 20px 56px rgba(0,0,0,0.4); }
+    .for-card.not:hover { border-color: rgba(239,68,68,0.50); box-shadow: 0 0 40px rgba(239,68,68,0.15), 0 20px 56px rgba(0,0,0,0.4); }
+
+    /* Header */
+    .for-card-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+      padding-bottom: 22px;
+    }
+
+    .for-card.is .for-card-header  { border-bottom: 1px solid rgba(110,70,230,0.3); }
+    .for-card.not .for-card-header { border-bottom: 1px solid rgba(239,68,68,0.13); }
+
+    /* Ícone maior com glow */
+    .for-card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .for-card.is .for-card-icon {
+      background: #5B35E8;
+      border: none;
+      box-shadow: 0 0 30px rgba(91,53,232,0.8), 0 0 60px rgba(123,92,250,0.4);
+    }
+
+    .for-card.not .for-card-icon {
+      background: #DC2626;
+      border: none;
+      box-shadow: 0 0 24px rgba(220,38,38,0.4);
+    }
+
+    .for-card:hover .for-card-icon { transform: scale(1.08); }
+    .for-card.is:hover  .for-card-icon { box-shadow: 0 0 32px rgba(91,53,232,0.75); }
+    .for-card.not:hover .for-card-icon { box-shadow: 0 0 32px rgba(220,38,38,0.55); }
+
+    .for-card-icon svg { width: 20px; height: 20px; }
+    .for-card.is .for-card-icon svg  { stroke: #ffffff; }
+    .for-card.not .for-card-icon svg { stroke: #ffffff; }
+
+    /* Título + badge */
+    .for-card-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .for-card.is .for-card-title  { color: var(--accent); }
+    .for-card.not .for-card-title { color: #f87171; }
+
+    .for-card-badge {
+      margin-left: auto;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+
+    .for-card.is .for-card-badge  { background: rgba(123,92,250,0.12); color: var(--purple-bright); border: 1px solid rgba(123,92,250,0.25); }
+    .for-card.not .for-card-badge { background: rgba(239,68,68,0.08); color: #f87171; border: 1px solid rgba(239,68,68,0.18); }
+
+    /* Itens com hover individual */
+    .for-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.925rem;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: rgba(255,255,255,0.92);
+      line-height: 1.6;
+      padding: 8px 10px;
+      border-radius: 10px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .for-item:last-child { margin-bottom: 0; }
+
+    .for-card.is .for-item:hover  { background: rgba(123,92,250,0.08); color: rgba(255,255,255,0.92); }
+    .for-card.not .for-item:hover { background: rgba(239,68,68,0.06); color: rgba(255,255,255,0.92); }
+
+    /* Bullet com fundo */
+    .for-bullet {
+      flex-shrink: 0;
+      margin-top: 2px;
+      width: 20px; height: 20px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .for-card.is .for-bullet  { background: rgba(123,92,250,0.12); }
+    .for-card.not .for-bullet { background: rgba(239,68,68,0.08); }
+
+    .for-bullet svg { width: 11px; height: 11px; }
+    .for-card.is .for-bullet svg  { stroke: var(--accent); }
+    .for-card.not .for-bullet svg { stroke: #f87171; }
+
+    /* ─── SERVICES ─── */
+    .services-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: end;
+      margin-bottom: 56px;
+    }
+
+    /* Bento Grid — layout assimétrico (skill: varied spans, hover scale 1.02) */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: minmax(200px, auto);
+      gap: 16px;
+    }
+
+    .service-card {
+      background: linear-gradient(160deg, #241B52 0%, #1A1440 100%);
+      border: 1px solid rgba(123,92,250,0.30);
+      border-top: 1px solid rgba(155,127,255,0.20);
+      border-radius: 16px;
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.25s, border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+      cursor: default;
+      box-shadow: 0 4px 24px rgba(80,40,200,0.2);
+    }
+
+    /* Spans assimétricos — bento layout */
+    .service-card:nth-child(1) { grid-column: span 2; }  /* Catálogos — destaque */
+    .service-card:nth-child(2) { grid-column: span 2; }  /* Busca de Produto */
+    .service-card:nth-child(3) { grid-column: span 1; }  /* Projeção de Custos */
+    .service-card:nth-child(4) { grid-column: span 1; }  /* Coordenação */
+    .service-card:nth-child(5) { grid-column: span 1; }  /* Suporte */
+    .service-card:nth-child(6) { grid-column: span 1; }  /* Alinhamentos */
+
+    .service-card:hover {
+      background: linear-gradient(160deg, #2A2060 0%, #1E1845 100%);
+      border-color: rgba(123,92,250,0.50);
+      transform: scale(1.02);
+      box-shadow: 0 0 40px rgba(91,53,232,0.3), 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    .service-card-line {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .service-card:hover .service-card-line { opacity: 1; }
+
+    .service-icon-wrap {
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      transition: box-shadow 0.25s;
+      background: #5B35E8;
+      box-shadow: 0 0 24px rgba(91,53,232,0.6);
+    }
+    .service-card:hover .service-icon-wrap {
+      box-shadow: 0 0 32px rgba(91,53,232,0.75);
+    }
+    .service-icon-wrap svg { width: 18px; height: 18px; stroke: #ffffff; }
+
+    .service-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.01em; }
+    .service-desc  { font-size: 0.84rem; color: var(--text-muted); line-height: 1.7; }
+
+    /* Cards destaque (span 2) recebem desc maior */
+    .service-card:nth-child(1) .service-desc,
+    .service-card:nth-child(2) .service-desc { font-size: 0.9rem; }
+
+    @media (max-width: 768px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .service-card:nth-child(n) { grid-column: span 1; }
+      .service-card:hover { transform: none; }
+    }
+
+    /* ─── COMO FUNCIONA — ZIGZAG WAVE ─── */
+
+    .wave-section {
+      padding: 120px 24px 100px;
+      background:
+        radial-gradient(ellipse at 50% 40%, rgba(90,50,230,0.25) 0%, transparent 65%),
+        #0E0B22;
+      overflow: hidden;
+    }
+
+    .wave-section .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .wave-header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .wave-header .section-line { justify-content: center; }
+
+    .wave-timeline {
+      position: relative;
+      width: 100%;
+      height: 520px;
+      margin: 0 auto;
+    }
+
+    .wave-path-svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .wave-path-svg .wave-line {
+      fill: none;
+      stroke: rgba(123, 92, 250, 0.3);
+      stroke-width: 2.5;
+      stroke-dasharray: 8 6;
+    }
+
+    /* Animated ship */
+    .wave-ship {
+      offset-path: path("M 78,180 Q 137,180 155,280 Q 173,380 233,380 Q 293,380 310,280 Q 327,180 387,180 Q 447,180 465,280 Q 483,380 543,380 Q 603,380 620,280 Q 637,180 697,180 Q 757,180 775,280 Q 793,380 853,380 Q 913,380 930,280 Q 947,180 1005,180");
+      offset-rotate: auto;
+      animation: sailShip 14s linear infinite;
+      filter: drop-shadow(0 0 10px rgba(123,92,250,0.8));
+    }
+
+    @keyframes sailShip {
+      0% { offset-distance: 0%; }
+      100% { offset-distance: 100%; }
+    }
+
+    /* Steps positioned absolutely */
+    .wave-step {
+      position: absolute;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 130px;
+      transform: translateX(-50%);
+      transition: filter 0.6s ease, transform 0.3s ease;
+      filter: brightness(0.5) saturate(0.4);
+    }
+
+    .wave-step.lit {
+      filter: brightness(1) saturate(1);
+    }
+
+    .wave-step.lit .wave-step-circle {
+      box-shadow: 0 0 30px rgba(123, 92, 250, 0.7), 0 0 60px rgba(91, 53, 232, 0.4);
+    }
+
+    .wave-step:hover {
+      transform: translateX(-50%) translateY(-4px);
+    }
+
+    /* Top steps: text above, circle at bottom — circle aligns with wave peak y=180 (~34.6% of 520) */
+    /* Circle is 64px, so step bottom = wave peak. Position: top such that bottom of step = ~34.6% */
+    .wave-step.step-top {
+      flex-direction: column; /* text on top via order */
+    }
+    .wave-step.step-top .wave-step-info { order: -1; margin-bottom: 10px; }
+
+    /* Bottom steps: circle at top, text below — circle aligns with wave valley y=380 (~73% of 520) */
+    .wave-step.step-bottom .wave-step-info { margin-top: 10px; }
+
+    /* Exact positions */
+    .wave-step:nth-child(2) { left: 7.2%;  top: 60px; }       /* Step 1 top */
+    .wave-step:nth-child(3) { left: 21.6%; top: 310px; }      /* Step 2 bottom */
+    .wave-step:nth-child(4) { left: 35.8%; top: 60px; }       /* Step 3 top */
+    .wave-step:nth-child(5) { left: 50.3%; top: 310px; }      /* Step 4 bottom */
+    .wave-step:nth-child(6) { left: 64.5%; top: 60px; }       /* Step 5 top */
+    .wave-step:nth-child(7) { left: 79%;   top: 310px; }      /* Step 6 bottom */
+    .wave-step:nth-child(8) { left: 88%;   top: 60px; }       /* Step 7 top */
+
+    .wave-step-circle {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #5B35E8, #7B5CFA);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      box-shadow: 0 6px 24px rgba(91, 53, 232, 0.45);
+      position: relative;
+      transition: box-shadow 0.6s ease;
+    }
+
+    .wave-step-circle svg {
+      width: 26px;
+      height: 26px;
+      stroke: white;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .wave-step-num {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #E53935;
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(229, 57, 53, 0.5);
+      border: 2px solid #0E0B22;
+    }
+
+    .wave-step-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .wave-step-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--white);
+      text-align: center;
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+
+    .wave-step-desc {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.4;
+      max-width: 130px;
+    }
+
+    .wave-step.final .wave-step-circle {
+      background: linear-gradient(135deg, #7B5CFA, #9B7FFF);
+    }
+
+    .wave-step.final.lit .wave-step-circle {
+      box-shadow: 0 0 40px rgba(123, 92, 250, 0.7), 0 0 80px rgba(91, 53, 232, 0.4);
+    }
+
+    @media (max-width: 768px) {
+      .wave-section { padding: 80px 20px 60px; }
+      .wave-timeline {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 36px;
+        height: auto;
+      }
+      .wave-path-svg { display: none; }
+      .wave-step {
+        position: relative !important;
+        left: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+        transform: none !important;
+        filter: brightness(1) saturate(1) !important;
+        width: 200px;
+      }
+      .wave-step:hover { transform: translateY(-4px) !important; }
+      .wave-step-desc { max-width: 200px; }
+    }
+
+    /* ─── SOCIAL PROOF ─── */
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 56px;
+    }
+
+    .proof-card {
+      border: 1px solid rgba(123,92,250,0.30);
+      border-top: 1px solid rgba(155,127,255,0.20);
+      border-radius: 16px;
+      padding: 32px;
+      position: relative;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s, box-shadow 0.2s;
+      background: linear-gradient(160deg, #241B52 0%, #1A1440 100%);
+      box-shadow: 0 4px 24px rgba(80,40,200,0.15);
+    }
+
+    .proof-card:hover {
+      border-color: rgba(123,92,250,0.50);
+      background: linear-gradient(160deg, #2A2060 0%, #1E1845 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(91,53,232,0.25), 0 8px 24px rgba(0,0,0,0.3);
+    }
+
+    .proof-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(123,92,250,0.35), transparent);
+    }
+
+    .proof-quote {
+      font-size: 0.92rem;
+      color: var(--text-dim);
+      line-height: 1.75;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+
+    .proof-quote::before {
+      content: '\201C';
+      color: var(--accent);
+      font-size: 1.4rem;
+      font-style: normal;
+      line-height: 0;
+      vertical-align: -0.4em;
+      margin-right: 4px;
+    }
+
+    .proof-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .proof-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(123,92,250,0.15);
+      border: 1px solid rgba(123,92,250,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .proof-author-info strong {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .proof-author-info span {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .proof-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(123,92,250,0.20);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-top: 56px;
+      border: 1px solid rgba(123,92,250,0.30);
+      box-shadow: 0 4px 24px rgba(80,40,200,0.15);
+    }
+
+    .proof-metric {
+      background: #1C1640;
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .proof-metric-num {
+      font-size: 2.4rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 8px;
+      color: var(--white);
+      text-shadow: 0 0 30px rgba(123,92,250,0.4);
+    }
+
+    .proof-metric-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    @media (max-width: 768px) {
+      .proof-grid { grid-template-columns: 1fr; }
+      .proof-metrics { grid-template-columns: 1fr; }
+    }
+
+    /* ─── QUEM SOMOS ─── */
+    .quem-somos-section {
+      position: relative;
+      overflow: hidden;
+      padding: 80px 0 80px; /* Reduzido padding superior e inferior */
+      background: #080620;
+      min-height: 600px; /* Reduzido o min-height para encolher a dobra */
+      display: flex;
+      align-items: center;
+    }
+    .quem-somos-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .quem-somos-bg img {
+      width: 75%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      position: absolute;
+      right: 0;
+      top: 0;
+      opacity: 1;
+    }
+    /* Gradiente lateral esquerdo */
+    .quem-somos-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, #080620 0%, #080620 18%, rgba(8,6,32,0.75) 32%, transparent 48%);
+      z-index: 1;
+    }
+    .quem-somos-container {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      width: 100%;
+      padding-left: 0;
+    }
+    .quem-somos-content {
+      max-width: 480px;
+      margin-left: 0;
+      /* Efeito de Vidro (Glassmorphism) */
+      background: rgba(14, 11, 34, 0.45);
+      padding: 36px; /* Reduzido o padding interno do vidro */
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .quem-somos-title {
+      font-size: 2.3rem; /* Título menor para ficar proporcional */
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      text-shadow: 0 0 30px rgba(123,92,250,0.4);
+    }
+    .quem-somos-title .bg-gradient-highlight {
+      background: linear-gradient(90deg, #7B5CFA, #A88BFF);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+      text-shadow: none;
+      filter: drop-shadow(0 0 10px rgba(123,92,250,0.3));
+    }
+    .quem-somos-subtitle {
+      font-size: 1.05rem; /* Subtítulo menor */
+      font-weight: 700;
+      color: #c4b5fd;
+      line-height: 1.4;
+      margin-bottom: 20px;
+    }
+    .quem-somos-text {
+      font-size: 0.88rem; /* Texto descritivo menor */
+      color: rgba(255,255,255,0.85);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .quem-somos-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px; /* Cria o efeito de bordas internas finas */
+      background: rgba(123,92,250,0.25); /* Cor das bordas finas */
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(123,92,250,0.35); /* Borda externa roxa mais marcada */
+      box-shadow: 0 10px 40px rgba(8, 6, 32, 0.6), 0 0 20px rgba(123,92,250,0.15); /* Sombra base + brilho roxo sutil */
+    }
+    .quem-somos-stat {
+      background: #110D2C; /* Fundo mais escuro e sólido parecendo o print */
+      padding: 36px 20px;
+      text-align: center;
+      transition: background 0.3s;
+    }
+    .quem-somos-stat:hover {
+      background: #151136; /* Leve clareada no hover para dar vida */
+    }
+    .quem-somos-stat-num {
+      font-size: 2.6rem;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 12px;
+      text-shadow: 0 0 20px rgba(255,255,255,0.4), 0 0 40px rgba(123,92,250,0.6); /* Brilho neon branco/roxo mais forte */
+    }
+    .quem-somos-stat-label {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.65); /* Cor um pouco mais legível */
+      line-height: 1.5;
+      font-family: inherit;
+    }
+    @media (max-width: 768px) {
+      .quem-somos-bg img {
+        width: 100%;
+        object-position: 70% center; /* Shift focus on mobile */
+      }
+      .quem-somos-bg::after {
+        background: linear-gradient(180deg, #080620 0%, #080620 30%, rgba(8,6,32,0.9) 60%, transparent 100%);
+      }
+      .quem-somos-content {
+        padding: 32px 24px; /* Espaço para o vidro não encostar no texto no mobile */
+      }
+      .quem-somos-title { font-size: 2rem; }
+      .quem-somos-stats { grid-template-columns: repeat(2, 1fr); }
+      .quem-somos-section { padding: 60px 0 50px; min-height: auto; align-items: flex-start; }
+    }
+
+    /* ─── PRODUTOS NÃO IMPORTADOS ─── */
+    .theme-black {
+      background:
+        radial-gradient(ellipse 600px 400px at 80% 40%, rgba(91,53,232,0.15) 0%, transparent 100%),
+        radial-gradient(ellipse 400px 300px at 20% 70%, rgba(123,92,250,0.10) 0%, transparent 100%),
+        #0E0B22;
+      color: #fff;
+    }
+    .section-warn {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    .section-warn svg {
+      width: 48px;
+      height: 48px;
+    }
+    .not-import-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .ni-card {
+      background: #0D0A16; /* Fundo bem escuro, levemente puxado pro roxo base */
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      flex-direction: column;
+    }
+    .ni-img {
+      height: 160px;
+      position: relative;
+      background-size: 50%; /* Icon fallback scale */
+      background-position: center;
+      background-repeat: no-repeat;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .ni-img::before {
+      content: ''; /* Vignette sutil */
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle, transparent 50%, rgba(0,0,0,0.1) 100%);
+    }
+    .ni-badge {
+      position: absolute;
+      bottom: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      z-index: 2;
+    }
+    .ni-badge svg {
+      width: 100%;
+      height: 100%;
+    }
+    .ni-label {
+      padding: 32px 16px 20px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #fff;
+    }
+    @media (max-width: 1024px) {
+      .not-import-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .not-import-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .not-import-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── QUALITY ─── */
+    .quality .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    .quality-quote {
+      margin-top: 36px;
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      line-height: 1.55;
+      padding: 24px 28px;
+      border: 1px solid rgba(123,92,250,0.30);
+      border-radius: 12px;
+      background: linear-gradient(160deg, #241B52 0%, #1A1440 100%);
+      position: relative;
+      box-shadow: 0 4px 24px rgba(80,40,200,0.15);
+    }
+
+    .quality-quote::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 16px; bottom: 16px;
+      width: 3px;
+      background: #7B5CFA;
+      border-radius: 2px;
+      box-shadow: -4px 0 20px rgba(123,92,250,0.3);
+    }
+
+    .pillars { display: flex; flex-direction: column; gap: 14px; }
+
+    .pillar {
+      display: flex;
+      gap: 20px;
+      padding: 24px;
+      border: 1px solid rgba(123,92,250,0.25);
+      border-radius: 12px;
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s, transform 0.2s;
+      background: linear-gradient(160deg, #241B52 0%, #1A1440 100%);
+    }
+    .pillar:hover { border-color: rgba(123,92,250,0.45); background: linear-gradient(160deg, #2A2060 0%, #1E1845 100%); transform: translateX(4px); box-shadow: 0 0 30px rgba(91,53,232,0.2); }
+    .pillar { transition: border-color 0.2s, background 0.2s, transform 0.2s; }
+
+    .pillar-num { font-size: 0.68rem; font-weight: 800; color: var(--accent); letter-spacing: 0.1em; padding-top: 2px; flex-shrink: 0; width: 24px; }
+
+    .pillar-content strong { display: block; font-size: 0.9rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+    .pillar-content span   { font-size: 0.83rem; color: var(--text-muted); line-height: 1.55; }
+    .theme-purple .pillar-num { color: #9B7FFF; }
+    .theme-purple .quality-quote { background: linear-gradient(160deg, #241B52 0%, #1A1440 100%); border-color: rgba(123,92,250,0.30); }
+
+    /* ─── CTA ─── */
+    .cta-section {
+      text-align: center;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 50% 50%, rgba(90,50,230,0.30) 0%, transparent 60%),
+        #0E0B22;
+    }
+
+    /* Anel orbital interno */
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      border: 1px solid rgba(123, 92, 250, 0.15);
+      box-shadow:
+        0 0 0 30px rgba(91, 53, 232, 0.03),
+        0 0 0 80px rgba(91, 53, 232, 0.02),
+        inset 0 0 100px rgba(91, 53, 232, 0.08);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Anel orbital externo */
+    .cta-section::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      border: 1px solid rgba(123, 92, 250, 0.08);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .cta-section .container { position: relative; z-index: 2; }
+    .cta-section .section-line { justify-content: center; }
+    .cta-section .section-title { max-width: 640px; margin: 0 auto 16px; }
+    .cta-section .section-desc { margin: 0 auto 52px; text-align: center; }
+
+    .cta-note { margin-top: 16px; font-size: 0.76rem; color: rgba(255,255,255,0.28); text-align: center; }
+
+    /* Mini CTA inline */
+    .mini-cta-wrap {
+      text-align: center;
+      padding: 48px 24px;
+    }
+
+    .mini-cta-wrap p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .btn-mini {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #5B35E8;
+      border: 1px solid rgba(155,127,255,0.35);
+      color: var(--white);
+      font-weight: 800;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-family: inherit;
+      position: relative;
+      transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 30px rgba(91,53,232,0.55), 0 0 60px rgba(91,53,232,0.25);
+    }
+
+    .btn-mini:hover {
+      background: #6B45F8;
+      box-shadow: 0 0 50px rgba(91,53,232,0.8), 0 0 100px rgba(91,53,232,0.35);
+      transform: translateY(-2px);
+    }
+
+    .btn-mini:active { transform: scale(0.97); }
+    .btn-mini svg { width: 14px; height: 14px; }
+
+    /* Glow externo girando — envolve o btn-mini */
+    .btn-glow-outer {
+      position: relative;
+      display: inline-block;
+      border-radius: 13px;
+      padding: 3px;
+      overflow: hidden;
+      animation: pulse-glow-shadow 2s ease-in-out infinite;
+    }
+    .btn-glow-outer::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      background: conic-gradient(
+        from 0deg,
+        transparent 0%,
+        transparent 12%,
+        rgba(192,132,252,0.5) 26%,
+        rgba(255,255,255,1) 38%,
+        rgba(255,255,255,1) 50%,
+        rgba(255,255,255,1) 62%,
+        rgba(192,132,252,0.5) 74%,
+        transparent 88%,
+        transparent 100%
+      );
+      animation: btn-spin-glow 2s linear infinite;
+      z-index: 0;
+    }
+    .btn-glow-outer > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ─── MODAL FORM ─── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(12,10,30,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-box {
+      background: #1C1640;
+      border: 1px solid rgba(123,92,250,0.30);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 520px;
+      padding: 48px;
+      position: relative;
+      transform: translateY(24px);
+      transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+    }
+    .modal-overlay.open .modal-box { transform: translateY(0); }
+
+    .modal-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 50%; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(123,92,250,0.4), transparent);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px; right: 20px;
+      background: none; border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1.2rem;
+      line-height: 1;
+      padding: 4px;
+      transition: color 0.2s;
+    }
+    .modal-close:hover { color: var(--white); }
+
+    .modal-progress {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 40px;
+    }
+    .modal-progress-dot {
+      height: 3px;
+      flex: 1;
+      border-radius: 2px;
+      background: rgba(255,255,255,0.08);
+      transition: background 0.3s;
+    }
+    .modal-progress-dot.done { background: var(--accent); }
+    .modal-progress-dot.active { background: rgba(123,92,250,0.5); }
+
+    .modal-step { display: none; }
+    .modal-step.active { display: block; }
+
+    .modal-step-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .modal-step-question {
+      display: block;
+      font-size: clamp(1.25rem, 3vw, 1.65rem);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      margin-bottom: 28px;
+      cursor: default;
+    }
+
+    .modal-input {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 14px 18px;
+      color: var(--white);
+      font-size: 1rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .modal-input:focus {
+      border-color: rgba(123,92,250,0.5);
+      background: rgba(28,22,64,0.4);
+      box-shadow: 0 0 12px rgba(123,92,250,0.15);
+    }
+    .modal-input::placeholder { color: rgba(255,255,255,0.2); }
+    .modal-input.error { border-color: rgba(239,68,68,0.5); }
+
+    .modal-error {
+      font-size: 0.78rem;
+      color: #ef4444;
+      margin-top: 8px;
+      min-height: 18px;
+    }
+
+    /* Opções de faturamento */
+    .revenue-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .revenue-option {
+      padding: 14px 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
+      text-align: left;
+      background: none;
+      font-family: inherit;
+      width: 100%;
+    }
+    .revenue-option:hover {
+      border-color: rgba(123,92,250,0.35);
+      background: rgba(123,92,250,0.08);
+      color: var(--white);
+    }
+    .revenue-option.selected {
+      border-color: var(--purple-accent);
+      background: rgba(123,92,250,0.12);
+      color: var(--white);
+      box-shadow: 0 0 12px rgba(123,92,250,0.2);
+    }
+
+    .modal-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 28px;
+      gap: 12px;
+    }
+
+    .modal-btn-next {
+      background: var(--white);
+      color: #000;
+      font-weight: 800;
+      font-size: 0.9rem;
+      letter-spacing: 0.01em;
+      padding: 14px 32px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, opacity 0.2s;
+      margin-left: auto;
+    }
+    .modal-btn-next:hover { transform: translateY(-1px); opacity: 0.9; }
+
+    .modal-btn-back {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      cursor: pointer;
+      font-family: inherit;
+      padding: 4px 0;
+      transition: color 0.2s;
+    }
+    .modal-btn-back:hover { color: var(--white); }
+
+    /* Tela de sucesso */
+    .modal-success {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+    }
+    .modal-success.active { display: block; }
+    .modal-success-icon {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: rgba(123,92,250,0.15);
+      border: 1px solid rgba(123,92,250,0.35);
+      box-shadow: 0 0 20px rgba(123,92,250,0.3);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+    }
+    .modal-success-icon svg { width: 24px; height: 24px; stroke: var(--accent); }
+    .modal-success h3 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 12px; }
+    .modal-success p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; }
+
+    /* ─── FAQ ─── */
+    .faq-list { margin-top: 60px; border-top: 1px solid rgba(110,70,230,0.2); }
+    .faq-item { border-bottom: 1px solid rgba(110,70,230,0.2); }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-family: inherit;
+      font-size: 0.94rem;
+      font-weight: 600;
+      text-align: left;
+      padding: 26px 0;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      transition: color 0.2s;
+      letter-spacing: -0.01em;
+    }
+    .faq-question:hover { color: var(--accent); }
+
+    .faq-icon {
+      flex-shrink: 0;
+      width: 26px; height: 26px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s, border-color 0.2s;
+    }
+    .faq-icon svg { width: 10px; height: 10px; stroke: var(--text-muted); transition: stroke 0.2s; }
+
+    .faq-item.open .faq-icon { transform: rotate(45deg); border-color: rgba(123,92,250,0.35); box-shadow: 0 0 8px rgba(123,92,250,0.25); }
+    .faq-item.open .faq-icon svg { stroke: var(--purple-bright); }
+
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .faq-item.open .faq-answer { max-height: 300px; }
+
+    .faq-answer-inner {
+      padding: 0 40px 28px 0;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid rgba(123,92,250,0.20);
+      padding: 48px 24px;
+      text-align: center;
+      background: #0E0B22;
+    }
+
+    .footer-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      text-decoration: none;
+      margin-bottom: 12px;
+    }
+
+    .footer-text { font-size: 0.78rem; color: rgba(255,255,255,0.24); }
+    .footer-text a { color: rgba(255,255,255,0.35); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+
+      /* ── HERO ── */
+      .hero-split {
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .hero-left {
+        flex: none;
+        width: 100%;
+        padding: 100px 20px 40px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-content {
+        padding: 28px 20px;
+        border-radius: 16px;
+      }
+
+      .hero h1 {
+        font-size: clamp(2rem, 7vw, 2.8rem);
+        line-height: 1.1;
+        margin-bottom: 20px;
+      }
+
+      .hero-sub {
+        font-size: 0.95rem;
+        margin-bottom: 28px;
+      }
+
+      /* Botão CTA hero: largura total */
+      .btn-glow-wrap {
+        display: block;
+        width: 100%;
+      }
+      .hero-cta-link,
+      .btn-primary {
+        width: 100%;
+        justify-content: center;
+        padding: 16px 24px;
+        font-size: 0.9rem;
+      }
+
+      /* Hero process: empilha em coluna */
+      .hero-process {
+        padding: 16px;
+      }
+      .hero-process-steps {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .hero-process-arrow {
+        transform: rotate(90deg);
+        align-self: center;
+      }
+      .hero-process-step {
+        flex: none;
+        width: 100%;
+      }
+
+      /* Imagem de fundo hero */
+      .hero-bg img {
+        width: 100%;
+        object-position: 70% center;
+        opacity: 0.35;
+      }
+      .hero-bg::after {
+        background: linear-gradient(180deg, rgba(8,6,32,0.85) 0%, rgba(8,6,32,0.75) 40%, rgba(8,6,32,0.55) 70%, transparent 100%);
+      }
+
+      /* Painel direito hero: ocultar em mobile (já coberto pela .hero-bg) */
+      .hero-right {
+        display: none;
+      }
+
+      /* ── SECTIONS gerais ── */
+      section { padding: 72px 20px; }
+
+      /* ── CONTEXT ── */
+      .context .container { max-width: 100%; }
+      .context-text p { font-size: 0.95rem; }
+      .context-highlight { font-size: 1.05rem; padding: 12px 16px; }
+      .context-highlight { font-size: 0.95rem; }
+
+      /* ── PARA QUEM ── */
+      .for-who-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-top: 40px;
+      }
+      .for-card {
+        padding: 28px 20px 24px;
+        border-radius: 18px;
+      }
+
+      /* ── SERVIÇOS ── */
+      .services-header {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-bottom: 36px;
+      }
+      .services-grid { grid-template-columns: 1fr; }
+
+      /* ── QUEM SOMOS ── */
+      .quem-somos-section {
+        padding: 60px 0 50px;
+        min-height: auto;
+        align-items: flex-start;
+      }
+      .quem-somos-container { padding: 0 20px; }
+      .quem-somos-bg img {
+        width: 100%;
+        object-position: 70% center;
+        opacity: 0.25;
+      }
+      .quem-somos-bg::after {
+        background: linear-gradient(180deg, #080620 0%, #080620 25%, rgba(8,6,32,0.9) 55%, transparent 100%);
+      }
+      .quem-somos-content {
+        max-width: 100%;
+        padding: 28px 20px;
+      }
+      .quem-somos-title { font-size: 1.9rem; }
+      .quem-somos-subtitle { font-size: 0.95rem; }
+      .quem-somos-text { font-size: 0.85rem; }
+      .quem-somos-stats { grid-template-columns: repeat(2, 1fr); }
+      .quem-somos-stat { padding: 24px 12px; }
+      .quem-somos-stat-num { font-size: 1.9rem; }
+
+      /* ── QUALITY ── */
+      .quality .container {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+      .quality-quote { font-size: 0.95rem; padding: 18px 20px; }
+
+      /* ── WAVE / COMO FUNCIONA ── */
+      .wave-section { padding: 72px 20px 56px; }
+      .wave-header { margin-bottom: 48px; }
+
+      /* ── PRODUTOS NÃO IMPORTADOS ── */
+      .theme-black .section-title {
+        font-size: 1.6rem !important;
+        margin-bottom: 32px !important;
+      }
+
+      /* ── CTA SECTION ── */
+      .cta-section::before { width: 280px; height: 280px; }
+      .cta-section::after  { width: 420px; height: 420px; }
+      .cta-section .section-title { font-size: clamp(1.6rem, 5vw, 2.2rem); }
+      .cta-section .section-desc { margin-bottom: 32px; }
+
+      /* ── MODAL ── */
+      .modal-box { padding: 32px 24px; }
+
+      /* ── FAQ ── */
+      .faq-question {
+        font-size: 0.88rem;
+        gap: 16px;
+        padding: 20px 0;
+      }
+      .faq-answer-inner { font-size: 0.85rem; }
+
+      /* ── FORM ── */
+      .form-grid { grid-template-columns: 1fr; }
+      .form-wrap { padding: 32px 24px; }
+
+      /* ── CTA MINI BUTTONS ── */
+      .btn-glow-outer {
+        display: block;
+        width: 100%;
+      }
+      .btn-mini {
+        width: 100%;
+        justify-content: center;
+      }
+
+      /* ── SECTION TITLE geral ── */
+      .section-title {
+        font-size: clamp(1.6rem, 5vw, 2.2rem);
+      }
+
+      /* Anéis menores no mobile */
+      .cta-section::before { width: 300px; height: 300px; }
+      .cta-section::after  { width: 450px; height: 450px; }
+    }
+
+    @media (max-width: 480px) {
+      /* ── HERO ── */
+      .hero h1 { font-size: 1.85rem; }
+      .hero-sub { font-size: 0.88rem; }
+      .hero-badge { font-size: 0.65rem; margin-bottom: 24px; }
+      .hero-content { padding: 22px 16px; }
+      .hero-process { padding: 14px 12px; }
+      .hero-process-step-label { font-size: 0.82rem; }
+
+      /* ── SECTION geral ── */
+      section { padding: 60px 16px; }
+      .section-title { font-size: 1.55rem; }
+      .section-desc { font-size: 0.92rem; }
+
+      /* ── NAV ── */
+      nav { padding: 14px 16px; }
+      .nav-cta { font-size: 0.75rem; padding: 8px 16px; }
+
+      /* ── PARA QUEM ── */
+      .for-card { padding: 22px 16px 18px; }
+      .for-card-title { font-size: 0.95rem; }
+      .for-item { font-size: 0.85rem; }
+
+      /* ── SERVIÇOS ── */
+      .service-card { padding: 24px 20px; }
+
+      /* ── QUEM SOMOS ── */
+      .quem-somos-title { font-size: 1.65rem; }
+      .quem-somos-stats { grid-template-columns: repeat(2, 1fr); }
+      .quem-somos-stat-num { font-size: 1.65rem; }
+      .quem-somos-stat-label { font-size: 0.75rem; }
+
+      /* ── WAVE ── */
+      .wave-section { padding: 56px 16px 48px; }
+      .wave-header { margin-bottom: 36px; }
+      .wave-step { width: 160px; }
+      .wave-step-title { font-size: 0.78rem; }
+      .wave-step-desc { font-size: 0.65rem; max-width: 160px; }
+      .wave-step-circle { width: 52px; height: 52px; }
+
+      /* ── PRODUTOS NÃO IMPORTADOS ── */
+      .not-import-grid { grid-template-columns: 1fr; gap: 12px; }
+      .theme-black .section-title { font-size: 1.4rem !important; }
+      .ni-img { height: 130px; }
+      .ni-label { font-size: 0.85rem; padding: 28px 12px 16px; }
+
+      /* ── CTA ── */
+      .cta-section { padding: 60px 16px; }
+      .cta-section .section-title { font-size: 1.5rem; }
+      .cta-section::before { width: 240px; height: 240px; }
+      .cta-section::after  { width: 360px; height: 360px; }
+
+      /* ── MODAL ── */
+      .modal-box { padding: 28px 18px; border-radius: 16px; }
+      .modal-step-question { font-size: 1.1rem; }
+      .modal-overlay { padding: 16px; }
+
+      /* ── FAQ ── */
+      .faq-question { font-size: 0.82rem; padding: 18px 0; }
+      .faq-answer-inner { font-size: 0.82rem; padding: 0 24px 22px 0; }
+
+      /* ── QUALITY ── */
+      .quality-quote { font-size: 0.88rem; padding: 16px 18px; }
+      .pillar { padding: 18px; gap: 14px; }
+
+      /* ── FOOTER ── */
+      footer { padding: 36px 16px; }
+
+      /* ── PROOF / SOCIAL ── */
+      .proof-metric { padding: 24px 16px; }
+      .proof-metric-num { font-size: 1.9rem; }
+
+      /* ── STATS context ── */
+      .stat-num { font-size: 2rem; }
+      .stat-item { padding: 20px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+
+<!-- HERO -->
+<section class="hero-split">
+  <!-- Imagem de Fundo (Direita com Fade para Esquerda) -->
+  <div class="hero-bg">
+    <img src="/images/hero-bg-new.jpg" alt="Hero background" />
+  </div>
+
+  <!-- Painel Esquerdo (Conteúdo) -->
+  <div class="hero-left">
+    <div class="hero-content">
+      <h1>Sua primeira importação não precisa ser um <em>salto no escuro.</em></h1>
+      <div class="hero-rule"></div>
+      <p class="hero-sub">A SunRocket foi criada para colocar sua operação de importação em órbita — do primeiro produto pesquisado até a aterrissagem no seu estoque.</p>
+      
+      <span class="btn-glow-wrap">
+        <button class="hero-cta-link" onclick="openModal()">
+          Quero importar
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </span>
+
+      <div class="hero-process">
+        <p class="hero-process-label">Dar o próximo passo leva menos de um minuto</p>
+        <div class="hero-process-steps">
+          <div class="hero-process-step">
+            <div class="hero-process-step-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="13" y2="15"/></svg>
+            </div>
+            <div class="hero-process-step-text">
+              <span class="hero-process-step-num">Passo 01</span>
+              <span class="hero-process-step-label">Preencha o formulário</span>
+            </div>
+          </div>
+          <div class="hero-process-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+          <div class="hero-process-step">
+            <div class="hero-process-step-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 11.9 19.79 19.79 0 0 1 1.6 3.26 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.5 16a2 2 0 0 1 .5.92z"/></svg>
+            </div>
+            <div class="hero-process-step-text">
+              <span class="hero-process-step-num">Passo 02</span>
+              <span class="hero-process-step-label">Receba uma ligação de um especialista</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEXT -->
+<section class="context theme-white">
+  <div class="container">
+    <div class="context-text">
+<h2 class="section-title">Por que a maioria trava antes de começar</h2>
+      <p>Importar da China é uma das formas mais poderosas de <strong>aumentar sua margem, criar sua marca e escalar um negócio de verdade.</strong></p>
+      <p>Mas a maioria dos empreendedores trava antes de começar — por medo de errar, por falta de estrutura ou por não saber em quem confiar.</p>
+      <div class="context-highlight">É exatamente aí que a SunRocket entra.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- divider: context(#100C28) → para-quem(#0E0B22) — default já correto -->
+
+<!-- FOR WHO -->
+<section id="para-quem" class="theme-purple">
+  <div class="container">
+    <h2 class="section-title">A SunRocket foi feita para você que:</h2>
+    <div class="for-who-grid">
+      <div class="for-card is">
+        <div class="for-card-glow glow-tl"></div>
+        <div class="for-card-glow glow-tr"></div>
+        <div class="for-card-glow glow-bl"></div>
+        <div class="for-card-glow glow-br"></div>
+        <div class="for-card-header">
+          <div class="for-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span class="for-card-title">Para quem é</span>
+        </div>
+        <div class="for-item"><span class="for-bullet"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Já tem um negócio rodando e quer aumentar a margem importando direto</div>
+        <div class="for-item"><span class="for-bullet"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Quer criar ou escalar uma marca própria com produto exclusivo</div>
+        <div class="for-item"><span class="for-bullet"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Compra de distribuidor hoje e quer cortar o intermediário de vez</div>
+        <div class="for-item"><span class="for-bullet"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Já importa de forma desorganizada e quer estrutura de verdade</div>
+        <div class="for-item"><span class="for-bullet"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Tem capital disponível e quer fazer isso com segurança</div>
+        <div class="for-item"><span class="for-bullet"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Busca um parceiro estratégico — não só um despachante</div>
+      </div>
+      <div class="for-card not">
+        <div class="for-card-glow glow-tl"></div>
+        <div class="for-card-glow glow-tr"></div>
+        <div class="for-card-glow glow-bl"></div>
+        <div class="for-card-glow glow-br"></div>
+        <div class="for-card-header">
+          <div class="for-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </div>
+          <span class="for-card-title">Para quem não é</span>
+        </div>
+        <div class="for-item"><span class="for-bullet"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>Quem ainda está "só pesquisando" sem intenção real de agir</div>
+        <div class="for-item"><span class="for-bullet"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>Quem quer importar volume mínimo sem perspectiva de crescimento</div>
+        <div class="for-item"><span class="for-bullet"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>Quem busca o menor preço sem se importar com qualidade</div>
+        <div class="for-item"><span class="for-bullet"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>Quem não tem capital disponível para investir na operação</div>
+        <div class="for-item"><span class="for-bullet"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>Dropshippers sem estrutura buscando atalho rápido</div>
+      </div>
+    </div>
+    <div class="mini-cta-wrap">
+      <p>Você se identificou? Então é hora de dar o próximo passo.</p>
+      <span class="btn-glow-outer">
+        <button class="btn-mini" onclick="openModal()">
+          Quero importar
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </span>
+    </div>
+  </div>
+</section>
+
+<div class="divider d-purple-dark"></div>
+
+<!-- SERVICES -->
+<section id="servicos" class="theme-white">
+  <div class="container">
+    <div class="services-header">
+      <div>
+        <h2 class="section-title">Uma operação completa. Do produto certo até a sua porta.</h2>
+      </div>
+      <p class="section-desc">Não entregamos só sourcing. Entregamos estrutura para você importar com inteligência, previsibilidade e tranquilidade — do início ao fim.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-card-line"></div>
+        <div class="service-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div class="service-title">Catálogos Dedicados</div>
+        <p class="service-desc">Fornecedores qualificados e curados para o seu nicho. Sem garimpo aleatório, sem risco de golpe.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-card-line"></div>
+        <div class="service-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        </div>
+        <div class="service-title">Busca de Produto</div>
+        <p class="service-desc">Nossa equipe encontra o produto certo com especificações, qualidade e potencial de mercado.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-card-line"></div>
+        <div class="service-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <div class="service-title">Projeção de Custos</div>
+        <p class="service-desc">Antes de investir um centavo, você sabe exatamente quanto vai custar. Frete, impostos, tudo calculado.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-card-line"></div>
+        <div class="service-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
+        </div>
+        <div class="service-title">Coordenação Operacional</div>
+        <p class="service-desc">Da negociação com a fábrica até a chegada no Brasil. Logística, documentação e desembaraço coordenados.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-card-line"></div>
+        <div class="service-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="service-title">Suporte Dedicado</div>
+        <p class="service-desc">Sem robôs, sem espera. Uma equipe real acompanhando sua operação e respondendo quando você precisa.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-card-line"></div>
+        <div class="service-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <div class="service-title">Alinhamentos Semanais</div>
+        <p class="service-desc">Reuniões periódicas para revisar a operação, antecipar problemas e planejar os próximos passos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider d-dark-deeper"></div>
+
+<!-- QUEM SOMOS -->
+<section class="quem-somos-section" id="quem-somos">
+  <div class="quem-somos-bg">
+    <img src="/images/sunrocket-planet.jpg" alt="SunRocket planeta com contêineres em órbita" />
+  </div>
+  <div class="container quem-somos-container">
+    <div class="quem-somos-content">
+      <div class="section-line"><span class="section-label">QUEM SOMOS</span></div>
+      <h2 class="quem-somos-title">Unindo tradição<br>e <span class="bg-gradient-highlight">Inovação Logística</span></h2>
+      <p class="quem-somos-subtitle">A estrutura que estava faltando na sua importação já existe há 20 anos.</p>
+      <p class="quem-somos-text">A SunRocket é a divisão estratégica da Suntrans, empresa com duas décadas de operação consolidada em logística internacional, agenciamento de cargas e desembaraço aduaneiro no Brasil.</p>
+      <p class="quem-somos-text">Enquanto outras consultorias terceirizam a parte mais crítica da operação, a SunRocket entrega o processo completo integrado à estrutura da Suntrans. Uma única equipe responsável do sourcing à entrega, com histórico real e infraestrutura de quem já liberou centenas de cargas no país.</p>
+      <p class="quem-somos-text">Você não está apostando em uma empresa nova. Está acessando 20 anos de experiência com um serviço desenhado para o seu momento.</p>
+    </div>
+    <div class="quem-somos-stats">
+      <div class="quem-somos-stat">
+        <div class="quem-somos-stat-num">+40</div>
+        <div class="quem-somos-stat-label">países<br>atendidos</div>
+      </div>
+      <div class="quem-somos-stat">
+        <div class="quem-somos-stat-num">+3.187</div>
+        <div class="quem-somos-stat-label">clientes</div>
+      </div>
+      <div class="quem-somos-stat">
+        <div class="quem-somos-stat-num">+611.298</div>
+        <div class="quem-somos-stat-label">cargas<br>embarcadas</div>
+      </div>
+      <div class="quem-somos-stat">
+        <div class="quem-somos-stat-num">+120</div>
+        <div class="quem-somos-stat-label">especialistas em<br>9 unidades pelo Brasil</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider d-deeper-navy"></div>
+
+<!-- COMO FUNCIONA — Zigzag Wave -->
+<section class="wave-section" id="como-funciona">
+  <div class="container">
+    <div class="wave-header">
+      <div class="section-line"><span class="section-label">Como funciona</span></div>
+      <h2 class="section-title">Do primeiro contato até o estoque cheio.</h2>
+    </div>
+
+    <div class="wave-timeline">
+      <svg class="wave-path-svg" viewBox="0 0 1080 520">
+        <path class="wave-line" d="M 78,180 Q 137,180 155,280 Q 173,380 233,380 Q 293,380 310,280 Q 327,180 387,180 Q 447,180 465,280 Q 483,380 543,380 Q 603,380 620,280 Q 637,180 697,180 Q 757,180 775,280 Q 793,380 853,380 Q 913,380 930,280 Q 947,180 1005,180" />
+        <!-- Cargo ship with astronaut -->
+        <g class="wave-ship">
+          <g transform="translate(-28,-30) scale(1.4)">
+            <!-- Water line -->
+            <ellipse cx="20" cy="38" rx="22" ry="3" fill="rgba(123,92,250,0.15)"/>
+            <!-- Hull - cargo ship shape -->
+            <path d="M0,32 L4,38 L36,38 L40,32 L38,28 L2,28 Z" fill="#2A1A6E" stroke="#7B5CFA" stroke-width="0.6"/>
+            <!-- Hull stripe -->
+            <rect x="3" y="30" width="34" height="3" rx="0.5" fill="#3A2090" opacity="0.7"/>
+            <!-- Deck -->
+            <rect x="4" y="25" width="32" height="3" rx="0.5" fill="#1E1550" stroke="#5B35E8" stroke-width="0.4"/>
+            <!-- Container row 1 -->
+            <rect x="6" y="17" width="7" height="8" rx="0.5" fill="#E53935" stroke="rgba(255,255,255,0.5)" stroke-width="0.4"/>
+            <rect x="14" y="17" width="7" height="8" rx="0.5" fill="#5B35E8" stroke="rgba(255,255,255,0.5)" stroke-width="0.4"/>
+            <rect x="22" y="17" width="7" height="8" rx="0.5" fill="#E53935" stroke="rgba(255,255,255,0.5)" stroke-width="0.4"/>
+            <!-- Container row 2 -->
+            <rect x="9" y="9" width="7" height="8" rx="0.5" fill="#9B7FFF" stroke="rgba(255,255,255,0.5)" stroke-width="0.4"/>
+            <rect x="17" y="9" width="7" height="8" rx="0.5" fill="#7B5CFA" stroke="rgba(255,255,255,0.5)" stroke-width="0.4"/>
+            <!-- Bridge/cabin -->
+            <rect x="30" y="14" width="7" height="11" rx="1" fill="#1C1640" stroke="#7B5CFA" stroke-width="0.5"/>
+            <rect x="31" y="15.5" width="5" height="3" rx="0.5" fill="rgba(155,127,255,0.4)"/>
+            <!-- Chimney -->
+            <rect x="33" y="10" width="2.5" height="4" rx="0.5" fill="#2A1A6E" stroke="#5B35E8" stroke-width="0.3"/>
+            <!-- Smoke -->
+            <circle cx="34" cy="7" r="1.5" fill="rgba(255,255,255,0.3)">
+              <animate attributeName="cy" values="7;4;7" dur="2s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.3;0.1;0.3" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="36" cy="5" r="1" fill="rgba(255,255,255,0.2)">
+              <animate attributeName="cy" values="5;2;5" dur="2.5s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Astronaut sitting on containers with laptop -->
+            <g transform="translate(8, -8) scale(1.6)">
+              <!-- Backpack/life support -->
+              <rect x="6.5" y="2.5" width="3" height="5.5" rx="1" fill="#D0D0D0" stroke="#999" stroke-width="0.3"/>
+              <rect x="7" y="3" width="2" height="2" rx="0.5" fill="#B0B0B0"/>
+              <circle cx="8" cy="6" r="0.4" fill="#7B5CFA"/>
+              <!-- Oxygen tube -->
+              <path d="M6.5,4 Q5,4 5,5.5" stroke="#AAA" stroke-width="0.4" fill="none"/>
+
+              <!-- Body / suit torso -->
+              <path d="M1,5 Q0.5,3.5 2,3 L5,3 Q6.5,3.5 6,5 L5.5,8 L1.5,8 Z" fill="white" stroke="#CCC" stroke-width="0.3"/>
+              <!-- Suit details -->
+              <rect x="2.2" y="4" width="2.5" height="1.5" rx="0.5" fill="rgba(123,92,250,0.15)" stroke="rgba(123,92,250,0.3)" stroke-width="0.2"/>
+              <!-- SunRocket patch -->
+              <circle cx="3.5" cy="4.7" r="0.5" fill="#5B35E8"/>
+
+              <!-- Helmet -->
+              <ellipse cx="3.5" cy="1.2" rx="3.2" ry="2.8" fill="white" stroke="#CCC" stroke-width="0.35"/>
+              <!-- Helmet rim -->
+              <ellipse cx="3.5" cy="1.2" rx="3.4" ry="2.9" fill="none" stroke="#B8B0D8" stroke-width="0.2"/>
+              <!-- Visor (golden reflective) -->
+              <path d="M1.2,0.5 Q3.5,-0.8 5.8,0.5 Q6,2.5 3.5,3.2 Q1,2.5 1.2,0.5Z" fill="url(#visorGradient)" opacity="0.85"/>
+              <!-- Visor reflections -->
+              <ellipse cx="2.5" cy="0.8" rx="0.8" ry="0.4" fill="rgba(255,255,255,0.5)" transform="rotate(-15,2.5,0.8)"/>
+              <ellipse cx="4.2" cy="1.5" rx="0.4" ry="0.2" fill="rgba(255,255,255,0.3)"/>
+
+              <!-- Left arm reaching to laptop -->
+              <path d="M1,5 Q-0.5,6.5 0,8.2" stroke="white" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+              <!-- Left glove -->
+              <circle cx="0" cy="8.4" r="0.7" fill="#DDD" stroke="#BBB" stroke-width="0.2"/>
+              <!-- Right arm reaching to laptop -->
+              <path d="M6,5 Q7.5,6.5 7,8.2" stroke="white" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+              <!-- Right glove -->
+              <circle cx="7" cy="8.4" r="0.7" fill="#DDD" stroke="#BBB" stroke-width="0.2"/>
+
+              <!-- Laptop -->
+              <rect x="-1" y="8" width="9" height="0.8" rx="0.3" fill="#444" stroke="#666" stroke-width="0.2"/>
+              <!-- Laptop screen (angled) -->
+              <rect x="0" y="5.5" width="7" height="3" rx="0.5" fill="#111" stroke="#555" stroke-width="0.3"/>
+              <!-- Screen content glow -->
+              <rect x="0.5" y="6" width="6" height="2" rx="0.3" fill="rgba(123,92,250,0.3)"/>
+              <!-- Code lines on screen -->
+              <rect x="1" y="6.3" width="3" height="0.3" rx="0.1" fill="rgba(155,127,255,0.6)"/>
+              <rect x="1" y="6.9" width="4" height="0.3" rx="0.1" fill="rgba(91,53,232,0.5)"/>
+              <rect x="1" y="7.5" width="2.5" height="0.3" rx="0.1" fill="rgba(155,127,255,0.4)"/>
+              <!-- Screen light on visor -->
+              <ellipse cx="3.5" cy="1.5" rx="1" ry="0.5" fill="rgba(123,92,250,0.1)"/>
+
+              <!-- Legs sitting/dangling -->
+              <path d="M2,8 L1.5,11.5" stroke="white" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+              <path d="M5,8 L5.5,11.5" stroke="white" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+              <!-- Boots -->
+              <ellipse cx="1.3" cy="12" rx="1" ry="0.6" fill="#444" stroke="#333" stroke-width="0.2"/>
+              <ellipse cx="5.7" cy="12" rx="1" ry="0.6" fill="#444" stroke="#333" stroke-width="0.2"/>
+            </g>
+            <!-- Visor gradient definition -->
+            <defs>
+              <linearGradient id="visorGradient" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#FFD700" stop-opacity="0.7"/>
+                <stop offset="50%" stop-color="#FFA500" stop-opacity="0.5"/>
+                <stop offset="100%" stop-color="#9B7FFF" stop-opacity="0.6"/>
+              </linearGradient>
+            </defs>
+          </g>
+        </g>
+      </svg>
+
+      <div class="wave-step step-top" data-step-index="0">
+        <div class="wave-step-info">
+          <div class="wave-step-title">Pesquisa de Produtos</div>
+          <div class="wave-step-desc">Identificamos os melhores produtos e fornecedores.</div>
+        </div>
+        <div class="wave-step-circle">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <div class="wave-step-num">01</div>
+        </div>
+      </div>
+
+      <div class="wave-step step-bottom" data-step-index="1">
+        <div class="wave-step-circle">
+          <svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          <div class="wave-step-num">02</div>
+        </div>
+        <div class="wave-step-info">
+          <div class="wave-step-title">Simulação de Custos</div>
+          <div class="wave-step-desc">Projeção completa com impostos e taxas.</div>
+        </div>
+      </div>
+
+      <div class="wave-step step-top" data-step-index="2">
+        <div class="wave-step-info">
+          <div class="wave-step-title">Estrutura Legal</div>
+          <div class="wave-step-desc">Habilitação RADAR e documentação completa.</div>
+        </div>
+        <div class="wave-step-circle">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 15l2 2 4-4"/></svg>
+          <div class="wave-step-num">03</div>
+        </div>
+      </div>
+
+      <div class="wave-step step-bottom" data-step-index="3">
+        <div class="wave-step-circle">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>
+          <div class="wave-step-num">04</div>
+        </div>
+        <div class="wave-step-info">
+          <div class="wave-step-title">Negociação e Sourcing</div>
+          <div class="wave-step-desc">Negociação direta com fornecedores.</div>
+        </div>
+      </div>
+
+      <div class="wave-step step-top" data-step-index="4">
+        <div class="wave-step-info">
+          <div class="wave-step-title">Logística Internacional</div>
+          <div class="wave-step-desc">Transporte até o porto brasileiro.</div>
+        </div>
+        <div class="wave-step-circle">
+          <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          <div class="wave-step-num">05</div>
+        </div>
+      </div>
+
+      <div class="wave-step step-bottom" data-step-index="5">
+        <div class="wave-step-circle">
+          <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><path d="M21 12H9"/></svg>
+          <div class="wave-step-num">06</div>
+        </div>
+        <div class="wave-step-info">
+          <div class="wave-step-title">Desembaraço Aduaneiro</div>
+          <div class="wave-step-desc">Liberação alfandegária sem burocracia.</div>
+        </div>
+      </div>
+
+      <div class="wave-step step-top final" data-step-index="6">
+        <div class="wave-step-info">
+          <div class="wave-step-title">Acompanhamento Estratégico</div>
+          <div class="wave-step-desc">Analisamos resultados, planejamos recompra e mapeamos novas oportunidades.</div>
+        </div>
+        <div class="wave-step-circle">
+          <svg viewBox="0 0 24 24"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+          <div class="wave-step-num">07</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider d-same"></div>
+
+<!-- QUALITY -->
+<section class="quality theme-purple">
+  <div class="container">
+    <div class="quality-text">
+      <div class="section-line"><span class="section-label">Nossa filosofia</span></div>
+      <h2 class="section-title">Qualidade não é diferencial. É obsessão.</h2>
+      <p class="section-desc">Na SunRocket, cada cliente recebe atenção personalizada porque nenhuma operação é igual a outra. Não trabalhamos no volume. Trabalhamos no resultado.</p>
+      <div class="quality-quote">
+        Você não está contratando um serviço. Está colocando sua operação nas mãos de quem vai tratá-la como se fosse a própria.
+      </div>
+    </div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <div class="pillar-content">
+          <strong>Vagas limitadas por ciclo</strong>
+          <span>Somos seletivos para garantir que cada cliente tenha a atenção e o resultado que merece.</span>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <div class="pillar-content">
+          <strong>Sócio estratégico, não fornecedor</strong>
+          <span>Nosso time conhece seu negócio, entende seus objetivos e age junto — não apenas executa.</span>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <div class="pillar-content">
+          <strong>Integrado com a Suntrans</strong>
+          <span>Expertise consolidada em logística internacional e desembaraço aduaneiro. Porta a porta.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider d-to-black"></div>
+
+<!-- NÃO IMPORTAMOS -->
+<section class="theme-black">
+  <div class="container">
+    <div class="section-warn">
+      <svg viewBox="0 0 24 24" fill="#FFD700" stroke="#000" stroke-width="1.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    </div>
+    <h2 class="section-title text-center text-white" style="text-align:center; font-size:2.4rem; margin-bottom: 50px;">Produtos que não Importamos</h2>
+    
+    <div class="not-import-grid">
+      
+      <!-- Card 1 -->
+      <div class="ni-card">
+        <div class="ni-img" style="background-image: url('/images/produtos-marca.jpg'); background-color: #1a1440; background-size: cover; background-position: center;">
+          <div class="ni-badge">
+            <svg viewBox="0 0 24 24" fill="#E53935"><circle cx="12" cy="12" r="10" fill="#fff" stroke="#D32F2F" stroke-width="2"/><path d="M15 9l-6 6M9 9l6 6" stroke="#D32F2F" stroke-width="2.5" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+        <div class="ni-label">Produtos de marca</div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="ni-card">
+        <div class="ni-img" style="background-image: url('/images/produtos-iphone.jpg'); background-color: #1a1440; background-size: cover; background-position: center;">
+          <div class="ni-badge">
+            <svg viewBox="0 0 24 24" fill="#E53935"><circle cx="12" cy="12" r="10" fill="#fff" stroke="#D32F2F" stroke-width="2"/><path d="M15 9l-6 6M9 9l6 6" stroke="#D32F2F" stroke-width="2.5" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+        <div class="ni-label">Iphones</div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="ni-card">
+        <div class="ni-img" style="background-image: url('/images/produtos-camiseta.jpg'); background-color: #1a1440; background-size: cover; background-position: 30% center;">
+          <div class="ni-badge">
+            <svg viewBox="0 0 24 24" fill="#E53935"><circle cx="12" cy="12" r="10" fill="#fff" stroke="#D32F2F" stroke-width="2"/><path d="M15 9l-6 6M9 9l6 6" stroke="#D32F2F" stroke-width="2.5" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+        <div class="ni-label">Camisetas de time</div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="ni-card">
+        <div class="ni-img" style="background-image: url('/images/produtos-chuteira.jpg'); background-color: #1a1440; background-size: cover; background-position: center;">
+          <div class="ni-badge">
+            <svg viewBox="0 0 24 24" fill="#E53935"><circle cx="12" cy="12" r="10" fill="#fff" stroke="#D32F2F" stroke-width="2"/><path d="M15 9l-6 6M9 9l6 6" stroke="#D32F2F" stroke-width="2.5" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+        <div class="ni-label">Chuteiras</div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="ni-card">
+        <div class="ni-img" style="background-image: url('/images/produtos-perfume.jpg'); background-color: #1a1440; background-size: cover; background-position: center center;">
+          <div class="ni-badge">
+            <svg viewBox="0 0 24 24" fill="#E53935"><circle cx="12" cy="12" r="10" fill="#fff" stroke="#D32F2F" stroke-width="2"/><path d="M15 9l-6 6M9 9l6 6" stroke="#D32F2F" stroke-width="2.5" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+        <div class="ni-label">Maquiagem e perfume</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider d-from-black"></div>
+
+<!-- CTA -->
+<section class="cta-section" id="form">
+  <div class="container">
+    <h2 class="section-title">Pronto para colocar sua importação em órbita?</h2>
+    <p class="section-desc">Nossa equipe entra em contato para entender o seu momento e apresentar o melhor caminho.</p>
+    <span class="btn-glow-wrap">
+      <button class="btn-primary" onclick="openModal()">
+        Quero importar
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </span>
+    <p class="cta-note">Sem compromisso &nbsp;·&nbsp; Vagas limitadas por ciclo</p>
+  </div>
+</section>
+
+<!-- MODAL FORM -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal-box" id="modalBox">
+    <button class="modal-close" onclick="closeModal()" aria-label="Fechar">&times;</button>
+
+    <!-- Progress -->
+    <div class="modal-progress" id="modalProgress"></div>
+
+    <!-- Steps -->
+    <div id="modalSteps">
+
+      <!-- Step 1: Nome -->
+      <div class="modal-step active" data-step="0">
+        <div class="modal-step-label">Passo 1 de 5</div>
+        <label class="modal-step-question" for="f-nome">Qual é o seu nome completo?</label>
+        <input class="modal-input" type="text" id="f-nome" placeholder="Seu nome completo" autocomplete="name" />
+        <div class="modal-error" id="err-nome" role="alert"></div>
+      </div>
+
+      <!-- Step 2: Email -->
+      <div class="modal-step" data-step="1">
+        <div class="modal-step-label">Passo 2 de 5</div>
+        <label class="modal-step-question" for="f-email">Qual é o seu e-mail?</label>
+        <input class="modal-input" type="email" id="f-email" placeholder="seu@email.com" autocomplete="email" />
+        <div class="modal-error" id="err-email" role="alert"></div>
+      </div>
+
+      <!-- Step 3: WhatsApp -->
+      <div class="modal-step" data-step="2">
+        <div class="modal-step-label">Passo 3 de 5</div>
+        <label class="modal-step-question" for="f-wpp">Qual é o seu WhatsApp?</label>
+        <input class="modal-input" type="tel" id="f-wpp" placeholder="(11) 99999-9999" autocomplete="tel" maxlength="15" />
+        <div class="modal-error" id="err-wpp" role="alert"></div>
+      </div>
+
+      <!-- Step 4: Empresa -->
+      <div class="modal-step" data-step="3">
+        <div class="modal-step-label">Passo 4 de 5</div>
+        <label class="modal-step-question" for="f-empresa">Qual é o nome da sua empresa?</label>
+        <input class="modal-input" type="text" id="f-empresa" placeholder="Nome da empresa" autocomplete="organization" />
+        <div class="modal-error" id="err-empresa" role="alert"></div>
+      </div>
+
+      <!-- Step 5: Faturamento -->
+      <div class="modal-step" data-step="4">
+        <div class="modal-step-label">Passo 5 de 5</div>
+        <div class="modal-step-question">Qual é o faturamento mensal da empresa?</div>
+        <div class="revenue-options" id="revenueOptions">
+          <button class="revenue-option" onclick="selectRevenue(this)">Ainda não faturando</button>
+          <button class="revenue-option" onclick="selectRevenue(this)">Até R$ 30 mil</button>
+          <button class="revenue-option" onclick="selectRevenue(this)">R$ 30 mil – R$ 50 mil</button>
+          <button class="revenue-option" onclick="selectRevenue(this)">R$ 50 mil – R$ 100 mil</button>
+          <button class="revenue-option" onclick="selectRevenue(this)">R$ 100 mil – R$ 250 mil</button>
+          <button class="revenue-option" onclick="selectRevenue(this)">R$ 250 mil – R$ 500 mil</button>
+          <button class="revenue-option" onclick="selectRevenue(this)">R$ 500 mil – R$ 1 milhão</button>
+          <button class="revenue-option" onclick="selectRevenue(this)">Mais de R$ 5 milhões</button>
+        </div>
+        <div class="modal-error" id="err-faturamento"></div>
+      </div>
+
+    </div>
+
+    <!-- Sucesso -->
+    <div class="modal-success" id="modalSuccess">
+      <div class="modal-success-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3>Recebemos seu contato!</h3>
+      <p>Nossa equipe entrará em contato em breve pelo WhatsApp ou e-mail informado. Vagas são limitadas — você está na fila prioritária.</p>
+    </div>
+
+    <!-- Nav -->
+    <div class="modal-nav" id="modalNav">
+      <button class="modal-btn-back" id="btnBack" onclick="stepBack()" style="visibility:hidden">← Voltar</button>
+      <button class="modal-btn-next" id="btnNext" onclick="stepNext()">Continuar →</button>
+    </div>
+  </div>
+</div>
+
+<div class="divider d-navy-dark"></div>
+
+<!-- FAQ -->
+<section class="theme-white">
+  <div class="container">
+    <div class="section-line"><span class="section-label">Dúvidas</span></div>
+    <h2 class="section-title">Perguntas frequentes</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Preciso ter experiência com importação para contratar a SunRocket?
+          <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">Não. A SunRocket foi criada exatamente para quem ainda não tem experiência. Nossa equipe guia você em cada etapa, desde a escolha do produto até a chegada no Brasil. O que você precisa é de um negócio real e disposição para crescer.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Posso importar qualquer tipo de produto?
+          <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">Trabalhamos com uma ampla gama de categorias, mas fazemos uma análise prévia para garantir que o produto tem viabilidade comercial, logística e regulatória no Brasil. Nossa equipe vai orientar você desde o início sobre o que faz sentido importar.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Posso criar minha marca própria através da SunRocket?
+          <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">Sim. Auxiliamos clientes que querem desenvolver produtos com marca própria — desde a definição do produto, negociação de personalização com fábrica, até a chegada do produto com a sua identidade.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Como funciona o processo depois que eu contrato?
+          <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">Após a adesão, você passa pelo nosso onboarding estruturado, onde entendemos seus objetivos, seu mercado e seu capital disponível. A partir daí, sua equipe dedicada começa o sourcing e você acompanha cada etapa com relatórios e alinhamentos regulares.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Quanto capital preciso ter para começar a importar?
+          <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">O valor mínimo recomendado varia de acordo com o seu plano e os produtos que deseja importar. Durante a conversa inicial com nossa equipe, analisamos juntos qual é o ponto de entrada mais adequado para o seu momento.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Vocês cuidam do desembaraço aduaneiro também?
+          <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">Sim. A SunRocket opera integrada com a Suntrans, empresa com expertise consolidada em logística internacional. Você tem acesso a toda a estrutura de agenciamento, desembaraço e entrega porta a porta.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          E se eu já importar, mas de forma desorganizada?
+          <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">Perfeito — esse é exatamente um dos perfis que mais se beneficia da SunRocket. Ajudamos a estruturar sua operação, reduzir riscos, melhorar condições com fornecedores e criar previsibilidade no processo de recompra.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Como sei se estou no perfil certo para a SunRocket?
+          <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">Nossa equipe faz uma qualificação antes de qualquer proposta. Se você tem um negócio real, capital disponível para investir e está comprometido com o crescimento — provavelmente a conversa vai ser muito produtiva.</div></div>
+      </div>
+
+    </div>
+
+    <div class="mini-cta-wrap" style="padding: 56px 0 0;">
+      <p>Ainda tem dúvidas? Nossa equipe esclarece tudo antes de qualquer compromisso.</p>
+      <span class="btn-glow-outer">
+        <button class="btn-mini" onclick="openModal()">
+          Quero importar
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">
+    <span class="logo-mark" style="width:26px;height:26px;border-radius:6px;">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2L8.5 9H3l5 4.5L6 20l6-3.5 6 3.5-2-6.5 5-4.5h-5.5z"/>
+      </svg>
+    </span>
+    SunRocket
+  </a>
+  <p class="footer-text">Uma divisão da <a href="#">Suntrans</a> &nbsp;·&nbsp; Importação inteligente, do início ao fim.</p>
+</footer>
+
+<script>
+  /* ─── WAVE TIMELINE: Light up steps as ship passes ─── */
+  (function() {
+    const ANIM_DURATION = 14000; // matches CSS 14s
+    // Step thresholds as % of path (7 evenly spaced points)
+    const thresholds = [0, 16.67, 33.33, 50, 66.67, 83.33, 100];
+    const steps = document.querySelectorAll('.wave-step[data-step-index]');
+    let start = null;
+
+    function tick(ts) {
+      if (!start) start = ts;
+      const elapsed = (ts - start) % ANIM_DURATION;
+      const pct = (elapsed / ANIM_DURATION) * 100;
+
+      steps.forEach((step) => {
+        const idx = parseInt(step.dataset.stepIndex);
+        if (pct >= thresholds[idx]) {
+          step.classList.add('lit');
+        } else {
+          step.classList.remove('lit');
+        }
+      });
+
+      // Reset all when cycle restarts (ship back at start)
+      if (elapsed < 100) {
+        steps.forEach(s => s.classList.remove('lit'));
+      }
+
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  })();
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  /* ─── MODAL FORM ─── */
+  const TOTAL_STEPS = 5;
+  let currentStep = 0;
+  let selectedRevenue = '';
+
+  function openModal() {
+    currentStep = 0;
+    selectedRevenue = '';
+    document.querySelectorAll('.revenue-option').forEach(o => o.classList.remove('selected'));
+    document.querySelectorAll('.modal-error').forEach(e => e.textContent = '');
+    document.querySelectorAll('.modal-input').forEach(i => { i.value = ''; i.classList.remove('error'); });
+    document.getElementById('modalSuccess').classList.remove('active');
+    document.getElementById('modalSteps').style.display = '';
+    document.getElementById('modalNav').style.display = '';
+    renderStep();
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => focusStep(), 350);
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function closeModalOutside(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'Enter' && document.getElementById('modalOverlay').classList.contains('open')) {
+      if (currentStep < TOTAL_STEPS) stepNext();
+    }
+  });
+
+  function renderStep() {
+    const steps = document.querySelectorAll('.modal-step');
+    steps.forEach((s, i) => s.classList.toggle('active', i === currentStep));
+
+    // Progress dots
+    const prog = document.getElementById('modalProgress');
+    prog.innerHTML = '';
+    for (let i = 0; i < TOTAL_STEPS; i++) {
+      const d = document.createElement('div');
+      d.className = 'modal-progress-dot' + (i < currentStep ? ' done' : i === currentStep ? ' active' : '');
+      prog.appendChild(d);
+    }
+
+    // Back button
+    document.getElementById('btnBack').style.visibility = currentStep > 0 ? 'visible' : 'hidden';
+
+    // Next button label
+    document.getElementById('btnNext').textContent = currentStep === TOTAL_STEPS - 1 ? 'Enviar' : 'Continuar →';
+  }
+
+  function focusStep() {
+    const input = document.querySelector('.modal-step.active .modal-input');
+    if (input) input.focus();
+  }
+
+  function formatPhone(val) {
+    val = val.replace(/\D/g, '').slice(0, 11);
+    if (val.length <= 2) return val.length ? '(' + val : val;
+    if (val.length <= 7) return '(' + val.slice(0,2) + ') ' + val.slice(2);
+    return '(' + val.slice(0,2) + ') ' + val.slice(2,7) + '-' + val.slice(7);
+  }
+
+  document.getElementById('f-wpp').addEventListener('input', function() {
+    this.value = formatPhone(this.value);
+  });
+
+  function validateStep() {
+    const clearErr = id => { document.getElementById(id).textContent = ''; };
+    const setErr = (id, msg) => { document.getElementById(id).textContent = msg; };
+
+    if (currentStep === 0) {
+      const v = document.getElementById('f-nome').value.trim();
+      if (!v || v.split(' ').filter(Boolean).length < 2) {
+        setErr('err-nome', 'Por favor, informe seu nome completo.');
+        document.getElementById('f-nome').classList.add('error');
+        return false;
+      }
+      clearErr('err-nome'); document.getElementById('f-nome').classList.remove('error');
+    }
+    if (currentStep === 1) {
+      const v = document.getElementById('f-email').value.trim();
+      if (!v || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) {
+        setErr('err-email', 'Por favor, informe um e-mail válido.');
+        document.getElementById('f-email').classList.add('error');
+        return false;
+      }
+      clearErr('err-email'); document.getElementById('f-email').classList.remove('error');
+    }
+    if (currentStep === 2) {
+      const digits = document.getElementById('f-wpp').value.replace(/\D/g, '');
+      if (digits.length < 10 || digits.length > 11) {
+        setErr('err-wpp', 'Número incompleto. Informe DDD + número (10 ou 11 dígitos).');
+        document.getElementById('f-wpp').classList.add('error');
+        return false;
+      }
+      clearErr('err-wpp'); document.getElementById('f-wpp').classList.remove('error');
+    }
+    if (currentStep === 3) {
+      const v = document.getElementById('f-empresa').value.trim();
+      if (!v) {
+        setErr('err-empresa', 'Por favor, informe o nome da empresa.');
+        document.getElementById('f-empresa').classList.add('error');
+        return false;
+      }
+      clearErr('err-empresa'); document.getElementById('f-empresa').classList.remove('error');
+    }
+    if (currentStep === 4) {
+      if (!selectedRevenue) {
+        document.getElementById('err-faturamento').textContent = 'Selecione uma opção de faturamento.';
+        return false;
+      }
+      document.getElementById('err-faturamento').textContent = '';
+    }
+    return true;
+  }
+
+  function stepNext() {
+    if (!validateStep()) return;
+    if (currentStep < TOTAL_STEPS - 1) {
+      currentStep++;
+      renderStep();
+      setTimeout(focusStep, 50);
+    } else {
+      submitForm();
+    }
+  }
+
+  function stepBack() {
+    if (currentStep > 0) {
+      currentStep--;
+      renderStep();
+      setTimeout(focusStep, 50);
+    }
+  }
+
+  function selectRevenue(btn) {
+    document.querySelectorAll('.revenue-option').forEach(o => o.classList.remove('selected'));
+    btn.classList.add('selected');
+    selectedRevenue = btn.textContent;
+    document.getElementById('err-faturamento').textContent = '';
+  }
+
+  /* ─── Timeline — removed old card stack JS ─── */
+
+  /* ─── HOVER BUTTON — bolhas de luz ─── */
+  (function () {
+    const SEL = '.btn-primary, .hero-cta-link';
+    const THROTTLE = 100; // ms entre bolhas
+
+    function initButton(btn) {
+      let listening = false;
+      let lastTime = 0;
+
+      btn.addEventListener('pointerenter', () => { listening = true; });
+      btn.addEventListener('pointerleave', () => { listening = false; });
+      btn.addEventListener('pointermove', (e) => {
+        if (!listening) return;
+        const now = Date.now();
+        if (now - lastTime < THROTTLE) return;
+        lastTime = now;
+
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const circle = document.createElement('div');
+        circle.className = 'hb-circle';
+        circle.style.left = x + 'px';
+        circle.style.top  = y + 'px';
+        btn.appendChild(circle);
+
+        // fade in
+        requestAnimationFrame(() => circle.classList.add('fade-in'));
+
+        // fade out
+        setTimeout(() => circle.classList.replace('fade-in', 'fade-out'), 1000);
+
+        // remove do DOM
+        setTimeout(() => circle.remove(), 2200);
+      });
+    }
+
+    document.querySelectorAll(SEL).forEach(initButton);
+
+    // Suporte a botões gerados dinamicamente (modal)
+    const observer = new MutationObserver(() => {
+      document.querySelectorAll(SEL + ':not([data-hb])').forEach(btn => {
+        btn.setAttribute('data-hb', '1');
+        initButton(btn);
+      });
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+  })();
+
+  /* ─── CAPTURA DE UTMs ─── */
+  (function captureUTMs() {
+    const params = new URLSearchParams(window.location.search);
+    const utmKeys = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','keyword','device','network'];
+    utmKeys.forEach(key => {
+      const val = params.get(key);
+      if (val) localStorage.setItem(key, val);
+    });
+    // Armazena também a URL de origem e data do primeiro acesso
+    if (!localStorage.getItem('first_visit')) {
+      localStorage.setItem('first_visit', new Date().toISOString());
+      localStorage.setItem('landing_url', window.location.href);
+    }
+    localStorage.setItem('last_visit', new Date().toISOString());
+  })();
+
+  /* ─── WEBHOOK + SUBMIT ─── */
+  const WEBHOOK_URL = 'https://hook.eu1.make.com/033b9m2duppiifhjuuqz6piyn1tog0qu';
+
+  function getUTMData() {
+    const keys = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','keyword','device','network','first_visit','last_visit','landing_url'];
+    const data = {};
+    keys.forEach(k => { data[k] = localStorage.getItem(k) || ''; });
+    return data;
+  }
+
+  async function submitForm() {
+    // Coleta dados do formulário
+    const payload = {
+      // Dados pessoais
+      nome:        document.getElementById('f-nome')?.value?.trim()    || '',
+      email:       document.getElementById('f-email')?.value?.trim()   || '',
+      whatsapp:    document.getElementById('f-wpp')?.value?.trim()     || '',
+      empresa:     document.getElementById('f-empresa')?.value?.trim() || '',
+      faturamento: selectedRevenue || '',
+      // UTMs e rastreamento
+      ...getUTMData(),
+      // Timestamp do envio
+      enviado_em:  new Date().toISOString(),
+      pagina:      window.location.href,
+    };
+
+    // Mostra tela de sucesso imediatamente (UX)
+    document.getElementById('modalSteps').style.display    = 'none';
+    document.getElementById('modalNav').style.display      = 'none';
+    document.getElementById('modalProgress').style.display = 'none';
+    document.getElementById('modalSuccess').classList.add('active');
+
+    // Dispara o webhook em background
+    try {
+      await fetch(WEBHOOK_URL, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(payload),
+      });
+    } catch (err) {
+      console.warn('Webhook error:', err);
+    }
+  }
+</script>
+
+</body>
+</html>
