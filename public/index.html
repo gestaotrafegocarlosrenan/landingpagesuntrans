@@ -3461,6 +3461,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.getElementById('modalProgress').style.display = 'none';
     document.getElementById('modalSuccess').classList.add('active');
 
+    // Dispara evento GTM para leads qualificados (faturamento R$ 50 mil+)
+    const qualifiedRevenues = [
+      'R$ 50 mil – R$ 100 mil',
+      'R$ 100 mil – R$ 250 mil',
+      'R$ 250 mil – R$ 500 mil',
+      'R$ 500 mil – R$ 1 milhão',
+      'Mais de R$ 5 milhões',
+    ];
+    if (qualifiedRevenues.includes(selectedRevenue)) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'lead_qualificado',
+        faturamento: selectedRevenue,
+      });
+    }
+
     // Dispara o webhook em background
     try {
       await fetch(WEBHOOK_URL, {
