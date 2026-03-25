@@ -2042,6 +2042,28 @@
       line-height: 1.8;
     }
 
+    /* ─── TARJA EXCLUSIVIDADE ─── */
+    .exclusivity-banner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(90deg, #3a1fa8 0%, #5B35E8 50%, #3a1fa8 100%);
+      padding: 16px 24px;
+      text-align: center;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.9);
+      letter-spacing: 0.01em;
+      border-top: 1px solid rgba(155,127,255,0.3);
+      border-bottom: 1px solid rgba(155,127,255,0.3);
+    }
+    .exclusivity-banner strong {
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: 0.02em;
+    }
+
     /* ─── FOOTER ─── */
     footer {
       border-top: 1px solid rgba(123,92,250,0.20);
@@ -2406,6 +2428,9 @@
       /* ── STATS context ── */
       .stat-num { font-size: 2rem; }
       .stat-item { padding: 20px 20px; }
+
+      /* ── Tarja exclusividade ── */
+      .exclusivity-banner { flex-direction: column; gap: 4px; text-align: center; padding: 14px 20px; }
     }
   </style>
   <!-- Google Tag Manager -->
@@ -2474,6 +2499,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </section>
+
+<!-- TARJA EXCLUSIVIDADE -->
+<div class="exclusivity-banner">
+  <span>Exclusivo para empresários com faturamento mínimo de</span>
+  <strong>+ R$ 100 Mil por mês</strong>
+</div>
 
 <!-- CONTEXT -->
 <section class="context theme-white">
