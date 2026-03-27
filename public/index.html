@@ -3002,7 +3002,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Step 1: Nome -->
       <div class="modal-step active" data-step="0">
-        <div class="modal-step-label">Passo 1 de 5</div>
+        <div class="modal-step-label">Passo 1 de 6</div>
         <label class="modal-step-question" for="f-nome">Qual o seu nome?</label>
         <input class="modal-input" type="text" id="f-nome" placeholder="Seu nome completo" autocomplete="name" />
         <div class="modal-error" id="err-nome" role="alert"></div>
@@ -3010,7 +3010,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Step 2: Email -->
       <div class="modal-step" data-step="1">
-        <div class="modal-step-label">Passo 2 de 5</div>
+        <div class="modal-step-label">Passo 2 de 6</div>
         <label class="modal-step-question" for="f-email">Qual o seu e-mail para contato?</label>
         <input class="modal-input" type="email" id="f-email" placeholder="seu@email.com" autocomplete="email" />
         <div class="modal-error" id="err-email" role="alert"></div>
@@ -3018,7 +3018,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Step 3: WhatsApp -->
       <div class="modal-step" data-step="2">
-        <div class="modal-step-label">Passo 3 de 5</div>
+        <div class="modal-step-label">Passo 3 de 6</div>
         <label class="modal-step-question" for="f-wpp">Qual é o seu WhatsApp?</label>
         <input class="modal-input" type="tel" id="f-wpp" placeholder="(11) 99999-9999" autocomplete="tel" maxlength="15" />
         <div class="modal-error" id="err-wpp" role="alert"></div>
@@ -3026,7 +3026,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Step 4: Empresa -->
       <div class="modal-step" data-step="3">
-        <div class="modal-step-label">Passo 4 de 5</div>
+        <div class="modal-step-label">Passo 4 de 6</div>
         <label class="modal-step-question" for="f-empresa">Qual é o nome da sua empresa?</label>
         <input class="modal-input" type="text" id="f-empresa" placeholder="Nome da empresa" autocomplete="organization" />
         <div class="modal-error" id="err-empresa" role="alert"></div>
@@ -3034,7 +3034,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Step 5: Investimento -->
       <div class="modal-step" data-step="4">
-        <div class="modal-step-label">Passo 5 de 5</div>
+        <div class="modal-step-label">Passo 5 de 6</div>
         <div class="modal-step-question">Quanto você pretende investir na importação?</div>
         <div class="revenue-options" id="revenueOptions">
           <button class="revenue-option" onclick="selectRevenue(this)">Até 10k</button>
@@ -3044,6 +3044,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <button class="revenue-option" onclick="selectRevenue(this)">+500k</button>
         </div>
         <div class="modal-error" id="err-faturamento"></div>
+      </div>
+
+      <!-- Step 6: Faturamento -->
+      <div class="modal-step" data-step="5">
+        <div class="modal-step-label">Passo 6 de 6</div>
+        <div class="modal-step-question">Qual é o faturamento mensal da sua empresa?</div>
+        <div class="revenue-options" id="revenueOptionsFaturamento">
+          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Ainda não faturando</button>
+          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Até R$ 30 mil</button>
+          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">R$ 30 mil – R$ 50 mil</button>
+          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">R$ 50 mil – R$ 100 mil</button>
+          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">R$ 100 mil – R$ 250 mil</button>
+          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">R$ 250 mil – R$ 500 mil</button>
+          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">R$ 500 mil – R$ 1 milhão</button>
+          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Mais de R$ 1 milhão</button>
+        </div>
+        <div class="modal-error" id="err-faturamento2"></div>
       </div>
 
     </div>
@@ -3209,13 +3226,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   /* ─── MODAL FORM ─── */
-  const TOTAL_STEPS = 5;
+  const TOTAL_STEPS = 6;
   let currentStep = 0;
   let selectedRevenue = '';
+  let selectedFaturamento = '';
 
   function openModal() {
     currentStep = 0;
     selectedRevenue = '';
+    selectedFaturamento = '';
     document.querySelectorAll('.revenue-option').forEach(o => o.classList.remove('selected'));
     document.querySelectorAll('.modal-error').forEach(e => e.textContent = '');
     document.querySelectorAll('.modal-input').forEach(i => { i.value = ''; i.classList.remove('error'); });
@@ -3322,10 +3341,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     if (currentStep === 4) {
       if (!selectedRevenue) {
-        document.getElementById('err-faturamento').textContent = 'Selecione uma opção de faturamento.';
+        document.getElementById('err-faturamento').textContent = 'Selecione uma opção de investimento.';
         return false;
       }
       document.getElementById('err-faturamento').textContent = '';
+    }
+    if (currentStep === 5) {
+      if (!selectedFaturamento) {
+        document.getElementById('err-faturamento2').textContent = 'Selecione uma opção de faturamento.';
+        return false;
+      }
+      document.getElementById('err-faturamento2').textContent = '';
     }
     return true;
   }
@@ -3350,10 +3376,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   function selectRevenue(btn) {
-    document.querySelectorAll('.revenue-option').forEach(o => o.classList.remove('selected'));
+    document.querySelectorAll('#revenueOptions .revenue-option').forEach(o => o.classList.remove('selected'));
     btn.classList.add('selected');
     selectedRevenue = btn.textContent;
     document.getElementById('err-faturamento').textContent = '';
+  }
+
+  function selectFaturamento(btn) {
+    document.querySelectorAll('.faturamento-option').forEach(o => o.classList.remove('selected'));
+    btn.classList.add('selected');
+    selectedFaturamento = btn.textContent;
+    document.getElementById('err-faturamento2').textContent = '';
   }
 
   /* ─── Timeline — removed old card stack JS ─── */
@@ -3440,7 +3473,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       email:       document.getElementById('f-email')?.value?.trim()   || '',
       whatsapp:    document.getElementById('f-wpp')?.value?.trim()     || '',
       empresa:     document.getElementById('f-empresa')?.value?.trim() || '',
-      faturamento: selectedRevenue || '',
+      investimento: selectedRevenue || '',
+      faturamento: selectedFaturamento || '',
       // UTMs e rastreamento
       ...getUTMData(),
       // Timestamp do envio
