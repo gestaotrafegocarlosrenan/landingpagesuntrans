@@ -3032,19 +3032,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="modal-error" id="err-empresa" role="alert"></div>
       </div>
 
-      <!-- Step 5: Faturamento -->
+      <!-- Step 5: Investimento -->
       <div class="modal-step" data-step="4">
         <div class="modal-step-label">Passo 5 de 5</div>
-        <div class="modal-step-question">Qual é o faturamento mensal da empresa?</div>
+        <div class="modal-step-question">Quanto você pretende investir na importação?</div>
         <div class="revenue-options" id="revenueOptions">
-          <button class="revenue-option" onclick="selectRevenue(this)">Ainda não faturando</button>
-          <button class="revenue-option" onclick="selectRevenue(this)">Até R$ 30 mil</button>
-          <button class="revenue-option" onclick="selectRevenue(this)">R$ 30 mil – R$ 50 mil</button>
-          <button class="revenue-option" onclick="selectRevenue(this)">R$ 50 mil – R$ 100 mil</button>
-          <button class="revenue-option" onclick="selectRevenue(this)">R$ 100 mil – R$ 250 mil</button>
-          <button class="revenue-option" onclick="selectRevenue(this)">R$ 250 mil – R$ 500 mil</button>
-          <button class="revenue-option" onclick="selectRevenue(this)">R$ 500 mil – R$ 1 milhão</button>
-          <button class="revenue-option" onclick="selectRevenue(this)">Mais de R$ 5 milhões</button>
+          <button class="revenue-option" onclick="selectRevenue(this)">Até 10k</button>
+          <button class="revenue-option" onclick="selectRevenue(this)">30 a 50k</button>
+          <button class="revenue-option" onclick="selectRevenue(this)">De 50 a 100k</button>
+          <button class="revenue-option" onclick="selectRevenue(this)">+300k</button>
+          <button class="revenue-option" onclick="selectRevenue(this)">+500k</button>
         </div>
         <div class="modal-error" id="err-faturamento"></div>
       </div>
@@ -3459,11 +3456,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     // Dispara evento GTM para leads qualificados (faturamento R$ 50 mil+)
     const qualifiedRevenues = [
-      'R$ 50 mil – R$ 100 mil',
-      'R$ 100 mil – R$ 250 mil',
-      'R$ 250 mil – R$ 500 mil',
-      'R$ 500 mil – R$ 1 milhão',
-      'Mais de R$ 5 milhões',
+      'De 50 a 100k',
+      '+300k',
+      '+500k',
     ];
     if (qualifiedRevenues.includes(selectedRevenue)) {
       window.dataLayer = window.dataLayer || [];
