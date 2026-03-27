@@ -3032,23 +3032,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="modal-error" id="err-empresa" role="alert"></div>
       </div>
 
-      <!-- Step 5: Investimento -->
+      <!-- Step 5: Faturamento -->
       <div class="modal-step" data-step="4">
         <div class="modal-step-label">Passo 5 de 6</div>
-        <div class="modal-step-question">Quanto você pretende investir na importação?</div>
-        <div class="revenue-options" id="revenueOptions">
-          <button class="revenue-option" onclick="selectRevenue(this)">Até 10k</button>
-          <button class="revenue-option" onclick="selectRevenue(this)">30 a 50k</button>
-          <button class="revenue-option" onclick="selectRevenue(this)">De 50 a 100k</button>
-          <button class="revenue-option" onclick="selectRevenue(this)">+300k</button>
-          <button class="revenue-option" onclick="selectRevenue(this)">+500k</button>
-        </div>
-        <div class="modal-error" id="err-faturamento"></div>
-      </div>
-
-      <!-- Step 6: Faturamento -->
-      <div class="modal-step" data-step="5">
-        <div class="modal-step-label">Passo 6 de 6</div>
         <div class="modal-step-question">Qual é o faturamento mensal da sua empresa?</div>
         <div class="revenue-options" id="revenueOptionsFaturamento">
           <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Ainda não faturando</button>
@@ -3061,6 +3047,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Mais de R$ 1 milhão</button>
         </div>
         <div class="modal-error" id="err-faturamento2"></div>
+      </div>
+
+      <!-- Step 6: Investimento -->
+      <div class="modal-step" data-step="5">
+        <div class="modal-step-label">Passo 6 de 6</div>
+        <div class="modal-step-question">Quanto você pretende investir na importação?</div>
+        <div class="revenue-options" id="revenueOptions">
+          <button class="revenue-option" onclick="selectRevenue(this)">Até 10k</button>
+          <button class="revenue-option" onclick="selectRevenue(this)">30 a 50k</button>
+          <button class="revenue-option" onclick="selectRevenue(this)">De 50 a 100k</button>
+          <button class="revenue-option" onclick="selectRevenue(this)">+300k</button>
+          <button class="revenue-option" onclick="selectRevenue(this)">+500k</button>
+        </div>
+        <div class="modal-error" id="err-faturamento"></div>
       </div>
 
     </div>
@@ -3340,18 +3340,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       clearErr('err-empresa'); document.getElementById('f-empresa').classList.remove('error');
     }
     if (currentStep === 4) {
-      if (!selectedRevenue) {
-        document.getElementById('err-faturamento').textContent = 'Selecione uma opção de investimento.';
-        return false;
-      }
-      document.getElementById('err-faturamento').textContent = '';
-    }
-    if (currentStep === 5) {
       if (!selectedFaturamento) {
         document.getElementById('err-faturamento2').textContent = 'Selecione uma opção de faturamento.';
         return false;
       }
       document.getElementById('err-faturamento2').textContent = '';
+    }
+    if (currentStep === 5) {
+      if (!selectedRevenue) {
+        document.getElementById('err-faturamento').textContent = 'Selecione uma opção de investimento.';
+        return false;
+      }
+      document.getElementById('err-faturamento').textContent = '';
     }
     return true;
   }
