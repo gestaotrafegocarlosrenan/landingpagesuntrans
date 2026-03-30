@@ -3367,6 +3367,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     btn.classList.add('selected');
     selectedFaturamento = btn.textContent;
     document.getElementById('err-faturamento2').textContent = '';
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'formulario_geral' });
   }
 
   /* ─── Timeline — removed old card stack JS ─── */
