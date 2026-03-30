@@ -3298,8 +3298,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     if (currentStep === 0) {
       const v = document.getElementById('f-nome').value.trim();
-      if (!v || v.split(' ').filter(Boolean).length < 2) {
-        setErr('err-nome', 'Por favor, informe seu nome completo.');
+      if (!v || v.length < 2) {
+        setErr('err-nome', 'Por favor, informe seu nome.');
         document.getElementById('f-nome').classList.add('error');
         return false;
       }
