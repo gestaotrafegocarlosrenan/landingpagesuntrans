@@ -2995,7 +2995,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Step 1: Nome -->
       <div class="modal-step active" data-step="0">
-        <div class="modal-step-label">Passo 1 de 6</div>
+        <div class="modal-step-label">Passo 1 de 5</div>
         <label class="modal-step-question" for="f-nome">Qual o seu nome?</label>
         <input class="modal-input" type="text" id="f-nome" placeholder="Seu nome" autocomplete="given-name" />
         <div class="modal-error" id="err-nome" role="alert"></div>
@@ -3003,7 +3003,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Step 2: Email -->
       <div class="modal-step" data-step="1">
-        <div class="modal-step-label">Passo 2 de 6</div>
+        <div class="modal-step-label">Passo 2 de 5</div>
         <label class="modal-step-question" for="f-email">Qual o seu e-mail para contato?</label>
         <input class="modal-input" type="email" id="f-email" placeholder="seu@email.com" autocomplete="email" />
         <div class="modal-error" id="err-email" role="alert"></div>
@@ -3011,7 +3011,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Step 3: WhatsApp -->
       <div class="modal-step" data-step="2">
-        <div class="modal-step-label">Passo 3 de 6</div>
+        <div class="modal-step-label">Passo 3 de 5</div>
         <label class="modal-step-question" for="f-wpp">Qual é o seu WhatsApp?</label>
         <input class="modal-input" type="tel" id="f-wpp" placeholder="(11) 99999-9999" autocomplete="tel" maxlength="15" />
         <div class="modal-error" id="err-wpp" role="alert"></div>
@@ -3019,7 +3019,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Step 4: Empresa -->
       <div class="modal-step" data-step="3">
-        <div class="modal-step-label">Passo 4 de 6</div>
+        <div class="modal-step-label">Passo 4 de 5</div>
         <label class="modal-step-question" for="f-empresa">Qual é o nome da sua empresa?</label>
         <input class="modal-input" type="text" id="f-empresa" placeholder="Nome da empresa" autocomplete="organization" />
         <div class="modal-error" id="err-empresa" role="alert"></div>
@@ -3027,7 +3027,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Step 5: Faturamento -->
       <div class="modal-step" data-step="4">
-        <div class="modal-step-label">Passo 5 de 6</div>
+        <div class="modal-step-label">Passo 5 de 5</div>
         <div class="modal-step-question">Qual é o faturamento mensal da sua empresa?</div>
         <div class="revenue-options" id="revenueOptionsFaturamento">
           <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Ainda não faturando</button>
@@ -3042,19 +3042,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="modal-error" id="err-faturamento2"></div>
       </div>
 
-      <!-- Step 6: Investimento -->
-      <div class="modal-step" data-step="5">
-        <div class="modal-step-label">Passo 6 de 6</div>
-        <div class="modal-step-question">Quanto você pretende investir na importação?</div>
-        <div class="revenue-options" id="revenueOptions">
-          <button class="revenue-option" onclick="selectRevenue(this)">Até 10k</button>
-          <button class="revenue-option" onclick="selectRevenue(this)">30 a 50k</button>
-          <button class="revenue-option" onclick="selectRevenue(this)">De 50 a 100k</button>
-          <button class="revenue-option" onclick="selectRevenue(this)">+300k</button>
-          <button class="revenue-option" onclick="selectRevenue(this)">+500k</button>
-        </div>
-        <div class="modal-error" id="err-faturamento"></div>
-      </div>
 
     </div>
 
@@ -3219,7 +3206,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   /* ─── MODAL FORM ─── */
-  const TOTAL_STEPS = 6;
+  const TOTAL_STEPS = 5;
   let currentStep = 0;
   let selectedRevenue = '';
   let selectedFaturamento = '';
