@@ -3470,6 +3470,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   let f2SelectedInvest = '';
 
   function openForm2() {
+    // Fecha o modal 1 antes de abrir o 2 para evitar que o listener de Enter do form 1 dispare submitForm novamente
+    document.getElementById('modalOverlay').classList.remove('open');
+
     f2CurrentStep = 0;
     f2SelectedVenda = '';
     f2SelectedImportou = '';
