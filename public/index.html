@@ -3141,7 +3141,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="modal-success-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
-      <h3>Perfeito! Suas respostas foram enviadas ✅</h3>
+      <h3 id="f2-success-title"></h3>
       <p>Agora temos tudo o que precisamos para priorizar o seu atendimento.</p>
       <p>Fique de olho no WhatsApp — em breve entraremos em contato 😉</p>
     </div>
@@ -3625,6 +3625,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       enviado_em: new Date().toISOString(),
       pagina:     window.location.href,
     };
+
+    const firstName = leadName.split(' ')[0] || '';
+    document.getElementById('f2-success-title').textContent = (firstName ? firstName + ', obrigado' : 'Obrigado') + ', suas respostas foram enviadas ✅';
 
     document.getElementById('modalSteps2').style.display = 'none';
     document.getElementById('modalNav2').style.display = 'none';
