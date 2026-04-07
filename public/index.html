@@ -3054,13 +3054,102 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p>Você receberá um contato via WhatsApp ou ligação para dar sequência no atendimento.</p>
       <p>Se possível, já deixe o telefone por perto para não perder a chamada 😉</p>
       <p style="margin-top: 24px; color: var(--white); font-weight: 600;">Para priorizarmos o seu atendimento, preencha o formulario abaixo:</p>
-      <button class="modal-btn-next" onclick="openModal()" style="margin: 16px auto 0; display: block;">INICIAR</button>
+      <button class="modal-btn-next" onclick="openForm2()" style="margin: 16px auto 0; display: block;">INICIAR</button>
     </div>
 
     <!-- Nav -->
     <div class="modal-nav" id="modalNav">
       <button class="modal-btn-back" id="btnBack" onclick="stepBack()" style="visibility:hidden">← Voltar</button>
       <button class="modal-btn-next" id="btnNext" onclick="stepNext()">Continuar →</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Form 2 -->
+<div class="modal-overlay" id="modalOverlay2" onclick="closeModal2Outside(event)">
+  <div class="modal-box" id="modalBox2">
+    <button class="modal-close" onclick="closeModal2()" aria-label="Fechar">&times;</button>
+
+    <!-- Progress -->
+    <div class="modal-progress" id="modalProgress2"></div>
+
+    <!-- Steps -->
+    <div id="modalSteps2">
+
+      <!-- Step 1: Canal de vendas -->
+      <div class="modal-step active" data-step2="0">
+        <div class="modal-step-label">Passo 1 de 5</div>
+        <div class="modal-step-question" id="f2-q1">Onde você vende os seus produtos?</div>
+        <div class="revenue-options">
+          <button class="revenue-option f2-venda-option" onclick="f2SelectVenda(this)">Online</button>
+          <button class="revenue-option f2-venda-option" onclick="f2SelectVenda(this)">Físico</button>
+          <button class="revenue-option f2-venda-option" onclick="f2SelectVenda(this)">Ainda não vendo</button>
+        </div>
+        <div class="modal-error" id="f2-err-venda" role="alert"></div>
+      </div>
+
+      <!-- Step 2: Importou da China -->
+      <div class="modal-step" data-step2="1">
+        <div class="modal-step-label">Passo 2 de 5</div>
+        <div class="modal-step-question">Já importou da China?</div>
+        <div class="revenue-options">
+          <button class="revenue-option f2-importou-option" onclick="f2SelectImportou(this)">Sim</button>
+          <button class="revenue-option f2-importou-option" onclick="f2SelectImportou(this)">Não</button>
+          <button class="revenue-option f2-importou-option" onclick="f2SelectImportou(this)">Importo com frequência</button>
+        </div>
+        <div class="modal-error" id="f2-err-importou" role="alert"></div>
+      </div>
+
+      <!-- Step 3: Produto -->
+      <div class="modal-step" data-step2="2">
+        <div class="modal-step-label">Passo 3 de 5</div>
+        <label class="modal-step-question" id="f2-q3" for="f2-produto">Qual o produto você está buscando importar?</label>
+        <input class="modal-input" type="text" id="f2-produto" placeholder="Ex: tênis, eletrônicos, cosméticos..." />
+        <div class="modal-error" id="f2-err-produto" role="alert"></div>
+      </div>
+
+      <!-- Step 4: Prazo -->
+      <div class="modal-step" data-step2="3">
+        <div class="modal-step-label">Passo 4 de 5</div>
+        <div class="modal-step-question">Para quando precisa dos produtos em mãos?</div>
+        <div class="revenue-options">
+          <button class="revenue-option f2-prazo-option" onclick="f2SelectPrazo(this)">Ainda esse ano</button>
+          <button class="revenue-option f2-prazo-option" onclick="f2SelectPrazo(this)">Não sei</button>
+          <button class="revenue-option f2-prazo-option" onclick="f2SelectPrazo(this)">Estou apenas estudando possibilidades</button>
+        </div>
+        <div class="modal-error" id="f2-err-prazo" role="alert"></div>
+      </div>
+
+      <!-- Step 5: Investimento -->
+      <div class="modal-step" data-step2="4">
+        <div class="modal-step-label">Passo 5 de 5</div>
+        <div class="modal-step-question">Quanto você pretende investir na importação?</div>
+        <div class="revenue-options">
+          <button class="revenue-option f2-invest-option" onclick="f2SelectInvest(this)">Até R$ 30 mil</button>
+          <button class="revenue-option f2-invest-option" onclick="f2SelectInvest(this)">R$ 50 mil – R$ 100 mil</button>
+          <button class="revenue-option f2-invest-option" onclick="f2SelectInvest(this)">R$ 100 mil – R$ 500 mil</button>
+          <button class="revenue-option f2-invest-option" onclick="f2SelectInvest(this)">R$ 500 mil – R$ 1 milhão</button>
+          <button class="revenue-option f2-invest-option" onclick="f2SelectInvest(this)">Mais de R$ 1 milhão</button>
+        </div>
+        <div class="modal-error" id="f2-err-invest" role="alert"></div>
+      </div>
+
+    </div>
+
+    <!-- Sucesso Form 2 -->
+    <div class="modal-success" id="modalSuccess2">
+      <div class="modal-success-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3>Perfeito! Suas respostas foram enviadas ✅</h3>
+      <p>Agora temos tudo o que precisamos para priorizar o seu atendimento.</p>
+      <p>Fique de olho no WhatsApp — em breve entraremos em contato 😉</p>
+    </div>
+
+    <!-- Nav Form 2 -->
+    <div class="modal-nav" id="modalNav2">
+      <button class="modal-btn-back" id="btnBack2" onclick="f2StepBack()" style="visibility:hidden">← Voltar</button>
+      <button class="modal-btn-next" id="btnNext2" onclick="f2StepNext()">Continuar →</button>
     </div>
   </div>
 </div>
@@ -3212,6 +3301,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   let currentStep = 0;
   let selectedRevenue = '';
   let selectedFaturamento = '';
+  let leadName = '';
 
   function openModal() {
     currentStep = 0;
@@ -3371,6 +3461,182 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.getElementById('err-faturamento2').textContent = '';
   }
 
+  /* ─── FORM 2 ─── */
+  const F2_TOTAL_STEPS = 5;
+  let f2CurrentStep = 0;
+  let f2SelectedVenda = '';
+  let f2SelectedImportou = '';
+  let f2SelectedPrazo = '';
+  let f2SelectedInvest = '';
+
+  function openForm2() {
+    f2CurrentStep = 0;
+    f2SelectedVenda = '';
+    f2SelectedImportou = '';
+    f2SelectedPrazo = '';
+    f2SelectedInvest = '';
+    document.querySelectorAll('.f2-venda-option, .f2-importou-option, .f2-prazo-option, .f2-invest-option').forEach(o => o.classList.remove('selected'));
+    document.querySelectorAll('#modalBox2 .modal-error').forEach(e => e.textContent = '');
+    const f2Input = document.getElementById('f2-produto');
+    if (f2Input) { f2Input.value = ''; f2Input.classList.remove('error'); }
+    document.getElementById('modalSuccess2').classList.remove('active');
+    document.getElementById('modalSteps2').style.display = '';
+    document.getElementById('modalNav2').style.display = '';
+    document.getElementById('modalProgress2').style.display = '';
+
+    // Personaliza perguntas com o nome do lead
+    const firstName = leadName.split(' ')[0] || '';
+    const q1 = document.getElementById('f2-q1');
+    const q3 = document.getElementById('f2-q3');
+    q1.textContent = firstName ? firstName + ', onde você vende os seus produtos?' : 'Onde você vende os seus produtos?';
+    q3.textContent = firstName ? firstName + ', qual o produto você está buscando importar?' : 'Qual o produto você está buscando importar?';
+
+    f2RenderStep();
+    document.getElementById('modalOverlay2').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => {
+      const input = document.querySelector('#modalSteps2 .modal-step.active .modal-input');
+      if (input) input.focus();
+    }, 350);
+  }
+
+  function closeModal2() {
+    document.getElementById('modalOverlay2').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function closeModal2Outside(e) {
+    if (e.target === document.getElementById('modalOverlay2')) closeModal2();
+  }
+
+  function f2RenderStep() {
+    const steps = document.querySelectorAll('#modalSteps2 .modal-step');
+    steps.forEach((s, i) => s.classList.toggle('active', i === f2CurrentStep));
+
+    const prog = document.getElementById('modalProgress2');
+    prog.innerHTML = '';
+    for (let i = 0; i < F2_TOTAL_STEPS; i++) {
+      const d = document.createElement('div');
+      d.className = 'modal-progress-dot' + (i < f2CurrentStep ? ' done' : i === f2CurrentStep ? ' active' : '');
+      prog.appendChild(d);
+    }
+
+    document.getElementById('btnBack2').style.visibility = f2CurrentStep > 0 ? 'visible' : 'hidden';
+    document.getElementById('btnNext2').textContent = f2CurrentStep === F2_TOTAL_STEPS - 1 ? 'Enviar' : 'Continuar →';
+  }
+
+  function f2SelectVenda(btn) {
+    document.querySelectorAll('.f2-venda-option').forEach(o => o.classList.remove('selected'));
+    btn.classList.add('selected');
+    f2SelectedVenda = btn.textContent;
+    document.getElementById('f2-err-venda').textContent = '';
+  }
+
+  function f2SelectImportou(btn) {
+    document.querySelectorAll('.f2-importou-option').forEach(o => o.classList.remove('selected'));
+    btn.classList.add('selected');
+    f2SelectedImportou = btn.textContent;
+    document.getElementById('f2-err-importou').textContent = '';
+  }
+
+  function f2SelectPrazo(btn) {
+    document.querySelectorAll('.f2-prazo-option').forEach(o => o.classList.remove('selected'));
+    btn.classList.add('selected');
+    f2SelectedPrazo = btn.textContent;
+    document.getElementById('f2-err-prazo').textContent = '';
+  }
+
+  function f2SelectInvest(btn) {
+    document.querySelectorAll('.f2-invest-option').forEach(o => o.classList.remove('selected'));
+    btn.classList.add('selected');
+    f2SelectedInvest = btn.textContent;
+    document.getElementById('f2-err-invest').textContent = '';
+  }
+
+  function f2ValidateStep() {
+    if (f2CurrentStep === 0 && !f2SelectedVenda) {
+      document.getElementById('f2-err-venda').textContent = 'Selecione uma opção.';
+      return false;
+    }
+    if (f2CurrentStep === 1 && !f2SelectedImportou) {
+      document.getElementById('f2-err-importou').textContent = 'Selecione uma opção.';
+      return false;
+    }
+    if (f2CurrentStep === 2) {
+      const v = document.getElementById('f2-produto').value.trim();
+      if (!v || v.length < 2) {
+        document.getElementById('f2-err-produto').textContent = 'Por favor, descreva o produto.';
+        document.getElementById('f2-produto').classList.add('error');
+        return false;
+      }
+      document.getElementById('f2-err-produto').textContent = '';
+      document.getElementById('f2-produto').classList.remove('error');
+    }
+    if (f2CurrentStep === 3 && !f2SelectedPrazo) {
+      document.getElementById('f2-err-prazo').textContent = 'Selecione uma opção.';
+      return false;
+    }
+    if (f2CurrentStep === 4 && !f2SelectedInvest) {
+      document.getElementById('f2-err-invest').textContent = 'Selecione uma opção.';
+      return false;
+    }
+    return true;
+  }
+
+  function f2StepNext() {
+    if (!f2ValidateStep()) return;
+    if (f2CurrentStep < F2_TOTAL_STEPS - 1) {
+      f2CurrentStep++;
+      f2RenderStep();
+      setTimeout(() => {
+        const input = document.querySelector('#modalSteps2 .modal-step.active .modal-input');
+        if (input) input.focus();
+      }, 50);
+    } else {
+      f2SubmitForm();
+    }
+  }
+
+  function f2StepBack() {
+    if (f2CurrentStep > 0) {
+      f2CurrentStep--;
+      f2RenderStep();
+    }
+  }
+
+  async function f2SubmitForm() {
+    const payload = {
+      formulario: 'qualificacao_2',
+      nome: leadName,
+      onde_vende: f2SelectedVenda,
+      importou_china: f2SelectedImportou,
+      produto: document.getElementById('f2-produto').value.trim(),
+      prazo: f2SelectedPrazo,
+      investimento: f2SelectedInvest,
+      ...getUTMData(),
+      enviado_em: new Date().toISOString(),
+      pagina: window.location.href,
+    };
+
+    document.getElementById('modalSteps2').style.display = 'none';
+    document.getElementById('modalNav2').style.display = 'none';
+    document.getElementById('modalProgress2').style.display = 'none';
+    document.getElementById('modalSuccess2').classList.add('active');
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'formulario_qualificacao_2' });
+
+    try {
+      await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+    } catch (err) {
+      console.warn('Webhook error form2:', err);
+    }
+  }
+
   /* ─── Timeline — removed old card stack JS ─── */
 
   /* ─── HOVER BUTTON — bolhas de luz (apenas desktop/mouse) ─── */
@@ -3448,6 +3714,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   async function submitForm() {
+    // Salva nome para uso no formulário 2
+    leadName = document.getElementById('f-nome')?.value?.trim() || '';
+
     // Coleta dados do formulário
     const payload = {
       // Dados pessoais
