@@ -3604,18 +3604,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
   }
 
+  const WEBHOOK_URL_2 = 'https://hook.eu1.make.com/nfgbume4st23fj7eoqvkxidk6a72v7hs';
+
   async function f2SubmitForm() {
     const payload = {
-      formulario: 'qualificacao_2',
-      nome: leadName,
-      onde_vende: f2SelectedVenda,
-      importou_china: f2SelectedImportou,
-      produto: document.getElementById('f2-produto').value.trim(),
-      prazo: f2SelectedPrazo,
-      investimento: f2SelectedInvest,
+      // Dados do formulário 1
+      nome:            leadName,
+      email:           document.getElementById('f-email')?.value?.trim()   || '',
+      whatsapp:        document.getElementById('f-wpp')?.value?.trim()     || '',
+      empresa:         document.getElementById('f-empresa')?.value?.trim() || '',
+      faturamento:     selectedFaturamento || '',
+      // Dados do formulário 2
+      onde_vende:      f2SelectedVenda,
+      importou_china:  f2SelectedImportou,
+      produto:         document.getElementById('f2-produto').value.trim(),
+      prazo:           f2SelectedPrazo,
+      investimento:    f2SelectedInvest,
+      // Rastreamento
       ...getUTMData(),
       enviado_em: new Date().toISOString(),
-      pagina: window.location.href,
+      pagina:     window.location.href,
     };
 
     document.getElementById('modalSteps2').style.display = 'none';
@@ -3627,7 +3635,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     window.dataLayer.push({ event: 'formulario_qualificacao_2' });
 
     try {
-      await fetch(WEBHOOK_URL, {
+      await fetch(WEBHOOK_URL_2, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
