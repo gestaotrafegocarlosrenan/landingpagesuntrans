@@ -3025,19 +3025,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="modal-error" id="err-empresa" role="alert"></div>
       </div>
 
-      <!-- Step 5: Faturamento -->
+      <!-- Step 5: Capital disponível -->
       <div class="modal-step" data-step="4">
         <div class="modal-step-label">Passo 5 de 5</div>
-        <div class="modal-step-question">Qual é o faturamento mensal da sua empresa?</div>
+        <div class="modal-step-question">Você ou sua empresa possuem a partir de R$50.000 (50 mil) para investir em uma importação?</div>
         <div class="revenue-options" id="revenueOptionsFaturamento">
-          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Ainda não faturando</button>
-          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Até R$ 30 mil</button>
-          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">R$ 30 mil – R$ 50 mil</button>
-          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">R$ 50 mil – R$ 100 mil</button>
-          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">R$ 100 mil – R$ 250 mil</button>
-          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">R$ 250 mil – R$ 500 mil</button>
-          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">R$ 500 mil – R$ 1 milhão</button>
-          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Mais de R$ 1 milhão</button>
+          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Sim, possuímos R$50.000 ou mais para investir em uma importação da China.</button>
+          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Não, possuímos menos que R$50.000 para investir em uma importação da China.</button>
         </div>
         <div class="modal-error" id="err-faturamento2"></div>
       </div>
@@ -3078,7 +3072,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Step 1: Canal de vendas -->
       <div class="modal-step active" data-step2="0">
-        <div class="modal-step-label">Passo 1 de 5</div>
+        <div class="modal-step-label">Passo 1 de 6</div>
         <div class="modal-step-question" id="f2-q1">Onde você vende os seus produtos?</div>
         <div class="revenue-options">
           <button class="revenue-option f2-venda-option" onclick="f2SelectVenda(this)">Online</button>
@@ -3090,7 +3084,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Step 2: Importou da China -->
       <div class="modal-step" data-step2="1">
-        <div class="modal-step-label">Passo 2 de 5</div>
+        <div class="modal-step-label">Passo 2 de 6</div>
         <div class="modal-step-question">Já importou da China?</div>
         <div class="revenue-options">
           <button class="revenue-option f2-importou-option" onclick="f2SelectImportou(this)">Sim</button>
@@ -3102,7 +3096,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Step 3: Produto -->
       <div class="modal-step" data-step2="2">
-        <div class="modal-step-label">Passo 3 de 5</div>
+        <div class="modal-step-label">Passo 3 de 6</div>
         <label class="modal-step-question" id="f2-q3" for="f2-produto">Qual o produto você está buscando importar?</label>
         <input class="modal-input" type="text" id="f2-produto" placeholder="Ex: tênis, eletrônicos, cosméticos..." />
         <div class="modal-error" id="f2-err-produto" role="alert"></div>
@@ -3110,7 +3104,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Step 4: Prazo -->
       <div class="modal-step" data-step2="3">
-        <div class="modal-step-label">Passo 4 de 5</div>
+        <div class="modal-step-label">Passo 4 de 6</div>
         <div class="modal-step-question">Para quando precisa dos produtos em mãos?</div>
         <div class="revenue-options">
           <button class="revenue-option f2-prazo-option" onclick="f2SelectPrazo(this)">Ainda esse ano</button>
@@ -3122,7 +3116,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Step 5: Investimento -->
       <div class="modal-step" data-step2="4">
-        <div class="modal-step-label">Passo 5 de 5</div>
+        <div class="modal-step-label">Passo 5 de 6</div>
         <div class="modal-step-question">Quanto você pretende investir na importação?</div>
         <div class="revenue-options">
           <button class="revenue-option f2-invest-option" onclick="f2SelectInvest(this)">Até R$ 30 mil</button>
@@ -3132,6 +3126,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <button class="revenue-option f2-invest-option" onclick="f2SelectInvest(this)">Mais de R$ 1 milhão</button>
         </div>
         <div class="modal-error" id="f2-err-invest" role="alert"></div>
+      </div>
+
+      <!-- Step 6: Faturamento -->
+      <div class="modal-step" data-step2="5">
+        <div class="modal-step-label">Passo 6 de 6</div>
+        <div class="modal-step-question">Qual é o faturamento mensal da sua empresa?</div>
+        <div class="revenue-options">
+          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Ainda não faturando</button>
+          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Até R$ 30 mil</button>
+          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">R$ 30 mil – R$ 50 mil</button>
+          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">R$ 50 mil – R$ 100 mil</button>
+          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">R$ 100 mil – R$ 250 mil</button>
+          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">R$ 250 mil – R$ 500 mil</button>
+          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">R$ 500 mil – R$ 1 milhão</button>
+          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Mais de R$ 1 milhão</button>
+        </div>
+        <div class="modal-error" id="f2-err-faturamento" role="alert"></div>
       </div>
 
     </div>
@@ -3413,7 +3424,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     if (currentStep === 4) {
       if (!selectedFaturamento) {
-        document.getElementById('err-faturamento2').textContent = 'Selecione uma opção de faturamento.';
+        document.getElementById('err-faturamento2').textContent = 'Selecione uma opção.';
         return false;
       }
       document.getElementById('err-faturamento2').textContent = '';
@@ -3462,12 +3473,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   /* ─── FORM 2 ─── */
-  const F2_TOTAL_STEPS = 5;
+  const F2_TOTAL_STEPS = 6;
   let f2CurrentStep = 0;
   let f2SelectedVenda = '';
   let f2SelectedImportou = '';
   let f2SelectedPrazo = '';
   let f2SelectedInvest = '';
+  let f2SelectedFaturamento = '';
 
   function openForm2() {
     // Fecha o modal 1 antes de abrir o 2 para evitar que o listener de Enter do form 1 dispare submitForm novamente
@@ -3478,7 +3490,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     f2SelectedImportou = '';
     f2SelectedPrazo = '';
     f2SelectedInvest = '';
-    document.querySelectorAll('.f2-venda-option, .f2-importou-option, .f2-prazo-option, .f2-invest-option').forEach(o => o.classList.remove('selected'));
+    f2SelectedFaturamento = '';
+    document.querySelectorAll('.f2-venda-option, .f2-importou-option, .f2-prazo-option, .f2-invest-option, .f2-faturamento-option').forEach(o => o.classList.remove('selected'));
     document.querySelectorAll('#modalBox2 .modal-error').forEach(e => e.textContent = '');
     const f2Input = document.getElementById('f2-produto');
     if (f2Input) { f2Input.value = ''; f2Input.classList.remove('error'); }
@@ -3556,6 +3569,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.getElementById('f2-err-invest').textContent = '';
   }
 
+  function f2SelectFaturamento(btn) {
+    document.querySelectorAll('.f2-faturamento-option').forEach(o => o.classList.remove('selected'));
+    btn.classList.add('selected');
+    f2SelectedFaturamento = btn.textContent;
+    document.getElementById('f2-err-faturamento').textContent = '';
+  }
+
   function f2ValidateStep() {
     if (f2CurrentStep === 0 && !f2SelectedVenda) {
       document.getElementById('f2-err-venda').textContent = 'Selecione uma opção.';
@@ -3581,6 +3601,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     if (f2CurrentStep === 4 && !f2SelectedInvest) {
       document.getElementById('f2-err-invest').textContent = 'Selecione uma opção.';
+      return false;
+    }
+    if (f2CurrentStep === 5 && !f2SelectedFaturamento) {
+      document.getElementById('f2-err-faturamento').textContent = 'Selecione uma opção.';
       return false;
     }
     return true;
@@ -3616,13 +3640,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       email:           document.getElementById('f-email')?.value?.trim()   || '',
       whatsapp:        document.getElementById('f-wpp')?.value?.trim()     || '',
       empresa:         document.getElementById('f-empresa')?.value?.trim() || '',
-      faturamento:     selectedFaturamento || '',
+      capital_disponivel: selectedFaturamento || '',
       // Dados do formulário 2
       onde_vende:      f2SelectedVenda,
       importou_china:  f2SelectedImportou,
       produto:         document.getElementById('f2-produto').value.trim(),
       prazo:           f2SelectedPrazo,
       investimento:    f2SelectedInvest,
+      faturamento:     f2SelectedFaturamento,
       // Rastreamento
       ...getUTMData(),
       enviado_em: new Date().toISOString(),
@@ -3739,7 +3764,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       whatsapp:    document.getElementById('f-wpp')?.value?.trim()     || '',
       empresa:     document.getElementById('f-empresa')?.value?.trim() || '',
       investimento: selectedRevenue || '',
-      faturamento: selectedFaturamento || '',
+      capital_disponivel: selectedFaturamento || '',
       // UTMs e rastreamento
       ...getUTMData(),
       // Timestamp do envio
@@ -3757,19 +3782,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: 'formulario_geral' });
 
-    // Dispara evento GTM para leads qualificados (faturamento R$ 50 mil+)
-    const qualifiedRevenues = [
-      'R$ 50 mil – R$ 100 mil',
-      'R$ 100 mil – R$ 250 mil',
-      'R$ 250 mil – R$ 500 mil',
-      'R$ 500 mil – R$ 1 milhão',
-      'Mais de R$ 1 milhão',
-    ];
-    if (qualifiedRevenues.includes(selectedFaturamento)) {
+    // Dispara evento GTM para leads qualificados (capital disponível para investir)
+    if (selectedFaturamento && selectedFaturamento.startsWith('Sim')) {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: 'lead_qualificado',
-        faturamento: selectedFaturamento,
+        capital_disponivel: selectedFaturamento,
       });
     }
 
