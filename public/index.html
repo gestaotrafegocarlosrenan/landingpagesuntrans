@@ -3098,7 +3098,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Step 1: Canal de vendas -->
       <div class="modal-step active" data-step2="0">
-        <div class="modal-step-label">Passo 1 de 6</div>
+        <div class="modal-step-label">Passo 1 de 5</div>
         <div class="modal-step-question" id="f2-q1">Onde você vende os seus produtos?</div>
         <div class="revenue-options">
           <button class="revenue-option f2-venda-option" onclick="f2SelectVenda(this)">Online</button>
@@ -3110,7 +3110,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Step 2: Importou da China -->
       <div class="modal-step" data-step2="1">
-        <div class="modal-step-label">Passo 2 de 6</div>
+        <div class="modal-step-label">Passo 2 de 5</div>
         <div class="modal-step-question">Já importou da China?</div>
         <div class="revenue-options">
           <button class="revenue-option f2-importou-option" onclick="f2SelectImportou(this)">Sim</button>
@@ -3122,7 +3122,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Step 3: Produto -->
       <div class="modal-step" data-step2="2">
-        <div class="modal-step-label">Passo 3 de 6</div>
+        <div class="modal-step-label">Passo 3 de 5</div>
         <label class="modal-step-question" id="f2-q3" for="f2-produto">Qual o produto você está buscando importar?</label>
         <input class="modal-input" type="text" id="f2-produto" placeholder="Ex: tênis, eletrônicos, cosméticos..." />
         <div class="modal-error" id="f2-err-produto" role="alert"></div>
@@ -3130,7 +3130,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Step 4: Prazo -->
       <div class="modal-step" data-step2="3">
-        <div class="modal-step-label">Passo 4 de 6</div>
+        <div class="modal-step-label">Passo 4 de 5</div>
         <div class="modal-step-question">Para quando precisa dos produtos em mãos?</div>
         <div class="revenue-options">
           <button class="revenue-option f2-prazo-option" onclick="f2SelectPrazo(this)">Ainda esse ano</button>
@@ -3140,23 +3140,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="modal-error" id="f2-err-prazo" role="alert"></div>
       </div>
 
-      <!-- Step 5: Investimento -->
+      <!-- Step 5: Faturamento -->
       <div class="modal-step" data-step2="4">
-        <div class="modal-step-label">Passo 5 de 6</div>
-        <div class="modal-step-question">Quanto você pretende investir na importação?</div>
-        <div class="revenue-options">
-          <button class="revenue-option f2-invest-option" onclick="f2SelectInvest(this)">Até R$ 30 mil</button>
-          <button class="revenue-option f2-invest-option" onclick="f2SelectInvest(this)">R$ 50 mil – R$ 100 mil</button>
-          <button class="revenue-option f2-invest-option" onclick="f2SelectInvest(this)">R$ 100 mil – R$ 500 mil</button>
-          <button class="revenue-option f2-invest-option" onclick="f2SelectInvest(this)">R$ 500 mil – R$ 1 milhão</button>
-          <button class="revenue-option f2-invest-option" onclick="f2SelectInvest(this)">Mais de R$ 1 milhão</button>
-        </div>
-        <div class="modal-error" id="f2-err-invest" role="alert"></div>
-      </div>
-
-      <!-- Step 6: Faturamento -->
-      <div class="modal-step" data-step2="5">
-        <div class="modal-step-label">Passo 6 de 6</div>
+        <div class="modal-step-label">Passo 5 de 5</div>
         <div class="modal-step-question">Qual é o faturamento mensal da sua empresa?</div>
         <div class="revenue-options">
           <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Ainda não faturando</button>
@@ -3528,12 +3514,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   /* ─── FORM 2 ─── */
-  const F2_TOTAL_STEPS = 6;
+  const F2_TOTAL_STEPS = 5;
   let f2CurrentStep = 0;
   let f2SelectedVenda = '';
   let f2SelectedImportou = '';
   let f2SelectedPrazo = '';
-  let f2SelectedInvest = '';
   let f2SelectedFaturamento = '';
 
   function openForm2() {
@@ -3544,9 +3529,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     f2SelectedVenda = '';
     f2SelectedImportou = '';
     f2SelectedPrazo = '';
-    f2SelectedInvest = '';
     f2SelectedFaturamento = '';
-    document.querySelectorAll('.f2-venda-option, .f2-importou-option, .f2-prazo-option, .f2-invest-option, .f2-faturamento-option').forEach(o => o.classList.remove('selected'));
+    document.querySelectorAll('.f2-venda-option, .f2-importou-option, .f2-prazo-option, .f2-faturamento-option').forEach(o => o.classList.remove('selected'));
     document.querySelectorAll('#modalBox2 .modal-error').forEach(e => e.textContent = '');
     const f2Input = document.getElementById('f2-produto');
     if (f2Input) { f2Input.value = ''; f2Input.classList.remove('error'); }
@@ -3617,13 +3601,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.getElementById('f2-err-prazo').textContent = '';
   }
 
-  function f2SelectInvest(btn) {
-    document.querySelectorAll('.f2-invest-option').forEach(o => o.classList.remove('selected'));
-    btn.classList.add('selected');
-    f2SelectedInvest = btn.textContent;
-    document.getElementById('f2-err-invest').textContent = '';
-  }
-
   function f2SelectFaturamento(btn) {
     document.querySelectorAll('.f2-faturamento-option').forEach(o => o.classList.remove('selected'));
     btn.classList.add('selected');
@@ -3654,11 +3631,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       document.getElementById('f2-err-prazo').textContent = 'Selecione uma opção.';
       return false;
     }
-    if (f2CurrentStep === 4 && !f2SelectedInvest) {
-      document.getElementById('f2-err-invest').textContent = 'Selecione uma opção.';
-      return false;
-    }
-    if (f2CurrentStep === 5 && !f2SelectedFaturamento) {
+    if (f2CurrentStep === 4 && !f2SelectedFaturamento) {
       document.getElementById('f2-err-faturamento').textContent = 'Selecione uma opção.';
       return false;
     }
@@ -3701,7 +3674,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       importou_china:  f2SelectedImportou,
       produto:         document.getElementById('f2-produto').value.trim(),
       prazo:           f2SelectedPrazo,
-      investimento:    f2SelectedInvest,
       faturamento:     f2SelectedFaturamento,
       // Rastreamento
       ...getUTMData(),
