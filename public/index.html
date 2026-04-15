@@ -15,7 +15,8 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='20' y='24' width='60' height='60' rx='4' fill='%231a1f5e'/><g transform='translate(56,44) rotate(45)' fill='white'><ellipse cx='0' cy='-2' rx='10' ry='22'/><polygon points='-10,14 -22,28 0,20'/><polygon points='10,14 22,28 0,20'/><circle cx='0' cy='-8' r='4.5' fill='%231a1f5e'/></g><line x1='8' y1='86' x2='38' y2='62' stroke='white' stroke-width='6.5' stroke-linecap='round'/><line x1='4' y1='74' x2='28' y2='56' stroke='white' stroke-width='4.5' stroke-linecap='round'/></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="/images/hero-bg-new.webp" fetchpriority="high">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -2339,12 +2340,20 @@
         box-shadow: 0 0 24px rgba(80,40,200,0.25);
       }
 
-      /* GPU hint nas animações contínuas */
+      /* Remove will-change — não há animação contínua ativa em mobile */
       .btn-glow-inner,
       .btn-primary,
       .hero-cta-link {
-        will-change: transform;
+        will-change: auto;
       }
+
+      /* Desativa btn-spin-glow (rotação de conic-gradient cara em GPU) */
+      .btn-glow-inner { animation: none; }
+
+      /* Desativa sailShip (offset-path + drop-shadow = muito pesado em mobile) */
+      .wave-ship { display: none !important; }
+      /* Acende todos os steps da timeline de uma vez no mobile */
+      .wave-step { filter: brightness(1) saturate(1) !important; }
 
       /* Reduz backdrop-filter do nav (custo alto em mobile) */
       .nav-menu {
@@ -2431,6 +2440,23 @@
 
       /* ── Tarja exclusividade ── */
       .exclusivity-banner { flex-direction: column; gap: 4px; text-align: center; padding: 14px 20px; }
+
+      /* Remove backdrop-filter em telas muito pequenas (GPU caro demais) */
+      nav, .nav-menu, .modal-box, .service-card, .pillar, .proof-metric, .stat-item {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+      }
+    }
+
+    /* ── RESPEITA PREFERÊNCIA DO USUÁRIO POR MENOS MOVIMENTO ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .wave-ship { display: none !important; }
     }
   </style>
   <!-- Google Tag Manager -->
@@ -2637,7 +2663,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- QUEM SOMOS -->
 <section class="quem-somos-section" id="quem-somos">
   <div class="quem-somos-bg">
-    <img src="/images/sunrocket-planet.jpg" alt="SunRocket planeta com contêineres em órbita" />
+    <img src="/images/sunrocket-planet.jpg" alt="SunRocket planeta com contêineres em órbita" loading="lazy" width="600" height="600" />
   </div>
   <div class="container quem-somos-container">
     <div class="quem-somos-content">
@@ -2913,7 +2939,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       <!-- Card 1 -->
       <div class="ni-card">
-        <div class="ni-img" style="background-image: url('/images/produtos-marca.jpg'); background-color: #1a1440; background-size: cover; background-position: center;">
+        <div class="ni-img" data-bg="/images/produtos-marca.jpg" style="background-color: #1a1440; background-size: cover; background-position: center;">
           <div class="ni-badge">
             <svg viewBox="0 0 24 24" fill="#E53935"><circle cx="12" cy="12" r="10" fill="#fff" stroke="#D32F2F" stroke-width="2"/><path d="M15 9l-6 6M9 9l6 6" stroke="#D32F2F" stroke-width="2.5" stroke-linecap="round"/></svg>
           </div>
@@ -2923,7 +2949,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Card 2 -->
       <div class="ni-card">
-        <div class="ni-img" style="background-image: url('/images/produtos-iphone.jpg'); background-color: #1a1440; background-size: cover; background-position: center;">
+        <div class="ni-img" data-bg="/images/produtos-iphone.jpg" style="background-color: #1a1440; background-size: cover; background-position: center;">
           <div class="ni-badge">
             <svg viewBox="0 0 24 24" fill="#E53935"><circle cx="12" cy="12" r="10" fill="#fff" stroke="#D32F2F" stroke-width="2"/><path d="M15 9l-6 6M9 9l6 6" stroke="#D32F2F" stroke-width="2.5" stroke-linecap="round"/></svg>
           </div>
@@ -2933,7 +2959,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Card 3 -->
       <div class="ni-card">
-        <div class="ni-img" style="background-image: url('/images/produtos-camiseta.jpg'); background-color: #1a1440; background-size: cover; background-position: 30% center;">
+        <div class="ni-img" data-bg="/images/produtos-camiseta.jpg" style="background-color: #1a1440; background-size: cover; background-position: 30% center;">
           <div class="ni-badge">
             <svg viewBox="0 0 24 24" fill="#E53935"><circle cx="12" cy="12" r="10" fill="#fff" stroke="#D32F2F" stroke-width="2"/><path d="M15 9l-6 6M9 9l6 6" stroke="#D32F2F" stroke-width="2.5" stroke-linecap="round"/></svg>
           </div>
@@ -2943,7 +2969,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Card 4 -->
       <div class="ni-card">
-        <div class="ni-img" style="background-image: url('/images/produtos-chuteira.jpg'); background-color: #1a1440; background-size: cover; background-position: center;">
+        <div class="ni-img" data-bg="/images/produtos-chuteira.jpg" style="background-color: #1a1440; background-size: cover; background-position: center;">
           <div class="ni-badge">
             <svg viewBox="0 0 24 24" fill="#E53935"><circle cx="12" cy="12" r="10" fill="#fff" stroke="#D32F2F" stroke-width="2"/><path d="M15 9l-6 6M9 9l6 6" stroke="#D32F2F" stroke-width="2.5" stroke-linecap="round"/></svg>
           </div>
@@ -2953,7 +2979,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Card 5 -->
       <div class="ni-card">
-        <div class="ni-img" style="background-image: url('/images/produtos-perfume.jpg'); background-color: #1a1440; background-size: cover; background-position: center center;">
+        <div class="ni-img" data-bg="/images/produtos-perfume.jpg" style="background-color: #1a1440; background-size: cover; background-position: center center;">
           <div class="ni-badge">
             <svg viewBox="0 0 24 24" fill="#E53935"><circle cx="12" cy="12" r="10" fill="#fff" stroke="#D32F2F" stroke-width="2"/><path d="M15 9l-6 6M9 9l6 6" stroke="#D32F2F" stroke-width="2.5" stroke-linecap="round"/></svg>
           </div>
@@ -3266,8 +3292,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 <script>
+  /* ─── LAZY LOAD: Imagens de fundo dos produtos ─── */
+  (function () {
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const imgs = document.querySelectorAll('[data-bg]');
+    if (!imgs.length) return;
+
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            el.style.backgroundImage = "url('" + el.dataset.bg + "')";
+            obs.unobserve(el);
+          }
+        });
+      }, { rootMargin: isMobile ? '200px' : '400px' });
+      imgs.forEach(el => obs.observe(el));
+    } else {
+      // Fallback: carrega todas imediatamente
+      imgs.forEach(el => { el.style.backgroundImage = "url('" + el.dataset.bg + "')"; });
+    }
+  })();
+
   /* ─── WAVE TIMELINE: Light up steps as ship passes ─── */
   (function() {
+    // Não roda em mobile (sailShip está desativado por CSS)
+    if (window.matchMedia('(max-width: 768px)').matches) {
+      document.querySelectorAll('.wave-step[data-step-index]').forEach(s => s.classList.add('lit'));
+      return;
+    }
+
     const ANIM_DURATION = 14000; // matches CSS 14s
     // Thresholds alinhados com as posições visuais do barco (0–96 para garantir que o último acende)
     const thresholds = [0, 16.67, 33.33, 50, 66.67, 83.33, 96];
