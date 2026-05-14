@@ -3753,29 +3753,104 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     observer.observe(document.body, { childList: true, subtree: true });
   })();
 
-  /* ─── CAPTURA DE UTMs ─── */
+  /* ─── CAPTURA DE UTMs (resiliente: localStorage + cookie + fallback por clickID) ─── */
+  const TRACK_KEYS = [
+    'utm_source','utm_medium','utm_campaign','utm_content','utm_term',
+    'keyword','device','network',
+    'fbclid','gclid','gad_source','gbraid','wbraid','msclkid','ttclid','li_fat_id'
+  ];
+
+  function setCookie(name, value, days) {
+    try {
+      const d = new Date();
+      d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+      document.cookie = name + '=' + encodeURIComponent(value) + ';expires=' + d.toUTCString() + ';path=/;SameSite=Lax';
+    } catch (_) {}
+  }
+  function getCookie(name) {
+    try {
+      const m = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/([.$?*|{}()\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'));
+      return m ? decodeURIComponent(m[1]) : '';
+    } catch (_) { return ''; }
+  }
+  function lsGet(k) { try { return localStorage.getItem(k) || ''; } catch (_) { return ''; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (_) {} }
+
+  function storeTrack(key, value) {
+    if (!value) return;
+    lsSet(key, value);
+    setCookie('_t_' + key, value, 90);
+  }
+  function readTrack(key) {
+    return lsGet(key) || getCookie('_t_' + key) || '';
+  }
+
   (function captureUTMs() {
     const params = new URLSearchParams(window.location.search);
-    const utmKeys = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','keyword','device','network'];
-    utmKeys.forEach(key => {
+    TRACK_KEYS.forEach(key => {
       const val = params.get(key);
-      if (val) localStorage.setItem(key, val);
+      if (val) storeTrack(key, val);
     });
-    // Armazena também a URL de origem e data do primeiro acesso
-    if (!localStorage.getItem('first_visit')) {
-      localStorage.setItem('first_visit', new Date().toISOString());
-      localStorage.setItem('landing_url', window.location.href);
+
+    // Primeiro acesso: registra origem e referrer
+    if (!readTrack('first_visit')) {
+      storeTrack('first_visit', new Date().toISOString());
+      storeTrack('landing_url', window.location.href);
+      storeTrack('referrer', document.referrer || '');
     }
-    localStorage.setItem('last_visit', new Date().toISOString());
+    storeTrack('last_visit', new Date().toISOString());
   })();
 
   /* ─── WEBHOOK + SUBMIT ─── */
   const WEBHOOK_URL = 'https://hook.eu1.make.com/033b9m2duppiifhjuuqz6piyn1tog0qu';
 
   function getUTMData() {
-    const keys = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','keyword','device','network','first_visit','last_visit','landing_url'];
+    // Re-captura no momento do submit (cobre navegação dentro do site)
+    try {
+      const params = new URLSearchParams(window.location.search);
+      TRACK_KEYS.forEach(key => {
+        const val = params.get(key);
+        if (val) storeTrack(key, val);
+      });
+    } catch (_) {}
+
     const data = {};
-    keys.forEach(k => { data[k] = localStorage.getItem(k) || ''; });
+    TRACK_KEYS.forEach(k => { data[k] = readTrack(k); });
+
+    // Fallback: deriva utm_source/medium quando só há clickID
+    if (!data.utm_source) {
+      if (data.fbclid)        { data.utm_source = 'facebook'; data.utm_medium = data.utm_medium || 'paid-social'; }
+      else if (data.gclid || data.gbraid || data.wbraid) { data.utm_source = 'google';   data.utm_medium = data.utm_medium || 'cpc'; }
+      else if (data.gad_source) { data.utm_source = 'google'; data.utm_medium = data.utm_medium || 'cpc'; }
+      else if (data.msclkid)  { data.utm_source = 'bing';     data.utm_medium = data.utm_medium || 'cpc'; }
+      else if (data.ttclid)   { data.utm_source = 'tiktok';   data.utm_medium = data.utm_medium || 'paid-social'; }
+      else if (data.li_fat_id){ data.utm_source = 'linkedin'; data.utm_medium = data.utm_medium || 'paid-social'; }
+      else {
+        const ref = (document.referrer || readTrack('referrer') || '').toLowerCase();
+        if (ref) {
+          if      (ref.includes('facebook.') || ref.includes('instagram.') || ref.includes('fb.com')) data.utm_source = 'facebook';
+          else if (ref.includes('google.'))    data.utm_source = 'google';
+          else if (ref.includes('bing.'))      data.utm_source = 'bing';
+          else if (ref.includes('tiktok.'))    data.utm_source = 'tiktok';
+          else if (ref.includes('youtube.'))   data.utm_source = 'youtube';
+          else if (ref.includes('linkedin.'))  data.utm_source = 'linkedin';
+          else { try { data.utm_source = new URL(document.referrer).hostname; } catch (_) {} }
+          data.utm_medium = data.utm_medium || 'referral';
+        } else {
+          data.utm_source = 'direct';
+          data.utm_medium = data.utm_medium || 'none';
+        }
+      }
+    }
+
+    // Sempre envia contexto adicional, mesmo sem UTMs
+    data.first_visit  = readTrack('first_visit');
+    data.last_visit   = readTrack('last_visit');
+    data.landing_url  = readTrack('landing_url') || window.location.href;
+    data.referrer     = readTrack('referrer')    || document.referrer || '';
+    data.page_url     = window.location.href;
+    data.user_agent   = navigator.userAgent || '';
+
     return data;
   }
 
