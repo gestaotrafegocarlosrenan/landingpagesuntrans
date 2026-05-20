@@ -1881,6 +1881,17 @@
       cursor: default;
     }
 
+    .modal-step-question + .modal-step-hint {
+      margin-top: -20px;
+    }
+
+    .modal-step-hint {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+
     .modal-input {
       width: 100%;
       background: rgba(255,255,255,0.04);
@@ -3039,7 +3050,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="modal-step" data-step="2">
         <div class="modal-step-label">Passo 3 de 5</div>
         <label class="modal-step-question" for="f-wpp">Qual é o seu WhatsApp?</label>
-        <input class="modal-input" type="tel" id="f-wpp" placeholder="(11) 99999-9999" autocomplete="tel" maxlength="15" />
+        <div class="modal-step-hint">Digite abaixo seu número com DDD.</div>
+        <input class="modal-input" type="tel" id="f-wpp" placeholder="(11) 99999-9999" autocomplete="tel" inputmode="numeric" maxlength="15" />
         <div class="modal-error" id="err-wpp" role="alert"></div>
       </div>
 
@@ -3422,6 +3434,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   document.getElementById('f-wpp').addEventListener('input', function() {
     this.value = formatPhone(this.value);
   });
+  // Bloqueia letras, caracteres especiais e espaço no WhatsApp
+  document.getElementById('f-wpp').addEventListener('keypress', function(e) {
+    if (e.key && e.key.length === 1 && !/[0-9]/.test(e.key)) e.preventDefault();
+  });
+  document.getElementById('f-wpp').addEventListener('paste', function(e) {
+    e.preventDefault();
+    const text = (e.clipboardData || window.clipboardData).getData('text') || '';
+    this.value = formatPhone(text);
+  });
+
+  // Bloqueia espaço no campo de e-mail
+  document.getElementById('f-email').addEventListener('keypress', function(e) {
+    if (e.key === ' ') e.preventDefault();
+  });
+  document.getElementById('f-email').addEventListener('input', function() {
+    if (this.value.indexOf(' ') !== -1) this.value = this.value.replace(/\s+/g, '');
+  });
 
   function validateStep() {
     const clearErr = id => { document.getElementById(id).textContent = ''; };
@@ -3447,8 +3476,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     if (currentStep === 2) {
       const digits = document.getElementById('f-wpp').value.replace(/\D/g, '');
-      if (digits.length < 10 || digits.length > 11) {
-        setErr('err-wpp', 'Número incompleto. Informe DDD + número (10 ou 11 dígitos).');
+      if (digits.length !== 11) {
+        setErr('err-wpp', 'Informe seu WhatsApp com DDD (11 dígitos).');
         document.getElementById('f-wpp').classList.add('error');
         return false;
       }
