@@ -3031,7 +3031,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Step 1: Nome -->
       <div class="modal-step active" data-step="0">
-        <div class="modal-step-label">Passo 1 de 5</div>
+        <div class="modal-step-label">Passo 1 de 4</div>
         <label class="modal-step-question" for="f-nome">Qual o seu nome?</label>
         <input class="modal-input" type="text" id="f-nome" placeholder="Seu nome" autocomplete="given-name" />
         <div class="modal-error" id="err-nome" role="alert"></div>
@@ -3039,7 +3039,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Step 2: Email -->
       <div class="modal-step" data-step="1">
-        <div class="modal-step-label">Passo 2 de 5</div>
+        <div class="modal-step-label">Passo 2 de 4</div>
         <label class="modal-step-question" for="f-email">Qual o seu e-mail para contato?</label>
         <input class="modal-input" type="email" id="f-email" placeholder="seu@email.com" autocomplete="email" />
         <div class="modal-error" id="err-email" role="alert"></div>
@@ -3047,28 +3047,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Step 3: WhatsApp -->
       <div class="modal-step" data-step="2">
-        <div class="modal-step-label">Passo 3 de 5</div>
+        <div class="modal-step-label">Passo 3 de 4</div>
         <label class="modal-step-question" for="f-wpp">Qual é o seu WhatsApp?</label>
         <div class="modal-step-hint">Digite abaixo seu número com DDD.</div>
         <input class="modal-input" type="tel" id="f-wpp" placeholder="(11) 99999-9999" autocomplete="tel" inputmode="numeric" maxlength="15" />
         <div class="modal-error" id="err-wpp" role="alert"></div>
       </div>
 
-      <!-- Step 4: Empresa -->
+      <!-- Step 4: Capital disponível -->
       <div class="modal-step" data-step="3">
-        <div class="modal-step-label">Passo 4 de 5</div>
-        <label class="modal-step-question" for="f-empresa">Qual é o nome da sua empresa?</label>
-        <input class="modal-input" type="text" id="f-empresa" placeholder="Nome da empresa" autocomplete="organization" />
-        <div class="modal-error" id="err-empresa" role="alert"></div>
-      </div>
-
-      <!-- Step 5: Capital disponível -->
-      <div class="modal-step" data-step="4">
-        <div class="modal-step-label">Passo 5 de 5</div>
-        <div class="modal-step-question">Você ou sua empresa possuem a partir de R$50.000 (50 mil) para investir em uma importação?</div>
+        <div class="modal-step-label">Passo 4 de 4</div>
+        <div class="modal-step-question">Qual o volume de capital disponível para sua operação de importação?</div>
         <div class="revenue-options" id="revenueOptionsFaturamento">
-          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Sim, possuímos R$50.000 ou mais para investir em uma importação da China.</button>
-          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Não, possuímos menos que R$50.000 para investir em uma importação da China.</button>
+          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Sem capital disponível no momento</button>
+          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Abaixo de R$ 30 mil</button>
+          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Entre R$ 30 mil e R$ 50 mil</button>
+          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Entre R$ 50 mil e R$ 80 mil</button>
+          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Entre R$ 80 mil e R$ 150 mil</button>
+          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Entre R$ 150 mil e R$ 300 mil</button>
+          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Entre R$ 300 mil e R$ 500 mil</button>
+          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Acima de R$ 500 mil</button>
         </div>
         <div class="modal-error" id="err-faturamento2"></div>
       </div>
@@ -3360,7 +3358,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   /* ─── MODAL FORM ─── */
-  const TOTAL_STEPS = 5;
+  const TOTAL_STEPS = 4;
   let currentStep = 0;
   let selectedRevenue = '';
   let selectedFaturamento = '';
@@ -3483,27 +3481,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       clearErr('err-wpp'); document.getElementById('f-wpp').classList.remove('error');
     }
     if (currentStep === 3) {
-      const v = document.getElementById('f-empresa').value.trim();
-      if (!v) {
-        setErr('err-empresa', 'Por favor, informe o nome da empresa.');
-        document.getElementById('f-empresa').classList.add('error');
-        return false;
-      }
-      clearErr('err-empresa'); document.getElementById('f-empresa').classList.remove('error');
-    }
-    if (currentStep === 4) {
       if (!selectedFaturamento) {
         document.getElementById('err-faturamento2').textContent = 'Selecione uma opção.';
         return false;
       }
       document.getElementById('err-faturamento2').textContent = '';
-    }
-    if (currentStep === 5) {
-      if (!selectedRevenue) {
-        document.getElementById('err-faturamento').textContent = 'Selecione uma opção de investimento.';
-        return false;
-      }
-      document.getElementById('err-faturamento').textContent = '';
     }
     return true;
   }
@@ -3695,7 +3677,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       nome:            leadName,
       email:           document.getElementById('f-email')?.value?.trim()   || '',
       whatsapp:        document.getElementById('f-wpp')?.value?.trim()     || '',
-      empresa:         document.getElementById('f-empresa')?.value?.trim() || '',
       capital_disponivel: selectedFaturamento || '',
       // Dados do formulário 2
       onde_vende:      f2SelectedVenda,
@@ -3892,8 +3873,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       nome:        document.getElementById('f-nome')?.value?.trim()    || '',
       email:       document.getElementById('f-email')?.value?.trim()   || '',
       whatsapp:    document.getElementById('f-wpp')?.value?.trim()     || '',
-      empresa:     document.getElementById('f-empresa')?.value?.trim() || '',
-      investimento: selectedRevenue || '',
       capital_disponivel: selectedFaturamento || '',
       // UTMs e rastreamento
       ...getUTMData(),
@@ -3912,8 +3891,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: 'formulario_geral' });
 
-    // Dispara evento GTM para leads qualificados (capital disponível para investir)
-    if (selectedFaturamento && selectedFaturamento.startsWith('Sim')) {
+    // Dispara evento GTM para leads qualificados (R$50 mil+ de capital disponível)
+    const FAIXAS_QUALIFICADAS = [
+      'Entre R$ 50 mil e R$ 80 mil',
+      'Entre R$ 80 mil e R$ 150 mil',
+      'Entre R$ 150 mil e R$ 300 mil',
+      'Entre R$ 300 mil e R$ 500 mil',
+      'Acima de R$ 500 mil',
+    ];
+    if (selectedFaturamento && FAIXAS_QUALIFICADAS.includes(selectedFaturamento)) {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: 'lead_qualificado',
