@@ -1911,6 +1911,7 @@
     }
     .modal-input::placeholder { color: rgba(255,255,255,0.2); }
     .modal-input.error { border-color: rgba(239,68,68,0.5); }
+    textarea.modal-input { resize: vertical; min-height: 96px; line-height: 1.45; }
 
     .modal-error {
       font-size: 0.78rem;
@@ -3105,65 +3106,100 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- Steps -->
     <div id="modalSteps2">
 
-      <!-- Step 1: Canal de vendas -->
+      <!-- Step 1: Empresa -->
       <div class="modal-step active" data-step2="0">
-        <div class="modal-step-label">Passo 1 de 5</div>
-        <div class="modal-step-question" id="f2-q1">Onde você vende os seus produtos?</div>
-        <div class="revenue-options">
-          <button class="revenue-option f2-venda-option" onclick="f2SelectVenda(this)">Online</button>
-          <button class="revenue-option f2-venda-option" onclick="f2SelectVenda(this)">Físico</button>
-          <button class="revenue-option f2-venda-option" onclick="f2SelectVenda(this)">Ainda não vendo</button>
-        </div>
-        <div class="modal-error" id="f2-err-venda" role="alert"></div>
+        <div class="modal-step-label">Passo 1 de 8</div>
+        <label class="modal-step-question" id="f2-q1" for="f2-empresa">Qual o nome da sua empresa?</label>
+        <input class="modal-input" type="text" id="f2-empresa" placeholder="Nome da empresa" autocomplete="organization" />
+        <div class="modal-error" id="f2-err-empresa" role="alert"></div>
       </div>
 
-      <!-- Step 2: Importou da China -->
+      <!-- Step 2: Cargo -->
       <div class="modal-step" data-step2="1">
-        <div class="modal-step-label">Passo 2 de 5</div>
-        <div class="modal-step-question">Já importou da China?</div>
+        <div class="modal-step-label">Passo 2 de 8</div>
+        <div class="modal-step-question">Qual o seu cargo na empresa?</div>
         <div class="revenue-options">
-          <button class="revenue-option f2-importou-option" onclick="f2SelectImportou(this)">Sim</button>
-          <button class="revenue-option f2-importou-option" onclick="f2SelectImportou(this)">Não</button>
-          <button class="revenue-option f2-importou-option" onclick="f2SelectImportou(this)">Importo com frequência</button>
+          <button class="revenue-option f2-cargo-option" onclick="f2SelectCargo(this)">Sou dono ou sócio</button>
+          <button class="revenue-option f2-cargo-option" onclick="f2SelectCargo(this)">Sou diretor</button>
+          <button class="revenue-option f2-cargo-option" onclick="f2SelectCargo(this)">Sou gestor com autonomia de decisão</button>
+          <button class="revenue-option f2-cargo-option" onclick="f2SelectCargo(this)">Trabalho na empresa, mas a decisão final é de outra pessoa</button>
         </div>
-        <div class="modal-error" id="f2-err-importou" role="alert"></div>
+        <div class="modal-error" id="f2-err-cargo" role="alert"></div>
       </div>
 
-      <!-- Step 3: Produto -->
+      <!-- Step 3: Faturamento mensal -->
       <div class="modal-step" data-step2="2">
-        <div class="modal-step-label">Passo 3 de 5</div>
-        <label class="modal-step-question" id="f2-q3" for="f2-produto">Qual o produto você está buscando importar?</label>
-        <input class="modal-input" type="text" id="f2-produto" placeholder="Ex: tênis, eletrônicos, cosméticos..." />
+        <div class="modal-step-label">Passo 3 de 8</div>
+        <div class="modal-step-question">Qual o faturamento mensal atual da sua empresa?</div>
+        <div class="revenue-options">
+          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Até R$ 50 mil</button>
+          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Entre R$ 50 mil e R$ 150 mil</button>
+          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Entre R$ 150 mil e R$ 500 mil</button>
+          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Entre R$ 500 mil e R$ 1 milhão</button>
+          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Acima de R$ 1 milhão</button>
+          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Empresa em fase inicial, ainda sem faturamento consistente</button>
+        </div>
+        <div class="modal-error" id="f2-err-faturamento" role="alert"></div>
+      </div>
+
+      <!-- Step 4: Segmento -->
+      <div class="modal-step" data-step2="3">
+        <div class="modal-step-label">Passo 4 de 8</div>
+        <div class="modal-step-question">Qual o segmento da sua empresa?</div>
+        <div class="revenue-options">
+          <button class="revenue-option f2-segmento-option" onclick="f2SelectSegmento(this)">E-commerce</button>
+          <button class="revenue-option f2-segmento-option" onclick="f2SelectSegmento(this)">Varejo físico</button>
+          <button class="revenue-option f2-segmento-option" onclick="f2SelectSegmento(this)">Indústria ou manufatura</button>
+          <button class="revenue-option f2-segmento-option" onclick="f2SelectSegmento(this)">Distribuidor ou atacadista</button>
+          <button class="revenue-option f2-segmento-option" onclick="f2SelectSegmento(this)">Marca própria (D2C)</button>
+          <button class="revenue-option f2-segmento-option" onclick="f2SelectSegmento(this)">Prestação de serviço</button>
+          <button class="revenue-option f2-segmento-option" onclick="f2SelectSegmento(this)">Outro</button>
+        </div>
+        <div class="modal-error" id="f2-err-segmento" role="alert"></div>
+      </div>
+
+      <!-- Step 5: Situação atual com importação -->
+      <div class="modal-step" data-step2="4">
+        <div class="modal-step-label">Passo 5 de 8</div>
+        <div class="modal-step-question">Qual a sua situação atual com importação?</div>
+        <div class="revenue-options">
+          <button class="revenue-option f2-situacao-option" onclick="f2SelectSituacao(this)">Já importo com frequência e quero otimizar a operação</button>
+          <button class="revenue-option f2-situacao-option" onclick="f2SelectSituacao(this)">Já importei algumas vezes, mas de forma desorganizada</button>
+          <button class="revenue-option f2-situacao-option" onclick="f2SelectSituacao(this)">Nunca importei, mas tenho operação estruturada e capital para começar</button>
+          <button class="revenue-option f2-situacao-option" onclick="f2SelectSituacao(this)">Nunca importei e quero entender se faz sentido para o meu momento</button>
+          <button class="revenue-option f2-situacao-option" onclick="f2SelectSituacao(this)">Estou estudando o assunto, ainda sem plano concreto</button>
+        </div>
+        <div class="modal-error" id="f2-err-situacao" role="alert"></div>
+      </div>
+
+      <!-- Step 6: Produto -->
+      <div class="modal-step" data-step2="5">
+        <div class="modal-step-label">Passo 6 de 8</div>
+        <label class="modal-step-question" id="f2-q3" for="f2-produto">Qual produto ou categoria você tem interesse em importar?</label>
+        <div class="modal-step-hint">Se ainda estiver avaliando opções, descreva brevemente o segmento ou tipo de produto.</div>
+        <textarea class="modal-input" id="f2-produto" rows="3" placeholder="Ex: eletrônicos para pet, cosméticos veganos, peças automotivas..."></textarea>
         <div class="modal-error" id="f2-err-produto" role="alert"></div>
       </div>
 
-      <!-- Step 4: Prazo -->
-      <div class="modal-step" data-step2="3">
-        <div class="modal-step-label">Passo 4 de 5</div>
-        <div class="modal-step-question">Para quando precisa dos produtos em mãos?</div>
+      <!-- Step 7: Prazo -->
+      <div class="modal-step" data-step2="6">
+        <div class="modal-step-label">Passo 7 de 8</div>
+        <div class="modal-step-question">Em quanto tempo você pretende realizar sua primeira (ou próxima) importação?</div>
         <div class="revenue-options">
-          <button class="revenue-option f2-prazo-option" onclick="f2SelectPrazo(this)">Ainda esse ano</button>
-          <button class="revenue-option f2-prazo-option" onclick="f2SelectPrazo(this)">Não sei</button>
-          <button class="revenue-option f2-prazo-option" onclick="f2SelectPrazo(this)">Estou apenas estudando possibilidades</button>
+          <button class="revenue-option f2-prazo-option" onclick="f2SelectPrazo(this)">Nos próximos 30 dias</button>
+          <button class="revenue-option f2-prazo-option" onclick="f2SelectPrazo(this)">Entre 1 e 3 meses</button>
+          <button class="revenue-option f2-prazo-option" onclick="f2SelectPrazo(this)">Entre 3 e 6 meses</button>
+          <button class="revenue-option f2-prazo-option" onclick="f2SelectPrazo(this)">Sem prazo definido, ainda avaliando</button>
         </div>
         <div class="modal-error" id="f2-err-prazo" role="alert"></div>
       </div>
 
-      <!-- Step 5: Faturamento -->
-      <div class="modal-step" data-step2="4">
-        <div class="modal-step-label">Passo 5 de 5</div>
-        <div class="modal-step-question">Qual é o faturamento mensal da sua empresa?</div>
-        <div class="revenue-options">
-          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Ainda não faturando</button>
-          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Até R$ 30 mil</button>
-          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">R$ 30 mil – R$ 50 mil</button>
-          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">R$ 50 mil – R$ 100 mil</button>
-          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">R$ 100 mil – R$ 250 mil</button>
-          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">R$ 250 mil – R$ 500 mil</button>
-          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">R$ 500 mil – R$ 1 milhão</button>
-          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Mais de R$ 1 milhão</button>
-        </div>
-        <div class="modal-error" id="f2-err-faturamento" role="alert"></div>
+      <!-- Step 8: Expectativa -->
+      <div class="modal-step" data-step2="7">
+        <div class="modal-step-label">Passo 8 de 8</div>
+        <label class="modal-step-question" for="f2-expectativa">O que você espera resolver contratando uma assessoria de importação?</label>
+        <textarea class="modal-input" id="f2-expectativa" rows="3" placeholder="Conte rapidamente o que você gostaria de resolver..."></textarea>
+        <div class="modal-error" id="f2-err-expectativa" role="alert"></div>
       </div>
 
     </div>
@@ -3524,37 +3560,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   /* ─── FORM 2 ─── */
-  const F2_TOTAL_STEPS = 5;
+  const F2_TOTAL_STEPS = 8;
   let f2CurrentStep = 0;
-  let f2SelectedVenda = '';
-  let f2SelectedImportou = '';
-  let f2SelectedPrazo = '';
+  let f2SelectedCargo = '';
   let f2SelectedFaturamento = '';
+  let f2SelectedSegmento = '';
+  let f2SelectedSituacao = '';
+  let f2SelectedPrazo = '';
 
   function openForm2() {
     // Fecha o modal 1 antes de abrir o 2 para evitar que o listener de Enter do form 1 dispare submitForm novamente
     document.getElementById('modalOverlay').classList.remove('open');
 
     f2CurrentStep = 0;
-    f2SelectedVenda = '';
-    f2SelectedImportou = '';
-    f2SelectedPrazo = '';
+    f2SelectedCargo = '';
     f2SelectedFaturamento = '';
-    document.querySelectorAll('.f2-venda-option, .f2-importou-option, .f2-prazo-option, .f2-faturamento-option').forEach(o => o.classList.remove('selected'));
+    f2SelectedSegmento = '';
+    f2SelectedSituacao = '';
+    f2SelectedPrazo = '';
+    document.querySelectorAll('.f2-cargo-option, .f2-faturamento-option, .f2-segmento-option, .f2-situacao-option, .f2-prazo-option').forEach(o => o.classList.remove('selected'));
     document.querySelectorAll('#modalBox2 .modal-error').forEach(e => e.textContent = '');
-    const f2Input = document.getElementById('f2-produto');
-    if (f2Input) { f2Input.value = ''; f2Input.classList.remove('error'); }
+    ['f2-empresa', 'f2-produto', 'f2-expectativa'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) { el.value = ''; el.classList.remove('error'); }
+    });
     document.getElementById('modalSuccess2').classList.remove('active');
     document.getElementById('modalSteps2').style.display = '';
     document.getElementById('modalNav2').style.display = '';
     document.getElementById('modalProgress2').style.display = '';
 
-    // Personaliza perguntas com o nome do lead
+    // Personaliza pergunta inicial com o nome do lead
     const firstName = leadName.split(' ')[0] || '';
     const q1 = document.getElementById('f2-q1');
     const q3 = document.getElementById('f2-q3');
-    q1.textContent = firstName ? firstName + ', onde você vende os seus produtos?' : 'Onde você vende os seus produtos?';
-    q3.textContent = firstName ? firstName + ', qual o produto você está buscando importar?' : 'Qual o produto você está buscando importar?';
+    if (q1) q1.textContent = firstName ? firstName + ', qual o nome da sua empresa?' : 'Qual o nome da sua empresa?';
+    if (q3) q3.textContent = firstName ? firstName + ', qual produto ou categoria você tem interesse em importar?' : 'Qual produto ou categoria você tem interesse em importar?';
 
     f2RenderStep();
     document.getElementById('modalOverlay2').classList.add('open');
@@ -3590,25 +3630,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.getElementById('btnNext2').textContent = f2CurrentStep === F2_TOTAL_STEPS - 1 ? 'Enviar' : 'Continuar →';
   }
 
-  function f2SelectVenda(btn) {
-    document.querySelectorAll('.f2-venda-option').forEach(o => o.classList.remove('selected'));
+  function f2SelectCargo(btn) {
+    document.querySelectorAll('.f2-cargo-option').forEach(o => o.classList.remove('selected'));
     btn.classList.add('selected');
-    f2SelectedVenda = btn.textContent;
-    document.getElementById('f2-err-venda').textContent = '';
-  }
-
-  function f2SelectImportou(btn) {
-    document.querySelectorAll('.f2-importou-option').forEach(o => o.classList.remove('selected'));
-    btn.classList.add('selected');
-    f2SelectedImportou = btn.textContent;
-    document.getElementById('f2-err-importou').textContent = '';
-  }
-
-  function f2SelectPrazo(btn) {
-    document.querySelectorAll('.f2-prazo-option').forEach(o => o.classList.remove('selected'));
-    btn.classList.add('selected');
-    f2SelectedPrazo = btn.textContent;
-    document.getElementById('f2-err-prazo').textContent = '';
+    f2SelectedCargo = btn.textContent;
+    document.getElementById('f2-err-cargo').textContent = '';
   }
 
   function f2SelectFaturamento(btn) {
@@ -3618,32 +3644,77 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.getElementById('f2-err-faturamento').textContent = '';
   }
 
+  function f2SelectSegmento(btn) {
+    document.querySelectorAll('.f2-segmento-option').forEach(o => o.classList.remove('selected'));
+    btn.classList.add('selected');
+    f2SelectedSegmento = btn.textContent;
+    document.getElementById('f2-err-segmento').textContent = '';
+  }
+
+  function f2SelectSituacao(btn) {
+    document.querySelectorAll('.f2-situacao-option').forEach(o => o.classList.remove('selected'));
+    btn.classList.add('selected');
+    f2SelectedSituacao = btn.textContent;
+    document.getElementById('f2-err-situacao').textContent = '';
+  }
+
+  function f2SelectPrazo(btn) {
+    document.querySelectorAll('.f2-prazo-option').forEach(o => o.classList.remove('selected'));
+    btn.classList.add('selected');
+    f2SelectedPrazo = btn.textContent;
+    document.getElementById('f2-err-prazo').textContent = '';
+  }
+
   function f2ValidateStep() {
-    if (f2CurrentStep === 0 && !f2SelectedVenda) {
-      document.getElementById('f2-err-venda').textContent = 'Selecione uma opção.';
+    if (f2CurrentStep === 0) {
+      const v = document.getElementById('f2-empresa').value.trim();
+      if (!v) {
+        document.getElementById('f2-err-empresa').textContent = 'Por favor, informe o nome da empresa.';
+        document.getElementById('f2-empresa').classList.add('error');
+        return false;
+      }
+      document.getElementById('f2-err-empresa').textContent = '';
+      document.getElementById('f2-empresa').classList.remove('error');
+    }
+    if (f2CurrentStep === 1 && !f2SelectedCargo) {
+      document.getElementById('f2-err-cargo').textContent = 'Selecione uma opção.';
       return false;
     }
-    if (f2CurrentStep === 1 && !f2SelectedImportou) {
-      document.getElementById('f2-err-importou').textContent = 'Selecione uma opção.';
+    if (f2CurrentStep === 2 && !f2SelectedFaturamento) {
+      document.getElementById('f2-err-faturamento').textContent = 'Selecione uma opção.';
       return false;
     }
-    if (f2CurrentStep === 2) {
+    if (f2CurrentStep === 3 && !f2SelectedSegmento) {
+      document.getElementById('f2-err-segmento').textContent = 'Selecione uma opção.';
+      return false;
+    }
+    if (f2CurrentStep === 4 && !f2SelectedSituacao) {
+      document.getElementById('f2-err-situacao').textContent = 'Selecione uma opção.';
+      return false;
+    }
+    if (f2CurrentStep === 5) {
       const v = document.getElementById('f2-produto').value.trim();
       if (!v || v.length < 2) {
-        document.getElementById('f2-err-produto').textContent = 'Por favor, descreva o produto.';
+        document.getElementById('f2-err-produto').textContent = 'Por favor, descreva o produto ou categoria.';
         document.getElementById('f2-produto').classList.add('error');
         return false;
       }
       document.getElementById('f2-err-produto').textContent = '';
       document.getElementById('f2-produto').classList.remove('error');
     }
-    if (f2CurrentStep === 3 && !f2SelectedPrazo) {
+    if (f2CurrentStep === 6 && !f2SelectedPrazo) {
       document.getElementById('f2-err-prazo').textContent = 'Selecione uma opção.';
       return false;
     }
-    if (f2CurrentStep === 4 && !f2SelectedFaturamento) {
-      document.getElementById('f2-err-faturamento').textContent = 'Selecione uma opção.';
-      return false;
+    if (f2CurrentStep === 7) {
+      const v = document.getElementById('f2-expectativa').value.trim();
+      if (!v || v.length < 3) {
+        document.getElementById('f2-err-expectativa').textContent = 'Conte rapidamente o que espera resolver.';
+        document.getElementById('f2-expectativa').classList.add('error');
+        return false;
+      }
+      document.getElementById('f2-err-expectativa').textContent = '';
+      document.getElementById('f2-expectativa').classList.remove('error');
     }
     return true;
   }
@@ -3679,11 +3750,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       whatsapp:        document.getElementById('f-wpp')?.value?.trim()     || '',
       capital_disponivel: selectedFaturamento || '',
       // Dados do formulário 2
-      onde_vende:      f2SelectedVenda,
-      importou_china:  f2SelectedImportou,
-      produto:         document.getElementById('f2-produto').value.trim(),
-      prazo:           f2SelectedPrazo,
+      empresa:         document.getElementById('f2-empresa')?.value?.trim() || '',
+      cargo:           f2SelectedCargo,
       faturamento:     f2SelectedFaturamento,
+      segmento:        f2SelectedSegmento,
+      situacao_importacao: f2SelectedSituacao,
+      produto:         document.getElementById('f2-produto')?.value?.trim() || '',
+      prazo:           f2SelectedPrazo,
+      expectativa:     document.getElementById('f2-expectativa')?.value?.trim() || '',
       // Rastreamento
       ...getUTMData(),
       enviado_em: new Date().toISOString(),
