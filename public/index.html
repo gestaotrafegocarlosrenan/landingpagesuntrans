@@ -3032,7 +3032,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Step 1: Nome -->
       <div class="modal-step active" data-step="0">
-        <div class="modal-step-label">Passo 1 de 4</div>
+        <div class="modal-step-label">Passo 1 de 5</div>
         <label class="modal-step-question" for="f-nome">Qual o seu nome?</label>
         <input class="modal-input" type="text" id="f-nome" placeholder="Seu nome" autocomplete="given-name" />
         <div class="modal-error" id="err-nome" role="alert"></div>
@@ -3040,7 +3040,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Step 2: Email -->
       <div class="modal-step" data-step="1">
-        <div class="modal-step-label">Passo 2 de 4</div>
+        <div class="modal-step-label">Passo 2 de 5</div>
         <label class="modal-step-question" for="f-email">Qual o seu e-mail para contato?</label>
         <input class="modal-input" type="email" id="f-email" placeholder="seu@email.com" autocomplete="email" />
         <div class="modal-error" id="err-email" role="alert"></div>
@@ -3048,16 +3048,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Step 3: WhatsApp -->
       <div class="modal-step" data-step="2">
-        <div class="modal-step-label">Passo 3 de 4</div>
+        <div class="modal-step-label">Passo 3 de 5</div>
         <label class="modal-step-question" for="f-wpp">Qual é o seu WhatsApp?</label>
         <div class="modal-step-hint">Digite abaixo seu número com DDD.</div>
         <input class="modal-input" type="tel" id="f-wpp" placeholder="(11) 99999-9999" autocomplete="tel" inputmode="numeric" maxlength="15" />
         <div class="modal-error" id="err-wpp" role="alert"></div>
       </div>
 
-      <!-- Step 4: Capital disponível -->
+      <!-- Step 4: Empresa -->
       <div class="modal-step" data-step="3">
-        <div class="modal-step-label">Passo 4 de 4</div>
+        <div class="modal-step-label">Passo 4 de 5</div>
+        <label class="modal-step-question" for="f-empresa">Qual o nome da sua empresa?</label>
+        <input class="modal-input" type="text" id="f-empresa" placeholder="Nome da empresa" autocomplete="organization" />
+        <div class="modal-error" id="err-empresa" role="alert"></div>
+      </div>
+
+      <!-- Step 5: Capital disponível -->
+      <div class="modal-step" data-step="4">
+        <div class="modal-step-label">Passo 5 de 5</div>
         <div class="modal-step-question">Qual o volume de capital disponível para sua operação de importação?</div>
         <div class="revenue-options" id="revenueOptionsFaturamento">
           <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Sem capital disponível no momento</button>
@@ -3106,18 +3114,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- Steps -->
     <div id="modalSteps2">
 
-      <!-- Step 1: Empresa -->
+      <!-- Step 1: Cargo -->
       <div class="modal-step active" data-step2="0">
-        <div class="modal-step-label">Passo 1 de 8</div>
-        <label class="modal-step-question" id="f2-q1" for="f2-empresa">Qual o nome da sua empresa?</label>
-        <input class="modal-input" type="text" id="f2-empresa" placeholder="Nome da empresa" autocomplete="organization" />
-        <div class="modal-error" id="f2-err-empresa" role="alert"></div>
-      </div>
-
-      <!-- Step 2: Cargo -->
-      <div class="modal-step" data-step2="1">
-        <div class="modal-step-label">Passo 2 de 8</div>
-        <div class="modal-step-question">Qual o seu cargo na empresa?</div>
+        <div class="modal-step-label">Passo 1 de 7</div>
+        <div class="modal-step-question" id="f2-q1">Qual o seu cargo na empresa?</div>
         <div class="revenue-options">
           <button class="revenue-option f2-cargo-option" onclick="f2SelectCargo(this)">Sou dono ou sócio</button>
           <button class="revenue-option f2-cargo-option" onclick="f2SelectCargo(this)">Sou diretor</button>
@@ -3127,9 +3127,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="modal-error" id="f2-err-cargo" role="alert"></div>
       </div>
 
-      <!-- Step 3: Faturamento mensal -->
-      <div class="modal-step" data-step2="2">
-        <div class="modal-step-label">Passo 3 de 8</div>
+      <!-- Step 2: Faturamento mensal -->
+      <div class="modal-step" data-step2="1">
+        <div class="modal-step-label">Passo 2 de 7</div>
         <div class="modal-step-question">Qual o faturamento mensal atual da sua empresa?</div>
         <div class="revenue-options">
           <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Até R$ 50 mil</button>
@@ -3142,9 +3142,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="modal-error" id="f2-err-faturamento" role="alert"></div>
       </div>
 
-      <!-- Step 4: Segmento -->
-      <div class="modal-step" data-step2="3">
-        <div class="modal-step-label">Passo 4 de 8</div>
+      <!-- Step 3: Segmento -->
+      <div class="modal-step" data-step2="2">
+        <div class="modal-step-label">Passo 3 de 7</div>
         <div class="modal-step-question">Qual o segmento da sua empresa?</div>
         <div class="revenue-options">
           <button class="revenue-option f2-segmento-option" onclick="f2SelectSegmento(this)">E-commerce</button>
@@ -3158,9 +3158,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="modal-error" id="f2-err-segmento" role="alert"></div>
       </div>
 
-      <!-- Step 5: Situação atual com importação -->
-      <div class="modal-step" data-step2="4">
-        <div class="modal-step-label">Passo 5 de 8</div>
+      <!-- Step 4: Situação atual com importação -->
+      <div class="modal-step" data-step2="3">
+        <div class="modal-step-label">Passo 4 de 7</div>
         <div class="modal-step-question">Qual a sua situação atual com importação?</div>
         <div class="revenue-options">
           <button class="revenue-option f2-situacao-option" onclick="f2SelectSituacao(this)">Já importo com frequência e quero otimizar a operação</button>
@@ -3172,18 +3172,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="modal-error" id="f2-err-situacao" role="alert"></div>
       </div>
 
-      <!-- Step 6: Produto -->
-      <div class="modal-step" data-step2="5">
-        <div class="modal-step-label">Passo 6 de 8</div>
+      <!-- Step 5: Produto -->
+      <div class="modal-step" data-step2="4">
+        <div class="modal-step-label">Passo 5 de 7</div>
         <label class="modal-step-question" id="f2-q3" for="f2-produto">Qual produto ou categoria você tem interesse em importar?</label>
         <div class="modal-step-hint">Se ainda estiver avaliando opções, descreva brevemente o segmento ou tipo de produto.</div>
         <textarea class="modal-input" id="f2-produto" rows="3" placeholder="Ex: eletrônicos para pet, cosméticos veganos, peças automotivas..."></textarea>
         <div class="modal-error" id="f2-err-produto" role="alert"></div>
       </div>
 
-      <!-- Step 7: Prazo -->
-      <div class="modal-step" data-step2="6">
-        <div class="modal-step-label">Passo 7 de 8</div>
+      <!-- Step 6: Prazo -->
+      <div class="modal-step" data-step2="5">
+        <div class="modal-step-label">Passo 6 de 7</div>
         <div class="modal-step-question">Em quanto tempo você pretende realizar sua primeira (ou próxima) importação?</div>
         <div class="revenue-options">
           <button class="revenue-option f2-prazo-option" onclick="f2SelectPrazo(this)">Nos próximos 30 dias</button>
@@ -3194,9 +3194,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="modal-error" id="f2-err-prazo" role="alert"></div>
       </div>
 
-      <!-- Step 8: Expectativa -->
-      <div class="modal-step" data-step2="7">
-        <div class="modal-step-label">Passo 8 de 8</div>
+      <!-- Step 7: Expectativa -->
+      <div class="modal-step" data-step2="6">
+        <div class="modal-step-label">Passo 7 de 7</div>
         <label class="modal-step-question" for="f2-expectativa">O que você espera resolver contratando uma assessoria de importação?</label>
         <textarea class="modal-input" id="f2-expectativa" rows="3" placeholder="Conte rapidamente o que você gostaria de resolver..."></textarea>
         <div class="modal-error" id="f2-err-expectativa" role="alert"></div>
@@ -3394,7 +3394,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   /* ─── MODAL FORM ─── */
-  const TOTAL_STEPS = 4;
+  const TOTAL_STEPS = 5;
   let currentStep = 0;
   let selectedRevenue = '';
   let selectedFaturamento = '';
@@ -3517,6 +3517,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       clearErr('err-wpp'); document.getElementById('f-wpp').classList.remove('error');
     }
     if (currentStep === 3) {
+      const v = document.getElementById('f-empresa').value.trim();
+      if (!v) {
+        setErr('err-empresa', 'Por favor, informe o nome da empresa.');
+        document.getElementById('f-empresa').classList.add('error');
+        return false;
+      }
+      clearErr('err-empresa'); document.getElementById('f-empresa').classList.remove('error');
+    }
+    if (currentStep === 4) {
       if (!selectedFaturamento) {
         document.getElementById('err-faturamento2').textContent = 'Selecione uma opção.';
         return false;
@@ -3560,7 +3569,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   /* ─── FORM 2 ─── */
-  const F2_TOTAL_STEPS = 8;
+  const F2_TOTAL_STEPS = 7;
   let f2CurrentStep = 0;
   let f2SelectedCargo = '';
   let f2SelectedFaturamento = '';
@@ -3580,7 +3589,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     f2SelectedPrazo = '';
     document.querySelectorAll('.f2-cargo-option, .f2-faturamento-option, .f2-segmento-option, .f2-situacao-option, .f2-prazo-option').forEach(o => o.classList.remove('selected'));
     document.querySelectorAll('#modalBox2 .modal-error').forEach(e => e.textContent = '');
-    ['f2-empresa', 'f2-produto', 'f2-expectativa'].forEach(id => {
+    ['f2-produto', 'f2-expectativa'].forEach(id => {
       const el = document.getElementById(id);
       if (el) { el.value = ''; el.classList.remove('error'); }
     });
@@ -3593,7 +3602,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const firstName = leadName.split(' ')[0] || '';
     const q1 = document.getElementById('f2-q1');
     const q3 = document.getElementById('f2-q3');
-    if (q1) q1.textContent = firstName ? firstName + ', qual o nome da sua empresa?' : 'Qual o nome da sua empresa?';
+    if (q1) q1.textContent = firstName ? firstName + ', qual o seu cargo na empresa?' : 'Qual o seu cargo na empresa?';
     if (q3) q3.textContent = firstName ? firstName + ', qual produto ou categoria você tem interesse em importar?' : 'Qual produto ou categoria você tem interesse em importar?';
 
     f2RenderStep();
@@ -3666,33 +3675,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   function f2ValidateStep() {
-    if (f2CurrentStep === 0) {
-      const v = document.getElementById('f2-empresa').value.trim();
-      if (!v) {
-        document.getElementById('f2-err-empresa').textContent = 'Por favor, informe o nome da empresa.';
-        document.getElementById('f2-empresa').classList.add('error');
-        return false;
-      }
-      document.getElementById('f2-err-empresa').textContent = '';
-      document.getElementById('f2-empresa').classList.remove('error');
-    }
-    if (f2CurrentStep === 1 && !f2SelectedCargo) {
+    if (f2CurrentStep === 0 && !f2SelectedCargo) {
       document.getElementById('f2-err-cargo').textContent = 'Selecione uma opção.';
       return false;
     }
-    if (f2CurrentStep === 2 && !f2SelectedFaturamento) {
+    if (f2CurrentStep === 1 && !f2SelectedFaturamento) {
       document.getElementById('f2-err-faturamento').textContent = 'Selecione uma opção.';
       return false;
     }
-    if (f2CurrentStep === 3 && !f2SelectedSegmento) {
+    if (f2CurrentStep === 2 && !f2SelectedSegmento) {
       document.getElementById('f2-err-segmento').textContent = 'Selecione uma opção.';
       return false;
     }
-    if (f2CurrentStep === 4 && !f2SelectedSituacao) {
+    if (f2CurrentStep === 3 && !f2SelectedSituacao) {
       document.getElementById('f2-err-situacao').textContent = 'Selecione uma opção.';
       return false;
     }
-    if (f2CurrentStep === 5) {
+    if (f2CurrentStep === 4) {
       const v = document.getElementById('f2-produto').value.trim();
       if (!v || v.length < 2) {
         document.getElementById('f2-err-produto').textContent = 'Por favor, descreva o produto ou categoria.';
@@ -3702,11 +3701,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       document.getElementById('f2-err-produto').textContent = '';
       document.getElementById('f2-produto').classList.remove('error');
     }
-    if (f2CurrentStep === 6 && !f2SelectedPrazo) {
+    if (f2CurrentStep === 5 && !f2SelectedPrazo) {
       document.getElementById('f2-err-prazo').textContent = 'Selecione uma opção.';
       return false;
     }
-    if (f2CurrentStep === 7) {
+    if (f2CurrentStep === 6) {
       const v = document.getElementById('f2-expectativa').value.trim();
       if (!v || v.length < 3) {
         document.getElementById('f2-err-expectativa').textContent = 'Conte rapidamente o que espera resolver.';
@@ -3748,9 +3747,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       nome:            leadName,
       email:           document.getElementById('f-email')?.value?.trim()   || '',
       whatsapp:        document.getElementById('f-wpp')?.value?.trim()     || '',
+      empresa:         document.getElementById('f-empresa')?.value?.trim() || '',
       capital_disponivel: selectedFaturamento || '',
       // Dados do formulário 2
-      empresa:         document.getElementById('f2-empresa')?.value?.trim() || '',
       cargo:           f2SelectedCargo,
       faturamento:     f2SelectedFaturamento,
       segmento:        f2SelectedSegmento,
@@ -3947,6 +3946,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       nome:        document.getElementById('f-nome')?.value?.trim()    || '',
       email:       document.getElementById('f-email')?.value?.trim()   || '',
       whatsapp:    document.getElementById('f-wpp')?.value?.trim()     || '',
+      empresa:     document.getElementById('f-empresa')?.value?.trim() || '',
       capital_disponivel: selectedFaturamento || '',
       // UTMs e rastreamento
       ...getUTMData(),
