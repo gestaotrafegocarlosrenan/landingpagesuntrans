@@ -1913,6 +1913,46 @@
     .modal-input.error { border-color: rgba(239,68,68,0.5); }
     textarea.modal-input { resize: vertical; min-height: 96px; line-height: 1.45; }
 
+    .modal-input-wpp-wrap {
+      display: flex;
+      align-items: stretch;
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    }
+    .modal-input-wpp-wrap:focus-within {
+      border-color: rgba(123,92,250,0.5);
+      background: rgba(28,22,64,0.4);
+      box-shadow: 0 0 12px rgba(123,92,250,0.15);
+    }
+    .modal-input-wpp-wrap:has(.modal-input.error) { border-color: rgba(239,68,68,0.5); }
+    .modal-input-wpp-prefix {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 14px;
+      background: rgba(255,255,255,0.04);
+      border-right: 1px solid rgba(255,255,255,0.1);
+      color: var(--white);
+      font-size: 1rem;
+      font-weight: 600;
+      flex-shrink: 0;
+      user-select: none;
+    }
+    .modal-input-wpp-prefix svg { display: block; border-radius: 2px; }
+    .modal-input-wpp-wrap .modal-input {
+      border: 0;
+      background: transparent;
+      border-radius: 0;
+      flex: 1;
+      width: auto;
+      box-shadow: none;
+    }
+    .modal-input-wpp-wrap .modal-input:focus { box-shadow: none; background: transparent; }
+
     .modal-error {
       font-size: 0.78rem;
       color: #ef4444;
@@ -3050,8 +3090,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="modal-step" data-step="2">
         <div class="modal-step-label">Passo 3 de 5</div>
         <label class="modal-step-question" for="f-wpp">Qual é o seu WhatsApp?</label>
-        <div class="modal-step-hint">Digite abaixo seu número com DDD.</div>
-        <input class="modal-input" type="tel" id="f-wpp" placeholder="(11) 99999-9999" autocomplete="tel" inputmode="numeric" maxlength="15" />
+        <div class="modal-step-hint">Digite abaixo seu número com DDD (não precisa colocar o +55).</div>
+        <div class="modal-input-wpp-wrap">
+          <span class="modal-input-wpp-prefix" aria-hidden="true">
+            <svg viewBox="0 0 28 20" width="22" height="15" role="img" aria-label="Brasil">
+              <rect width="28" height="20" fill="#009b3a"/>
+              <polygon points="14,2.5 25.5,10 14,17.5 2.5,10" fill="#fedf00"/>
+              <circle cx="14" cy="10" r="4.2" fill="#002776"/>
+              <path d="M9.8 11 Q14 8.8 18.2 11" stroke="#fff" stroke-width="0.8" fill="none"/>
+            </svg>
+            +55
+          </span>
+          <input class="modal-input" type="tel" id="f-wpp" placeholder="(11) 99999-9999" autocomplete="tel" inputmode="numeric" maxlength="15" />
+        </div>
         <div class="modal-error" id="err-wpp" role="alert"></div>
       </div>
 
@@ -3467,6 +3518,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     return '(' + val.slice(0,2) + ') ' + val.slice(2,7) + '-' + val.slice(7);
   }
 
+  // Retorna o WhatsApp completo com prefixo +55 para o webhook
+  function getWhatsAppValue() {
+    const digits = (document.getElementById('f-wpp')?.value || '').replace(/\D/g, '');
+    return digits ? '+55 ' + digits : '';
+  }
+
   document.getElementById('f-wpp').addEventListener('input', function() {
     this.value = formatPhone(this.value);
   });
@@ -3749,7 +3806,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       // Dados do formulário 1
       nome:            leadName,
       email:           document.getElementById('f-email')?.value?.trim()   || '',
-      whatsapp:        document.getElementById('f-wpp')?.value?.trim()     || '',
+      whatsapp:        getWhatsAppValue(),
       empresa:         document.getElementById('f-empresa')?.value?.trim() || '',
       faturamento:     selectedFaturamento || '',
       // Dados do formulário 2
@@ -3948,7 +4005,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       // Dados pessoais
       nome:        document.getElementById('f-nome')?.value?.trim()    || '',
       email:       document.getElementById('f-email')?.value?.trim()   || '',
-      whatsapp:    document.getElementById('f-wpp')?.value?.trim()     || '',
+      whatsapp:    getWhatsAppValue(),
       empresa:     document.getElementById('f-empresa')?.value?.trim() || '',
       faturamento: selectedFaturamento || '',
       // UTMs e rastreamento
