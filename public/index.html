@@ -3063,19 +3063,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="modal-error" id="err-empresa" role="alert"></div>
       </div>
 
-      <!-- Step 5: Capital disponível -->
+      <!-- Step 5: Faturamento mensal -->
       <div class="modal-step" data-step="4">
         <div class="modal-step-label">Passo 5 de 5</div>
-        <div class="modal-step-question">Qual o volume de capital disponível para sua operação de importação?</div>
+        <div class="modal-step-question">Qual o faturamento mensal atual da sua empresa?</div>
         <div class="revenue-options" id="revenueOptionsFaturamento">
-          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Sem capital disponível no momento</button>
-          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Abaixo de R$ 30 mil</button>
-          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Entre R$ 30 mil e R$ 50 mil</button>
-          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Entre R$ 50 mil e R$ 80 mil</button>
-          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Entre R$ 80 mil e R$ 150 mil</button>
-          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Entre R$ 150 mil e R$ 300 mil</button>
-          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Entre R$ 300 mil e R$ 500 mil</button>
-          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Acima de R$ 500 mil</button>
+          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Até R$ 50 mil</button>
+          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Entre R$ 50 mil e R$ 150 mil</button>
+          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Entre R$ 150 mil e R$ 500 mil</button>
+          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Entre R$ 500 mil e R$ 1 milhão</button>
+          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Acima de R$ 1 milhão</button>
+          <button class="revenue-option faturamento-option" onclick="selectFaturamento(this)">Empresa em fase inicial, ainda sem faturamento consistente</button>
         </div>
         <div class="modal-error" id="err-faturamento2"></div>
       </div>
@@ -3127,17 +3125,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="modal-error" id="f2-err-cargo" role="alert"></div>
       </div>
 
-      <!-- Step 2: Faturamento mensal -->
+      <!-- Step 2: Capital disponível -->
       <div class="modal-step" data-step2="1">
         <div class="modal-step-label">Passo 2 de 7</div>
-        <div class="modal-step-question">Qual o faturamento mensal atual da sua empresa?</div>
+        <div class="modal-step-question">Qual o volume de capital disponível para sua operação de importação?</div>
         <div class="revenue-options">
-          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Até R$ 50 mil</button>
-          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Entre R$ 50 mil e R$ 150 mil</button>
-          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Entre R$ 150 mil e R$ 500 mil</button>
-          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Entre R$ 500 mil e R$ 1 milhão</button>
-          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Acima de R$ 1 milhão</button>
-          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Empresa em fase inicial, ainda sem faturamento consistente</button>
+          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Sem capital disponível no momento</button>
+          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Abaixo de R$ 30 mil</button>
+          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Entre R$ 30 mil e R$ 50 mil</button>
+          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Entre R$ 50 mil e R$ 80 mil</button>
+          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Entre R$ 80 mil e R$ 150 mil</button>
+          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Entre R$ 150 mil e R$ 300 mil</button>
+          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Entre R$ 300 mil e R$ 500 mil</button>
+          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Acima de R$ 500 mil</button>
         </div>
         <div class="modal-error" id="f2-err-faturamento" role="alert"></div>
       </div>
@@ -3748,10 +3748,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       email:           document.getElementById('f-email')?.value?.trim()   || '',
       whatsapp:        document.getElementById('f-wpp')?.value?.trim()     || '',
       empresa:         document.getElementById('f-empresa')?.value?.trim() || '',
-      capital_disponivel: selectedFaturamento || '',
+      faturamento:     selectedFaturamento || '',
       // Dados do formulário 2
       cargo:           f2SelectedCargo,
-      faturamento:     f2SelectedFaturamento,
+      capital_disponivel: f2SelectedFaturamento,
       segmento:        f2SelectedSegmento,
       situacao_importacao: f2SelectedSituacao,
       produto:         document.getElementById('f2-produto')?.value?.trim() || '',
@@ -3773,6 +3773,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: 'formulario_qualificacao_2' });
+
+    // Dispara evento GTM para leads qualificados (R$30 mil+ de capital disponível)
+    const FAIXAS_QUALIFICADAS = [
+      'Entre R$ 30 mil e R$ 50 mil',
+      'Entre R$ 50 mil e R$ 80 mil',
+      'Entre R$ 80 mil e R$ 150 mil',
+      'Entre R$ 150 mil e R$ 300 mil',
+      'Entre R$ 300 mil e R$ 500 mil',
+      'Acima de R$ 500 mil',
+    ];
+    if (f2SelectedFaturamento && FAIXAS_QUALIFICADAS.includes(f2SelectedFaturamento)) {
+      window.dataLayer.push({
+        event: 'lead_qualificado',
+        capital_disponivel: f2SelectedFaturamento,
+      });
+    }
 
     try {
       await fetch(WEBHOOK_URL_2, {
@@ -3947,7 +3963,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       email:       document.getElementById('f-email')?.value?.trim()   || '',
       whatsapp:    document.getElementById('f-wpp')?.value?.trim()     || '',
       empresa:     document.getElementById('f-empresa')?.value?.trim() || '',
-      capital_disponivel: selectedFaturamento || '',
+      faturamento: selectedFaturamento || '',
       // UTMs e rastreamento
       ...getUTMData(),
       // Timestamp do envio
@@ -3964,23 +3980,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     // Dispara evento GTM de envio do formulário
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: 'formulario_geral' });
-
-    // Dispara evento GTM para leads qualificados (R$30 mil+ de capital disponível)
-    const FAIXAS_QUALIFICADAS = [
-      'Entre R$ 30 mil e R$ 50 mil',
-      'Entre R$ 50 mil e R$ 80 mil',
-      'Entre R$ 80 mil e R$ 150 mil',
-      'Entre R$ 150 mil e R$ 300 mil',
-      'Entre R$ 300 mil e R$ 500 mil',
-      'Acima de R$ 500 mil',
-    ];
-    if (selectedFaturamento && FAIXAS_QUALIFICADAS.includes(selectedFaturamento)) {
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        event: 'lead_qualificado',
-        capital_disponivel: selectedFaturamento,
-      });
-    }
 
     // Dispara o webhook em background
     try {
