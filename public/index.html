@@ -3800,6 +3800,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   const WEBHOOK_URL_2 = 'https://hook.eu1.make.com/nfgbume4st23fj7eoqvkxidk6a72v7hs';
+  const WEBHOOK_URL_2_EXTRA = 'https://sfsrtpfwlrvtmyqhrzfz.supabase.co/functions/v1/automation-webhook?automation_id=automation_9a1f5a38-6e41-4e36-8959-5715426fff89&trigger_id=trg_20ffc19b-052a-48c3-b2e1-69860697e36c&token=whk_d1725f064ec640b3b4a36c2bd8fe1f7a';
 
   async function f2SubmitForm() {
     const payload = {
@@ -3834,15 +3835,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: 'formulario_qualificacao_2' });
 
-    try {
-      await fetch(WEBHOOK_URL_2, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-    } catch (err) {
-      console.warn('Webhook error form2:', err);
-    }
+    const body = JSON.stringify(payload);
+    const opts = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body };
+    await Promise.allSettled([
+      fetch(WEBHOOK_URL_2, opts).catch(err => console.warn('Webhook error form2:', err)),
+      fetch(WEBHOOK_URL_2_EXTRA, opts).catch(err => console.warn('Webhook extra error form2:', err)),
+    ]);
   }
 
   /* ─── Timeline — removed old card stack JS ─── */
@@ -3945,6 +3943,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   /* ─── WEBHOOK + SUBMIT ─── */
   const WEBHOOK_URL = 'https://hook.eu1.make.com/033b9m2duppiifhjuuqz6piyn1tog0qu';
+  const WEBHOOK_URL_EXTRA = 'https://sfsrtpfwlrvtmyqhrzfz.supabase.co/functions/v1/automation-webhook?automation_id=automation_4e15618b-c250-4633-884c-a06627904da4&trigger_id=trg_f7341c04-69e5-4a60-a750-16f16e03664f&token=whk_d9114fec04c64cd9a9b78a6102c5c6e5';
 
   function getUTMData() {
     // Re-captura no momento do submit (cobre navegação dentro do site)
@@ -4041,16 +4040,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       });
     }
 
-    // Dispara o webhook em background
-    try {
-      await fetch(WEBHOOK_URL, {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify(payload),
-      });
-    } catch (err) {
-      console.warn('Webhook error:', err);
-    }
+    // Dispara os webhooks em background (paralelo, sem bloquear em falha isolada)
+    const body = JSON.stringify(payload);
+    const opts = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body };
+    await Promise.allSettled([
+      fetch(WEBHOOK_URL, opts).catch(err => console.warn('Webhook error:', err)),
+      fetch(WEBHOOK_URL_EXTRA, opts).catch(err => console.warn('Webhook extra error:', err)),
+    ]);
   }
 </script>
 
