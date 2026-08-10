@@ -3101,7 +3101,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </svg>
             +55
           </span>
-          <input class="modal-input" type="tel" id="f-wpp" placeholder="(11) 99999-9999" autocomplete="tel" inputmode="numeric" maxlength="15" />
+          <input class="modal-input" type="tel" id="f-wpp" placeholder="(11) 99999-9999" autocomplete="tel" inputmode="numeric" />
         </div>
         <div class="modal-error" id="err-wpp" role="alert"></div>
       </div>
@@ -3524,11 +3524,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (input) input.focus();
   }
 
+  // Sem limite de dígitos: aplica a máscara brasileira até 11 e mantém o excedente ao final
   function formatPhone(val) {
-    val = val.replace(/\D/g, '').slice(0, 11);
+    val = val.replace(/\D/g, '');
     if (val.length <= 2) return val.length ? '(' + val : val;
     if (val.length <= 7) return '(' + val.slice(0,2) + ') ' + val.slice(2);
-    return '(' + val.slice(0,2) + ') ' + val.slice(2,7) + '-' + val.slice(7);
+    if (val.length <= 11) return '(' + val.slice(0,2) + ') ' + val.slice(2,7) + '-' + val.slice(7);
+    return '(' + val.slice(0,2) + ') ' + val.slice(2,7) + '-' + val.slice(7,11) + ' ' + val.slice(11);
   }
 
   // Retorna o WhatsApp completo com prefixo +55 para o webhook
@@ -3582,8 +3584,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     if (currentStep === 2) {
       const digits = document.getElementById('f-wpp').value.replace(/\D/g, '');
-      if (digits.length !== 11) {
-        setErr('err-wpp', 'Informe seu WhatsApp com DDD (11 dígitos).');
+      if (digits.length < 10) {
+        setErr('err-wpp', 'Informe seu WhatsApp com DDD.');
         document.getElementById('f-wpp').classList.add('error');
         return false;
       }
