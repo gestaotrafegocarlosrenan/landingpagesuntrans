@@ -3778,7 +3778,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     await Promise.race([envios, new Promise(r => setTimeout(r, 3000))]);
 
     // Preserva os parâmetros de campanha na URL da página de obrigado
-    window.location.assign('obrigado.html' + window.location.search);
+    window.location.assign('/obrigado' + window.location.search);
   }
 </script>
 

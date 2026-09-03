@@ -20,7 +20,14 @@
       "dest": "/public/images/$1"
     },
     {
-      "src": "/obrigado(\\.html)?",
+      "src": "/obrigado\\.html",
+      "status": 301,
+      "headers": {
+        "Location": "/obrigado"
+      }
+    },
+    {
+      "src": "/obrigado",
       "dest": "/public/obrigado.html"
     },
     {

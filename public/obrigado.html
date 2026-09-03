@@ -956,7 +956,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   let f2SelectedSituacao = '';
   let f2SelectedPrazo = '';
 
+  /* ─── Pausa o vídeo quando o formulário abre por cima dele ─── */
+  function pausarVideo() {
+    const player = document.getElementById('vid-6a99a0ac1641a8930e1b5e4a');
+    try {
+      if (player && typeof player.pause === 'function') { player.pause(); return; }
+    } catch (_) {}
+    // Reserva: se a API do player mudar, pausa a tag <video> direto
+    try { document.querySelectorAll('video').forEach(v => v.pause()); } catch (_) {}
+  }
+
   function openForm2() {
+    pausarVideo();
+
     f2CurrentStep = 0;
     f2SelectedCargo = '';
     f2SelectedFaturamento = '';
@@ -1164,7 +1176,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     // Recarrega a página de obrigado, agora sem o botão do formulário
     const params = new URLSearchParams(window.location.search);
     params.set('etapa', '2');
-    window.location.replace('obrigado.html?' + params.toString());
+    window.location.replace('/obrigado?' + params.toString());
   }
 
   /* ─── HOVER BUTTON — bolhas de luz (apenas desktop/mouse) ─── */
