@@ -459,29 +459,11 @@ textarea.modal-input { resize: vertical; min-height: 96px; line-height: 1.45; }
 
 .modal-btn-back:hover { color: var(--white); }
 
-.modal-success {
-      display: none;
-      text-align: center;
-      padding: 20px 0;
-    }
 
-.modal-success.active { display: block; }
 
-.modal-success-icon {
-      width: 56px; height: 56px;
-      border-radius: 50%;
-      background: rgba(123,92,250,0.15);
-      border: 1px solid rgba(123,92,250,0.35);
-      box-shadow: 0 0 20px rgba(123,92,250,0.3);
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 24px;
-    }
 
-.modal-success-icon svg { width: 24px; height: 24px; stroke: var(--accent); }
 
-.modal-success h3 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 12px; }
 
-.modal-success p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; }
 
 footer {
       border-top: 1px solid rgba(123,92,250,0.20);
@@ -792,16 +774,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     </div>
 
-    <!-- Sucesso Form 2 -->
-    <div class="modal-success" id="modalSuccess2">
-      <div class="modal-success-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-      </div>
-      <h3 id="f2-success-title"></h3>
-      <p>Agora temos tudo o que precisamos para priorizar o seu atendimento.</p>
-      <p>Fique de olho no WhatsApp — em breve entraremos em contato 😉</p>
-    </div>
-
     <!-- Nav Form 2 -->
     <div class="modal-nav" id="modalNav2">
       <button class="modal-btn-back" id="btnBack2" onclick="f2StepBack()" style="visibility:hidden">← Voltar</button>
@@ -980,7 +952,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       const el = document.getElementById(id);
       if (el) { el.value = ''; el.classList.remove('error'); }
     });
-    document.getElementById('modalSuccess2').classList.remove('active');
     document.getElementById('modalSteps2').style.display = '';
     document.getElementById('modalNav2').style.display = '';
     document.getElementById('modalProgress2').style.display = '';
@@ -1145,13 +1116,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       pagina:     window.location.href,
     };
 
-    const firstName = leadName.split(' ')[0] || '';
-    document.getElementById('f2-success-title').textContent = (firstName ? firstName + ', obrigado' : 'Obrigado') + ', suas respostas foram enviadas ✅';
-
-    document.getElementById('modalSteps2').style.display = 'none';
-    document.getElementById('modalNav2').style.display = 'none';
-    document.getElementById('modalProgress2').style.display = 'none';
-    document.getElementById('modalSuccess2').classList.add('active');
+    // Feedback no próprio botão: o agradecimento é a página que vem em seguida
+    document.getElementById('btnNext2').textContent = 'Enviando…';
 
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: 'formulario_qualificacao_2' });
@@ -1167,11 +1133,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       fetch(WEBHOOK_URL_2_EXTRA, opts).catch(err => console.warn('Webhook extra error form2:', err)),
     ]);
 
-    // Espera os webhooks, mas nunca prende o lead: no máximo 3s, no mínimo 900ms
-    await Promise.all([
-      Promise.race([envios, new Promise(r => setTimeout(r, 3000))]),
-      new Promise(r => setTimeout(r, 900)),
-    ]);
+    // Nunca prende o lead: segue para a página de obrigado em no máximo 3s
+    await Promise.race([envios, new Promise(r => setTimeout(r, 3000))]);
 
     // Recarrega a página de obrigado, agora sem o botão do formulário
     const params = new URLSearchParams(window.location.search);
