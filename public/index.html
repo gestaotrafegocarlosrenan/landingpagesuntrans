@@ -16,6 +16,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="image" href="/images/hero-bg-new.webp" fetchpriority="high">
+  <!-- Resolve o DNS do player de vídeo antes do lead chegar na página de obrigado -->
+  <link rel="dns-prefetch" href="https://scripts.converteai.net">
+  <link rel="dns-prefetch" href="https://cdn.converteai.net">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -3160,118 +3163,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     </div>
 
-    <!-- Sucesso -->
-    <div class="modal-success" id="modalSuccess">
-      <div class="modal-success-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-      </div>
-      <h3>Obrigado! Recebemos suas informações com sucesso ✅</h3>
-      <p>Você receberá um contato via WhatsApp ou ligação para dar sequência no atendimento.</p>
-      <p>Se possível, já deixe o telefone por perto para não perder a chamada 😉</p>
-      <p style="margin-top: 24px; color: var(--white); font-weight: 600;">Para priorizarmos o seu atendimento, preencha o formulario abaixo:</p>
-      <button class="modal-btn-next" onclick="openForm2()" style="margin: 16px auto 0; display: block;">INICIAR</button>
-    </div>
-
     <!-- Nav -->
     <div class="modal-nav" id="modalNav">
       <button class="modal-btn-back" id="btnBack" onclick="stepBack()" style="visibility:hidden">← Voltar</button>
       <button class="modal-btn-next" id="btnNext" onclick="stepNext()">Continuar →</button>
-    </div>
-  </div>
-</div>
-
-<!-- Modal Form 2 -->
-<div class="modal-overlay" id="modalOverlay2" onclick="closeModal2Outside(event)">
-  <div class="modal-box" id="modalBox2">
-    <button class="modal-close" onclick="closeModal2()" aria-label="Fechar">&times;</button>
-
-    <!-- Progress -->
-    <div class="modal-progress" id="modalProgress2"></div>
-
-    <!-- Steps -->
-    <div id="modalSteps2">
-
-      <!-- Step 1: Cargo -->
-      <div class="modal-step active" data-step2="0">
-        <div class="modal-step-label">Passo 1 de 5</div>
-        <div class="modal-step-question" id="f2-q1">Qual o seu cargo na empresa?</div>
-        <div class="revenue-options">
-          <button class="revenue-option f2-cargo-option" onclick="f2SelectCargo(this)">Sou dono ou sócio</button>
-          <button class="revenue-option f2-cargo-option" onclick="f2SelectCargo(this)">Sou diretor</button>
-          <button class="revenue-option f2-cargo-option" onclick="f2SelectCargo(this)">Sou gestor com autonomia de decisão</button>
-          <button class="revenue-option f2-cargo-option" onclick="f2SelectCargo(this)">Trabalho na empresa, mas a decisão final é de outra pessoa</button>
-        </div>
-        <div class="modal-error" id="f2-err-cargo" role="alert"></div>
-      </div>
-
-      <!-- Step 2: Capital disponível -->
-      <div class="modal-step" data-step2="1">
-        <div class="modal-step-label">Passo 2 de 5</div>
-        <div class="modal-step-question">Qual o volume de capital disponível para sua operação de importação?</div>
-        <div class="revenue-options">
-          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Sem capital disponível no momento</button>
-          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Abaixo de R$ 30 mil</button>
-          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Entre R$ 30 mil e R$ 50 mil</button>
-          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Entre R$ 50 mil e R$ 80 mil</button>
-          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Entre R$ 80 mil e R$ 150 mil</button>
-          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Entre R$ 150 mil e R$ 300 mil</button>
-          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Entre R$ 300 mil e R$ 500 mil</button>
-          <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Acima de R$ 500 mil</button>
-        </div>
-        <div class="modal-error" id="f2-err-faturamento" role="alert"></div>
-      </div>
-
-      <!-- Step 3: Situação atual com importação -->
-      <div class="modal-step" data-step2="2">
-        <div class="modal-step-label">Passo 3 de 5</div>
-        <div class="modal-step-question">Qual a sua situação atual com importação?</div>
-        <div class="revenue-options">
-          <button class="revenue-option f2-situacao-option" onclick="f2SelectSituacao(this)">Já importo com frequência e quero otimizar a operação</button>
-          <button class="revenue-option f2-situacao-option" onclick="f2SelectSituacao(this)">Já importei algumas vezes, mas de forma desorganizada</button>
-          <button class="revenue-option f2-situacao-option" onclick="f2SelectSituacao(this)">Nunca importei, mas tenho operação estruturada e capital para começar</button>
-          <button class="revenue-option f2-situacao-option" onclick="f2SelectSituacao(this)">Nunca importei e quero entender se faz sentido para o meu momento</button>
-          <button class="revenue-option f2-situacao-option" onclick="f2SelectSituacao(this)">Estou estudando o assunto, ainda sem plano concreto</button>
-        </div>
-        <div class="modal-error" id="f2-err-situacao" role="alert"></div>
-      </div>
-
-      <!-- Step 4: Prazo -->
-      <div class="modal-step" data-step2="3">
-        <div class="modal-step-label">Passo 4 de 5</div>
-        <div class="modal-step-question">Em quanto tempo você pretende realizar sua primeira (ou próxima) importação?</div>
-        <div class="revenue-options">
-          <button class="revenue-option f2-prazo-option" onclick="f2SelectPrazo(this)">Nos próximos 30 dias</button>
-          <button class="revenue-option f2-prazo-option" onclick="f2SelectPrazo(this)">Entre 1 e 3 meses</button>
-          <button class="revenue-option f2-prazo-option" onclick="f2SelectPrazo(this)">Entre 3 e 6 meses</button>
-          <button class="revenue-option f2-prazo-option" onclick="f2SelectPrazo(this)">Sem prazo definido, ainda avaliando</button>
-        </div>
-        <div class="modal-error" id="f2-err-prazo" role="alert"></div>
-      </div>
-
-      <!-- Step 5: Expectativa -->
-      <div class="modal-step" data-step2="4">
-        <div class="modal-step-label">Passo 5 de 5</div>
-        <label class="modal-step-question" for="f2-expectativa">O que você espera resolver contratando uma assessoria de importação?</label>
-        <textarea class="modal-input" id="f2-expectativa" rows="3" placeholder="Conte rapidamente o que você gostaria de resolver..."></textarea>
-        <div class="modal-error" id="f2-err-expectativa" role="alert"></div>
-      </div>
-
-    </div>
-
-    <!-- Sucesso Form 2 -->
-    <div class="modal-success" id="modalSuccess2">
-      <div class="modal-success-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-      </div>
-      <h3 id="f2-success-title"></h3>
-      <p>Agora temos tudo o que precisamos para priorizar o seu atendimento.</p>
-      <p>Fique de olho no WhatsApp — em breve entraremos em contato 😉</p>
-    </div>
-
-    <!-- Nav Form 2 -->
-    <div class="modal-nav" id="modalNav2">
-      <button class="modal-btn-back" id="btnBack2" onclick="f2StepBack()" style="visibility:hidden">← Voltar</button>
-      <button class="modal-btn-next" id="btnNext2" onclick="f2StepNext()">Continuar →</button>
     </div>
   </div>
 </div>
@@ -3453,7 +3348,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   let selectedRevenue = '';
   let selectedFaturamento = '';
   let selectedSegmento = '';
-  let leadName = '';
+  let enviando = false;
 
   function openModal() {
     currentStep = 0;
@@ -3463,7 +3358,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.querySelectorAll('.revenue-option').forEach(o => o.classList.remove('selected'));
     document.querySelectorAll('.modal-error').forEach(e => e.textContent = '');
     document.querySelectorAll('.modal-input').forEach(i => { i.value = ''; i.classList.remove('error'); });
-    document.getElementById('modalSuccess').classList.remove('active');
+    enviando = false;
+    document.getElementById('btnNext').disabled = false;
     document.getElementById('modalSteps').style.display = '';
     document.getElementById('modalNav').style.display = '';
     renderStep();
@@ -3666,196 +3562,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.getElementById('err-segmento').textContent = '';
   }
 
-  /* ─── FORM 2 ─── */
-  const F2_TOTAL_STEPS = 5;
-  let f2CurrentStep = 0;
-  let f2SelectedCargo = '';
-  let f2SelectedFaturamento = '';
-  let f2SelectedSituacao = '';
-  let f2SelectedPrazo = '';
-
-  function openForm2() {
-    // Fecha o modal 1 antes de abrir o 2 para evitar que o listener de Enter do form 1 dispare submitForm novamente
-    document.getElementById('modalOverlay').classList.remove('open');
-
-    f2CurrentStep = 0;
-    f2SelectedCargo = '';
-    f2SelectedFaturamento = '';
-    f2SelectedSituacao = '';
-    f2SelectedPrazo = '';
-    document.querySelectorAll('.f2-cargo-option, .f2-faturamento-option, .f2-situacao-option, .f2-prazo-option').forEach(o => o.classList.remove('selected'));
-    document.querySelectorAll('#modalBox2 .modal-error').forEach(e => e.textContent = '');
-    ['f2-expectativa'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) { el.value = ''; el.classList.remove('error'); }
-    });
-    document.getElementById('modalSuccess2').classList.remove('active');
-    document.getElementById('modalSteps2').style.display = '';
-    document.getElementById('modalNav2').style.display = '';
-    document.getElementById('modalProgress2').style.display = '';
-
-    // Personaliza pergunta inicial com o nome do lead
-    const firstName = leadName.split(' ')[0] || '';
-    const q1 = document.getElementById('f2-q1');
-    if (q1) q1.textContent = firstName ? firstName + ', qual o seu cargo na empresa?' : 'Qual o seu cargo na empresa?';
-
-    f2RenderStep();
-    document.getElementById('modalOverlay2').classList.add('open');
-    document.body.style.overflow = 'hidden';
-    setTimeout(() => {
-      const input = document.querySelector('#modalSteps2 .modal-step.active .modal-input');
-      if (input) input.focus();
-    }, 350);
-  }
-
-  function closeModal2() {
-    document.getElementById('modalOverlay2').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  function closeModal2Outside(e) {
-    if (e.target === document.getElementById('modalOverlay2')) closeModal2();
-  }
-
-  function f2RenderStep() {
-    const steps = document.querySelectorAll('#modalSteps2 .modal-step');
-    steps.forEach((s, i) => s.classList.toggle('active', i === f2CurrentStep));
-
-    const prog = document.getElementById('modalProgress2');
-    prog.innerHTML = '';
-    for (let i = 0; i < F2_TOTAL_STEPS; i++) {
-      const d = document.createElement('div');
-      d.className = 'modal-progress-dot' + (i < f2CurrentStep ? ' done' : i === f2CurrentStep ? ' active' : '');
-      prog.appendChild(d);
-    }
-
-    document.getElementById('btnBack2').style.visibility = f2CurrentStep > 0 ? 'visible' : 'hidden';
-    document.getElementById('btnNext2').textContent = f2CurrentStep === F2_TOTAL_STEPS - 1 ? 'Enviar' : 'Continuar →';
-  }
-
-  function f2SelectCargo(btn) {
-    document.querySelectorAll('.f2-cargo-option').forEach(o => o.classList.remove('selected'));
-    btn.classList.add('selected');
-    f2SelectedCargo = btn.textContent;
-    document.getElementById('f2-err-cargo').textContent = '';
-  }
-
-  function f2SelectFaturamento(btn) {
-    document.querySelectorAll('.f2-faturamento-option').forEach(o => o.classList.remove('selected'));
-    btn.classList.add('selected');
-    f2SelectedFaturamento = btn.textContent;
-    document.getElementById('f2-err-faturamento').textContent = '';
-  }
-
-  function f2SelectSituacao(btn) {
-    document.querySelectorAll('.f2-situacao-option').forEach(o => o.classList.remove('selected'));
-    btn.classList.add('selected');
-    f2SelectedSituacao = btn.textContent;
-    document.getElementById('f2-err-situacao').textContent = '';
-  }
-
-  function f2SelectPrazo(btn) {
-    document.querySelectorAll('.f2-prazo-option').forEach(o => o.classList.remove('selected'));
-    btn.classList.add('selected');
-    f2SelectedPrazo = btn.textContent;
-    document.getElementById('f2-err-prazo').textContent = '';
-  }
-
-  function f2ValidateStep() {
-    if (f2CurrentStep === 0 && !f2SelectedCargo) {
-      document.getElementById('f2-err-cargo').textContent = 'Selecione uma opção.';
-      return false;
-    }
-    if (f2CurrentStep === 1 && !f2SelectedFaturamento) {
-      document.getElementById('f2-err-faturamento').textContent = 'Selecione uma opção.';
-      return false;
-    }
-    if (f2CurrentStep === 2 && !f2SelectedSituacao) {
-      document.getElementById('f2-err-situacao').textContent = 'Selecione uma opção.';
-      return false;
-    }
-    if (f2CurrentStep === 3 && !f2SelectedPrazo) {
-      document.getElementById('f2-err-prazo').textContent = 'Selecione uma opção.';
-      return false;
-    }
-    if (f2CurrentStep === 4) {
-      const v = document.getElementById('f2-expectativa').value.trim();
-      if (!v || v.length < 3) {
-        document.getElementById('f2-err-expectativa').textContent = 'Conte rapidamente o que espera resolver.';
-        document.getElementById('f2-expectativa').classList.add('error');
-        return false;
-      }
-      document.getElementById('f2-err-expectativa').textContent = '';
-      document.getElementById('f2-expectativa').classList.remove('error');
-    }
-    return true;
-  }
-
-  function f2StepNext() {
-    if (!f2ValidateStep()) return;
-    if (f2CurrentStep < F2_TOTAL_STEPS - 1) {
-      f2CurrentStep++;
-      f2RenderStep();
-      setTimeout(() => {
-        const input = document.querySelector('#modalSteps2 .modal-step.active .modal-input');
-        if (input) input.focus();
-      }, 50);
-    } else {
-      f2SubmitForm();
-    }
-  }
-
-  function f2StepBack() {
-    if (f2CurrentStep > 0) {
-      f2CurrentStep--;
-      f2RenderStep();
-    }
-  }
-
-  const WEBHOOK_URL_2 = 'https://hook.eu1.make.com/nfgbume4st23fj7eoqvkxidk6a72v7hs';
-  const WEBHOOK_URL_2_EXTRA = 'https://sfsrtpfwlrvtmyqhrzfz.supabase.co/functions/v1/automation-webhook?automation_id=automation_9a1f5a38-6e41-4e36-8959-5715426fff89&trigger_id=trg_20ffc19b-052a-48c3-b2e1-69860697e36c&token=whk_d1725f064ec640b3b4a36c2bd8fe1f7a';
-
-  async function f2SubmitForm() {
-    const payload = {
-      // Dados do formulário 1
-      nome:            leadName,
-      email:           document.getElementById('f-email')?.value?.trim()   || '',
-      whatsapp:        getWhatsAppValue(),
-      empresa:         document.getElementById('f-empresa')?.value?.trim() || '',
-      faturamento:     selectedFaturamento || '',
-      produto:         document.getElementById('f-produto')?.value?.trim() || '',
-      segmento:        selectedSegmento || '',
-      // Dados do formulário 2
-      cargo:           f2SelectedCargo,
-      capital_disponivel: f2SelectedFaturamento,
-      situacao_importacao: f2SelectedSituacao,
-      prazo:           f2SelectedPrazo,
-      expectativa:     document.getElementById('f2-expectativa')?.value?.trim() || '',
-      // Rastreamento
-      ...getUTMData(),
-      enviado_em: new Date().toISOString(),
-      pagina:     window.location.href,
-    };
-
-    const firstName = leadName.split(' ')[0] || '';
-    document.getElementById('f2-success-title').textContent = (firstName ? firstName + ', obrigado' : 'Obrigado') + ', suas respostas foram enviadas ✅';
-
-    document.getElementById('modalSteps2').style.display = 'none';
-    document.getElementById('modalNav2').style.display = 'none';
-    document.getElementById('modalProgress2').style.display = 'none';
-    document.getElementById('modalSuccess2').classList.add('active');
-
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: 'formulario_qualificacao_2' });
-
-    const body = JSON.stringify(payload);
-    const opts = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body };
-    await Promise.allSettled([
-      fetch(WEBHOOK_URL_2, opts).catch(err => console.warn('Webhook error form2:', err)),
-      fetch(WEBHOOK_URL_2_EXTRA, opts).catch(err => console.warn('Webhook extra error form2:', err)),
-    ]);
-  }
-
   /* ─── Timeline — removed old card stack JS ─── */
 
   /* ─── HOVER BUTTON — bolhas de luz (apenas desktop/mouse) ─── */
@@ -4009,8 +3715,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   async function submitForm() {
-    // Salva nome para uso no formulário 2
-    leadName = document.getElementById('f-nome')?.value?.trim() || '';
+    if (enviando) return;
+    enviando = true;
 
     // Coleta dados do formulário
     const payload = {
@@ -4029,11 +3735,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       pagina:      window.location.href,
     };
 
-    // Mostra tela de sucesso imediatamente (UX)
-    document.getElementById('modalSteps').style.display    = 'none';
-    document.getElementById('modalNav').style.display      = 'none';
-    document.getElementById('modalProgress').style.display = 'none';
-    document.getElementById('modalSuccess').classList.add('active');
+    // Feedback imediato no botão enquanto o envio acontece
+    const btnEnviar = document.getElementById('btnNext');
+    btnEnviar.disabled = true;
+    btnEnviar.textContent = 'Enviando…';
+
+    // Guarda as respostas para o formulário 2, que vive na página de obrigado
+    try {
+      localStorage.setItem('sr_lead', JSON.stringify(payload));
+      localStorage.removeItem('sr_form2_enviado');
+    } catch (_) {}
 
     // Dispara evento GTM de envio do formulário
     window.dataLayer = window.dataLayer || [];
@@ -4055,13 +3766,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       });
     }
 
-    // Dispara os webhooks em background (paralelo, sem bloquear em falha isolada)
+    // Webhooks em paralelo. keepalive mantém os POSTs vivos durante a navegação
     const body = JSON.stringify(payload);
-    const opts = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body };
-    await Promise.allSettled([
+    const opts = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body, keepalive: true };
+    const envios = Promise.allSettled([
       fetch(WEBHOOK_URL, opts).catch(err => console.warn('Webhook error:', err)),
       fetch(WEBHOOK_URL_EXTRA, opts).catch(err => console.warn('Webhook extra error:', err)),
     ]);
+
+    // Nunca prende o lead: segue para a página de obrigado em no máximo 3s
+    await Promise.race([envios, new Promise(r => setTimeout(r, 3000))]);
+
+    // Preserva os parâmetros de campanha na URL da página de obrigado
+    window.location.assign('obrigado.html' + window.location.search);
   }
 </script>
 

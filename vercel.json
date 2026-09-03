@@ -6,6 +6,10 @@
       "use": "@vercel/static"
     },
     {
+      "src": "public/obrigado.html",
+      "use": "@vercel/static"
+    },
+    {
       "src": "public/images/**",
       "use": "@vercel/static"
     }
@@ -14,6 +18,10 @@
     {
       "src": "/images/(.*)",
       "dest": "/public/images/$1"
+    },
+    {
+      "src": "/obrigado(\\.html)?",
+      "dest": "/public/obrigado.html"
     },
     {
       "src": "/(.*)",
