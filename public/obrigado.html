@@ -19,6 +19,7 @@
   <link rel="dns-prefetch" href="https://images.converteai.net">
   <link rel="dns-prefetch" href="https://license.vturb.com">
 
+  <link rel="preload" as="image" href="/images/sunrocket-logo.png" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -548,23 +549,11 @@ footer {
       text-align: center;
     }
 
-    .ty-icon {
-      width: 64px;
-      height: 64px;
-      margin: 0 auto 24px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(123,92,250,0.14);
-      border: 1px solid var(--border);
-    }
-
-    .ty-icon svg {
-      width: 32px;
-      height: 32px;
-      fill: none;
-      stroke: var(--accent);
+    .ty-logo {
+      width: 88px;
+      height: auto;
+      display: block;
+      margin: 0 auto 26px;
     }
 
     .ty-title {
@@ -634,6 +623,7 @@ footer {
 
     @media (max-width: 768px) {
       .ty { padding: 52px 18px 68px; }
+      .ty-logo { width: 72px; margin-bottom: 22px; }
       .ty-title { font-size: 1.6rem; }
       .ty-subtitle { font-size: 1.28rem; }
       .ty-lead { font-size: 0.98rem; }
@@ -666,9 +656,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <main class="ty">
   <div class="ty-inner">
 
-    <div class="ty-icon">
-      <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-    </div>
+    <img class="ty-logo" src="/images/sunrocket-logo.png" alt="SunRocket" width="244" height="264" />
 
     <h1 class="ty-title">Recebemos suas informações com sucesso ✅</h1>
     <p class="ty-lead">Entraremos em contato pelo WhatsApp ou por ligação para dar sequência ao seu atendimento.</p>
