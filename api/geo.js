@@ -65,16 +65,6 @@ export default function handler(req, res) {
     country: normCountry(h['x-vercel-ip-country']),
   };
 
-  // ?debug=1 mostra os headers crus — útil para conferir o deploy sem adivinhar
-  if (req.query?.debug === '1' || (req.url || '').includes('debug=1')) {
-    geo.debug = {
-      'x-vercel-ip-city':           h['x-vercel-ip-city']           ?? null,
-      'x-vercel-ip-country-region': h['x-vercel-ip-country-region'] ?? null,
-      'x-vercel-ip-postal-code':    h['x-vercel-ip-postal-code']    ?? null,
-      'x-vercel-ip-country':        h['x-vercel-ip-country']        ?? null,
-    };
-  }
-
   res.statusCode = 200;
   return res.end(JSON.stringify(geo));
 }
