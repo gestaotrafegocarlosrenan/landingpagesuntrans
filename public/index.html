@@ -3660,6 +3660,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     storeTrack('last_visit', new Date().toISOString());
   })();
 
+  /* ─── GEOLOCALIZACAO APROXIMADA POR IP ───
+     Vem dos headers nativos da Vercel (x-vercel-ip-*), lidos por /api/geo.
+     Nenhum servico externo, nenhuma chave de API e nenhuma permissao de GPS
+     pedida ao usuario. Como e o navegador do proprio lead que chama /api/geo,
+     a localizacao e a do IP dele.
+     A busca comeca no load para o valor ja estar pronto no submit; se nao
+     resolver a tempo, os quatro campos vao como null. */
+  const GEO_KEY = 'sr_geo';
+  let geoData = null;
+
+  function geoCache() {
+    try {
+      const o = JSON.parse(sessionStorage.getItem(GEO_KEY) || 'null');
+      return (o && typeof o === 'object') ? o : null;
+    } catch (_) { return null; }
+  }
+
+  (function buscaGeo() {
+    // sessionStorage atravessa a navegacao da landing para /obrigado na mesma
+    // aba, entao o formulario 2 reaproveita sem uma segunda requisicao
+    geoData = geoCache();
+    if (geoData) return;
+    fetch('/api/geo', { credentials: 'omit' })
+      .then(r => r.ok ? r.json() : null)
+      .then(o => {
+        if (!o || typeof o !== 'object') return;
+        geoData = { city: o.city || null, state: o.state || null, zip: o.zip || null, country: o.country || null };
+        try { sessionStorage.setItem(GEO_KEY, JSON.stringify(geoData)); } catch (_) {}
+      })
+      .catch(() => {});   // falhou: os campos vao null, nunca bloqueia o envio
+  })();
+
   /* ─── WEBHOOK + SUBMIT ─── */
   const WEBHOOK_URL = 'https://hook.eu1.make.com/033b9m2duppiifhjuuqz6piyn1tog0qu';
   const WEBHOOK_URL_EXTRA = 'https://sfsrtpfwlrvtmyqhrzfz.supabase.co/functions/v1/automation-webhook?automation_id=automation_4e15618b-c250-4633-884c-a06627904da4&trigger_id=trg_f7341c04-69e5-4a60-a750-16f16e03664f&token=whk_d9114fec04c64cd9a9b78a6102c5c6e5';
@@ -3722,6 +3754,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     // fbclid vem da atribuicao ja persistida (localStorage + cookie _t_fbclid),
     // entao sobrevive a navegacao entre a landing page e /obrigado
     data.fbclid = readTrack('fbclid') || null;
+
+    /* ─── Localizacao aproximada do lead (IP, via headers da Vercel) ───
+       Valores ja normalizados pelo /api/geo para uso na Meta. */
+    const geo = geoData || geoCache() || {};
+    data.city    = geo.city    || null;
+    data.state   = geo.state   || null;
+    data.zip     = geo.zip     || null;
+    data.country = geo.country || null;
 
     return data;
   }

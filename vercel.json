@@ -2,6 +2,10 @@
   "version": 2,
   "builds": [
     {
+      "src": "api/geo.js",
+      "use": "@vercel/node"
+    },
+    {
       "src": "public/index.html",
       "use": "@vercel/static"
     },
@@ -15,6 +19,10 @@
     }
   ],
   "routes": [
+    {
+      "src": "/api/geo",
+      "dest": "/api/geo.js"
+    },
     {
       "src": "/images/(.*)",
       "dest": "/public/images/$1"
