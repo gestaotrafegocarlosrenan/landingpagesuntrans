@@ -886,6 +886,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     data.page_url     = window.location.href;
     data.user_agent   = navigator.userAgent || '';
 
+    /* ─── Identificadores da Meta Ads ───
+       Lidos aqui, no submit, e nao no load: o Pixel (carregado via GTM) leva
+       cerca de 1s a 1,7s para criar _fbp e _fbc.
+       Reaproveita a getCookie() do projeto. Valores originais, sem hash e sem
+       transformacao. Ausente = null.
+       Roda no navegador do proprio lead, junto com o envio do formulario. */
+    data.fbp    = getCookie('_fbp') || null;
+    data.fbc    = getCookie('_fbc') || null;
+    // fbclid vem da atribuicao ja persistida (localStorage + cookie _t_fbclid),
+    // entao sobrevive a navegacao entre a landing page e /obrigado
+    data.fbclid = readTrack('fbclid') || null;
+
     return data;
   }
 
