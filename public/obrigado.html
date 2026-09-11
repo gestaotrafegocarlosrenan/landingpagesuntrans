@@ -20,6 +20,8 @@
   <link rel="dns-prefetch" href="https://license.vturb.com">
 
   <link rel="preload" as="image" href="/images/sunrocket-logo.png" fetchpriority="high">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -628,6 +630,10 @@ footer {
     }
 
     @media (max-width: 768px) {
+      /* Congela o halo girante do botao no mobile (conic-gradient 200%x200%
+         girando 360deg a cada 2s). O halo continua visivel, apenas parado. */
+      .btn-glow-wrap::before { animation: none; }
+
       .ty { padding: 52px 18px 68px; }
       .ty-logo { width: 72px; margin-bottom: 22px; }
       .ty-title { font-size: 1.6rem; }
@@ -829,7 +835,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     return lsGet(key) || getCookie('_t_' + key) || '';
   }
 
-  (function captureUTMs() {
+  // Ver nota em index.html: ~40 escritas sincronas de storage/cookie saem da
+  // frente da primeira renderizacao.
+  const aoOcioso = (fn) => (window.requestIdleCallback
+    ? requestIdleCallback(fn, { timeout: 2000 })
+    : setTimeout(fn, 1));
+
+  aoOcioso(function captureUTMs() {
     const params = new URLSearchParams(window.location.search);
     TRACK_KEYS.forEach(key => {
       const val = params.get(key);
@@ -843,7 +855,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       storeTrack('referrer', document.referrer || '');
     }
     storeTrack('last_visit', new Date().toISOString());
-  })();
+  });
 
   /* ─── GEOLOCALIZACAO APROXIMADA POR IP ───
      Vem dos headers nativos da Vercel (x-vercel-ip-*), lidos por /api/geo.

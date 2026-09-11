@@ -15,8 +15,14 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='20' y='24' width='60' height='60' rx='4' fill='%231a1f5e'/><g transform='translate(56,44) rotate(45)' fill='white'><ellipse cx='0' cy='-2' rx='10' ry='22'/><polygon points='-10,14 -22,28 0,20'/><polygon points='10,14 22,28 0,20'/><circle cx='0' cy='-8' r='4.5' fill='%231a1f5e'/></g><line x1='8' y1='86' x2='38' y2='62' stroke='white' stroke-width='6.5' stroke-linecap='round'/><line x1='4' y1='74' x2='28' y2='56' stroke='white' stroke-width='4.5' stroke-linecap='round'/></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="image" href="/images/hero-bg-new.webp" fetchpriority="high">
-  <!-- Resolve o DNS do player de vídeo antes do lead chegar na página de obrigado -->
+  <!-- Hero: no mobile a imagem e display:none (regra de <=768px), entao o preload
+       so vale para desktop. Sem o media, o mobile baixava 693 KB para renderizar 0x0. -->
+  <link rel="preload" as="image" media="(min-width: 769px)" imagesrcset="/images/hero-bg-new-1440.webp 1440w, /images/hero-bg-new-1920.webp 1920w, /images/hero-bg-new-2560.webp 2560w, /images/hero-bg-new-2880.webp 2880w, /images/hero-bg-new.webp 5504w" imagesizes="100vw" href="/images/hero-bg-new-1920.webp" fetchpriority="high">
+  <!-- Aquece a conexao dos scripts que o GTM injeta (Meta, Google Ads, Clarity) -->
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
+  <link rel="dns-prefetch" href="https://www.clarity.ms">
+  <!-- Resolve o DNS do player de video antes do lead chegar na pagina de obrigado -->
   <link rel="dns-prefetch" href="https://scripts.converteai.net">
   <link rel="dns-prefetch" href="https://cdn.converteai.net">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -198,6 +204,10 @@
       padding: 40px 0 80px;
       background: radial-gradient(ellipse 80% 100% at 15% 50%, rgba(60, 20, 120, 0.45) 0%, #080620 60%);
       min-height: 100vh;
+      /* svh = altura "pequena" da viewport: nao muda quando a barra de URL do
+         celular some, entao o hero para de sofrer relayout durante a rolagem.
+         A linha 100vh acima fica como fallback para navegadores sem svh. */
+      min-height: 100svh;
       display: flex;
       align-items: center;
     }
@@ -208,6 +218,9 @@
       z-index: 0;
       pointer-events: none;
     }
+
+    /* <picture> transparente para layout: o <img> continua absolute dentro de .hero-bg */
+    .hero-split .hero-bg picture { display: contents; }
 
     .hero-split .hero-bg img {
       width: 100%;
@@ -284,18 +297,6 @@
       border-color: rgba(123,92,250,0.2);
     }
 
-    .badge-dot {
-      width: 6px;
-      height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-      animation: blink 2s ease-in-out infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50%       { opacity: 0.3; }
-    }
 
     .hero h1 {
       font-size: clamp(2.6rem, 5vw, 4.4rem);
@@ -2156,6 +2157,7 @@
       .hero-split {
         flex-direction: column;
         min-height: 100vh;
+        min-height: 100svh;
       }
 
       .hero-left {
@@ -2401,23 +2403,45 @@
         box-shadow: 0 0 24px rgba(80,40,200,0.25);
       }
 
-      /* Remove will-change — não há animação contínua ativa em mobile */
-      .btn-glow-inner,
-      .btn-primary,
-      .hero-cta-link {
-        will-change: auto;
+      /* CONGELA as animacoes continuas no mobile.
+         Os blocos anteriores miravam .btn-glow-inner, classe que nunca existiu —
+         entao nada era desativado. Os seletores reais sao estes.
+         O halo e a sombra CONTINUAM visiveis; apenas param de se mover. */
+
+      /* conic-gradient de 200%x200% girando 360deg a cada 2s, em 4 botoes */
+      .btn-glow-wrap::before,
+      .btn-glow-outer::before { animation: none; }
+
+      /* pulse-glow-shadow anima box-shadow — propriedade de PINTURA, repintada
+         60x/s em 3 camadas. Trocamos a animacao por uma sombra ESTATICA no ponto
+         medio dos keyframes (0% e 50%), para o halo continuar visivel sem custo.
+         ATENCAO: nao usar "animation: none" aqui. O .btn-glow-wrap do hero
+         tambem roda o fadeUp que revela o botao (opacity base = 0); mata-lo
+         deixaria o CTA principal invisivel. Por isso o fadeUp e re-declarado. */
+      .btn-glow-outer {
+        animation: none;
+        box-shadow: 0 0 12px rgba(192,132,252,0.78),
+                    0 0 28px rgba(192,132,252,0.48),
+                    0 0 52px rgba(192,132,252,0.22);
+      }
+      .hero-content > .btn-glow-wrap {
+        animation: fadeUp 0.6s ease 0.85s forwards;
+        box-shadow: 0 0 12px rgba(192,132,252,0.78),
+                    0 0 28px rgba(192,132,252,0.48),
+                    0 0 52px rgba(192,132,252,0.22);
       }
 
-      /* Desativa btn-spin-glow (rotação de conic-gradient cara em GPU) */
-      .btn-glow-inner { animation: none; }
+      /* seta do hero pulsando infinitamente */
+      .hero-process-arrow svg { animation: none; }
 
       /* Desativa sailShip (offset-path + drop-shadow = muito pesado em mobile) */
       .wave-ship { display: none !important; }
       /* Acende todos os steps da timeline de uma vez no mobile */
       .wave-step { filter: brightness(1) saturate(1) !important; }
 
-      /* Reduz backdrop-filter do nav (custo alto em mobile) */
-      .nav-menu {
+      /* Reduz o blur do nav (16px -> 8px). O bloco anterior mirava .nav-menu,
+         classe inexistente, entao o nav continuava em blur(16px) no celular. */
+      nav {
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
       }
@@ -2502,8 +2526,13 @@
       /* ── Tarja exclusividade ── */
       .exclusivity-banner { flex-direction: column; gap: 4px; text-align: center; padding: 14px 20px; }
 
-      /* Remove backdrop-filter em telas muito pequenas (GPU caro demais) */
-      nav, .nav-menu, .modal-box, .service-card, .pillar, .proof-metric, .stat-item {
+      /* Remove backdrop-filter em telas muito pequenas (GPU caro demais).
+         Dos 7 seletores que esta lista tinha, so o "nav" realmente declara
+         backdrop-filter — os outros 6 nunca tiveram. Mantido so o que tem efeito.
+         Os 4 elementos que DE FATO usam blur de fundo (.hero-content 14px,
+         .hero-process 12px, .quem-somos-content 12px, .modal-overlay 12px)
+         foram deixados de proposito: remover mudaria a aparencia. */
+      nav {
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
       }
@@ -2540,7 +2569,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="hero-split">
   <!-- Imagem de Fundo (Direita com Fade para Esquerda) -->
   <div class="hero-bg">
-    <img src="/images/hero-bg-new.webp" alt="Hero background" />
+    <!-- <source> com media garante que em <=768px o navegador nao baixa nada:
+         a imagem ja e display:none nesse breakpoint (regra de .hero-bg img). -->
+    <picture>
+      <source media="(min-width: 769px)"
+              srcset="/images/hero-bg-new-1440.webp 1440w, /images/hero-bg-new-1920.webp 1920w, /images/hero-bg-new-2560.webp 2560w, /images/hero-bg-new-2880.webp 2880w, /images/hero-bg-new.webp 5504w"
+              sizes="100vw">
+      <!-- Em <=768px a imagem ja e display:none. Sem este source o navegador
+           ainda baixaria o src do <img> (fallback do <picture>), entao servimos
+           um 1x1 transparente: zero bytes de rede, zero pixels na tela. -->
+      <source media="(max-width: 768px)"
+              srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+      <img src="/images/hero-bg-new-1920.webp" alt="Hero background" width="1920" height="1071" decoding="async" />
+    </picture>
   </div>
 
   <!-- Painel Esquerdo (Conteúdo) -->
@@ -3285,11 +3326,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (!imgs.length) return;
 
     if ('IntersectionObserver' in window) {
+      // Escolhe a variante pelo tamanho REAL da caixa x densidade da tela.
+      // A caixa tem ~356 CSS px no mobile; servir o original de 1920px era ~5x
+      // mais bytes do que a tela consegue mostrar. 1080px cobre ate DPR 3.
+      const variante = (caminho, el) => {
+        const alvo = el.getBoundingClientRect().width * (window.devicePixelRatio || 1);
+        const largura = alvo <= 760 ? 720 : 1080;
+        return caminho.replace(/\.jpg$/, '-' + largura + '.webp');
+      };
+
       const obs = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             const el = entry.target;
-            el.style.backgroundImage = "url('" + el.dataset.bg + "')";
+            // Atribuicao direta: um probe com new Image() antes dobrava as
+            // requisicoes. O site ja depende de WebP (o hero sempre foi .webp).
+            el.style.backgroundImage = "url('" + variante(el.dataset.bg, el) + "')";
             obs.unobserve(el);
           }
         });
@@ -3655,7 +3707,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     return lsGet(key) || getCookie('_t_' + key) || '';
   }
 
-  (function captureUTMs() {
+  // localStorage.setItem e sincrono e vai a disco. Com 16 TRACK_KEYS isso da ate
+  // ~20 writes de storage + ~20 de cookie ANTES do primeiro paint. Adiando para a
+  // primeira folga do navegador, a captura continua ocorrendo muito antes de
+  // qualquer submit, mas sai da frente da renderizacao inicial.
+  const aoOcioso = (fn) => (window.requestIdleCallback
+    ? requestIdleCallback(fn, { timeout: 2000 })
+    : setTimeout(fn, 1));
+
+  aoOcioso(function captureUTMs() {
     const params = new URLSearchParams(window.location.search);
     TRACK_KEYS.forEach(key => {
       const val = params.get(key);
@@ -3669,7 +3729,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       storeTrack('referrer', document.referrer || '');
     }
     storeTrack('last_visit', new Date().toISOString());
-  })();
+  });
 
   /* ─── GEOLOCALIZACAO APROXIMADA POR IP ───
      Vem dos headers nativos da Vercel (x-vercel-ip-*), lidos por /api/geo.
