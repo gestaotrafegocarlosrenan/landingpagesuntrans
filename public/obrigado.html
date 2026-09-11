@@ -210,12 +210,17 @@ body::before {
       -webkit-backdrop-filter: blur(12px);
       z-index: 1000;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       padding: 24px;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s ease;
+      /* Rolagem: em telas baixas os passos com muitas opcoes ficam mais
+         altos que a viewport e o botao Continuar saia da tela. */
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
     }
 
 .modal-overlay.open {
@@ -233,6 +238,7 @@ body::before {
       position: relative;
       transform: translateY(24px);
       transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+      margin: auto;   /* centraliza se couber; se nao couber, rola sem cortar */
     }
 
 .modal-overlay.open .modal-box { transform: translateY(0); }
@@ -1041,6 +1047,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       d.className = 'modal-progress-dot' + (i < f2CurrentStep ? ' done' : i === f2CurrentStep ? ' active' : '');
       prog.appendChild(d);
     }
+
+    // Ao trocar de passo volta ao topo: sem isso um passo longo pode comecar
+    // rolado e esconder a pergunta
+    const ov2 = document.getElementById('modalOverlay2');
+    if (ov2) ov2.scrollTop = 0;
 
     document.getElementById('btnBack2').style.visibility = f2CurrentStep > 0 ? 'visible' : 'hidden';
     document.getElementById('btnNext2').textContent = f2CurrentStep === F2_TOTAL_STEPS - 1 ? 'Enviar' : 'Continuar →';
