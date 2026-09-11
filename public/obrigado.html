@@ -883,7 +883,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       .then(r => r.ok ? r.json() : null)
       .then(o => {
         if (!o || typeof o !== 'object') return;
-        geoData = { city: o.city || null, state: o.state || null, zip: o.zip || null, country: o.country || null };
+        geoData = {
+          city: o.city || null, state: o.state || null,
+          zip: o.zip || null, country: o.country || null,
+          // IP cru do lead, resolvido server-side pela Vercel
+          client_ip_address: o.client_ip_address || null,
+        };
         try { sessionStorage.setItem(GEO_KEY, JSON.stringify(geoData)); } catch (_) {}
       })
       .catch(() => {});   // falhou: os campos vao null, nunca bloqueia o envio
@@ -955,6 +960,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     data.state   = geo.state   || null;
     data.zip     = geo.zip     || null;
     data.country = geo.country || null;
+    // IP do navegador do LEAD, vindo do /api/geo (server-side). Nunca do SDR/CRM:
+    // e lido na mesma sessao em que o lead preenche, e vai cru para a Meta CAPI.
+    data.client_ip_address = geo.client_ip_address || null;
 
     return data;
   }

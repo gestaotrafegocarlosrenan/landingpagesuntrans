@@ -40,6 +40,45 @@ function normZip(v) {
   return s || null;
 }
 
+// IP do lead, lido da requisicao que chegou na Vercel — nunca de algo que o
+// navegador mande. Precedencia:
+//   1) x-real-ip           — e EXATAMENTE o header que o ipAddress() do
+//                            @vercel/functions le (IP_HEADER_NAME = "x-real-ip").
+//                            Nao usamos o helper porque ele chama headers.get(),
+//                            metodo de Headers; aqui req.headers e objeto simples
+//                            do Node e o helper lancaria TypeError. Alem disso
+//                            exigiria uma dependencia nova, e o npm install do
+//                            build ja quebrou o deploy uma vez.
+//   2) x-vercel-forwarded-for — cadeia da propria Vercel
+//   3) x-forwarded-for        — primeiro item (o cliente real)
+// Valor cru: sem hash, sem mascara, sem converter IPv6 para IPv4.
+const IPV4 = /^(?:\d{1,3}\.){3}\d{1,3}$/;
+const IPV6 = /^[0-9a-f:]+$/i;
+
+function ipValido(s) {
+  if (!s) return false;
+  if (IPV4.test(s)) return s.split('.').every(o => Number(o) <= 255);
+  // IPv6 precisa de ao menos um ':' e nao pode ser so pontuacao
+  return IPV6.test(s) && s.includes(':') && /[0-9a-f]/i.test(s);
+}
+
+function clientIp(h) {
+  const candidatos = [
+    h['x-real-ip'],
+    h['x-vercel-forwarded-for'],
+    (h['x-forwarded-for'] || '').split(',')[0],   // primeiro = cliente real
+  ];
+  for (const bruto of candidatos) {
+    if (typeof bruto !== 'string') continue;
+    let ip = bruto.trim();
+    // IPv4 as vezes chega com porta ("1.2.3.4:5678"); IPv6 pode vir em colchetes
+    if (ip.startsWith('[')) ip = ip.slice(1, ip.indexOf(']') > 0 ? ip.indexOf(']') : undefined);
+    else if ((ip.match(/:/g) || []).length === 1) ip = ip.split(':')[0];
+    if (ipValido(ip)) return ip;
+  }
+  return null;
+}
+
 function normCountry(v) {
   const bruto = decodeHeader(v);
   if (indefinido(bruto)) return null;
@@ -63,6 +102,8 @@ export default function handler(req, res) {
     state:   normTexto(h['x-vercel-ip-country-region']),
     zip:     normZip(h['x-vercel-ip-postal-code']),
     country: normCountry(h['x-vercel-ip-country']),
+    // IP cru do lead, para a Conversions API da Meta (user_data.client_ip_address)
+    client_ip_address: clientIp(h),
   };
 
   res.statusCode = 200;
