@@ -709,7 +709,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Step 1: Cargo -->
       <div class="modal-step active" data-step2="0">
-        <div class="modal-step-label">Passo 1 de 5</div>
+        <div class="modal-step-label">Passo 1 de 6</div>
         <div class="modal-step-question" id="f2-q1">Qual o seu cargo na empresa?</div>
         <div class="revenue-options">
           <button class="revenue-option f2-cargo-option" onclick="f2SelectCargo(this)">Sou dono ou sócio</button>
@@ -721,8 +721,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <!-- Step 2: Capital disponível -->
+      <!-- Step 2: Funcionários -->
       <div class="modal-step" data-step2="1">
-        <div class="modal-step-label">Passo 2 de 5</div>
+        <div class="modal-step-label">Passo 2 de 6</div>
+        <div class="modal-step-question">Quantos funcionários trabalham atualmente na sua empresa?</div>
+        <div class="revenue-options">
+          <button class="revenue-option f2-funcionarios-option" onclick="f2SelectFuncionarios(this)">1 a 20 funcionários</button>
+          <button class="revenue-option f2-funcionarios-option" onclick="f2SelectFuncionarios(this)">21 a 50 funcionários</button>
+          <button class="revenue-option f2-funcionarios-option" onclick="f2SelectFuncionarios(this)">51 a 150 funcionários</button>
+          <button class="revenue-option f2-funcionarios-option" onclick="f2SelectFuncionarios(this)">151 a 300 funcionários</button>
+          <button class="revenue-option f2-funcionarios-option" onclick="f2SelectFuncionarios(this)">301 a 500 funcionários</button>
+          <button class="revenue-option f2-funcionarios-option" onclick="f2SelectFuncionarios(this)">Mais de 500 funcionários</button>
+        </div>
+        <div class="modal-error" id="f2-err-funcionarios" role="alert"></div>
+      </div>
+
+      <!-- Step 3: Capital disponível -->
+      <div class="modal-step" data-step2="2">
+        <div class="modal-step-label">Passo 3 de 6</div>
         <div class="modal-step-question">Qual o volume de capital disponível para sua operação de importação?</div>
         <div class="revenue-options">
           <button class="revenue-option f2-faturamento-option" onclick="f2SelectFaturamento(this)">Sem capital disponível no momento</button>
@@ -738,8 +754,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <!-- Step 3: Situação atual com importação -->
-      <div class="modal-step" data-step2="2">
-        <div class="modal-step-label">Passo 3 de 5</div>
+      <div class="modal-step" data-step2="3">
+        <div class="modal-step-label">Passo 4 de 6</div>
         <div class="modal-step-question">Qual a sua situação atual com importação?</div>
         <div class="revenue-options">
           <button class="revenue-option f2-situacao-option" onclick="f2SelectSituacao(this)">Já importo com frequência e quero otimizar a operação</button>
@@ -752,8 +768,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <!-- Step 4: Prazo -->
-      <div class="modal-step" data-step2="3">
-        <div class="modal-step-label">Passo 4 de 5</div>
+      <div class="modal-step" data-step2="4">
+        <div class="modal-step-label">Passo 5 de 6</div>
         <div class="modal-step-question">Em quanto tempo você pretende realizar sua primeira (ou próxima) importação?</div>
         <div class="revenue-options">
           <button class="revenue-option f2-prazo-option" onclick="f2SelectPrazo(this)">Nos próximos 30 dias</button>
@@ -765,8 +781,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <!-- Step 5: Expectativa -->
-      <div class="modal-step" data-step2="4">
-        <div class="modal-step-label">Passo 5 de 5</div>
+      <div class="modal-step" data-step2="5">
+        <div class="modal-step-label">Passo 6 de 6</div>
         <label class="modal-step-question" for="f2-expectativa">O que você espera resolver contratando uma assessoria de importação?</label>
         <textarea class="modal-input" id="f2-expectativa" rows="3" placeholder="Conte rapidamente o que você gostaria de resolver..."></textarea>
         <div class="modal-error" id="f2-err-expectativa" role="alert"></div>
@@ -987,9 +1003,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   })();
 
   /* ─── FORM 2 ─── */
-  const F2_TOTAL_STEPS = 5;
+  const F2_TOTAL_STEPS = 6;
   let f2CurrentStep = 0;
   let f2SelectedCargo = '';
+  let f2SelectedFuncionarios = '';
   let f2SelectedFaturamento = '';
   let f2SelectedSituacao = '';
   let f2SelectedPrazo = '';
@@ -1009,10 +1026,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     f2CurrentStep = 0;
     f2SelectedCargo = '';
+    f2SelectedFuncionarios = '';
     f2SelectedFaturamento = '';
     f2SelectedSituacao = '';
     f2SelectedPrazo = '';
-    document.querySelectorAll('.f2-cargo-option, .f2-faturamento-option, .f2-situacao-option, .f2-prazo-option').forEach(o => o.classList.remove('selected'));
+    document.querySelectorAll('.f2-cargo-option, .f2-funcionarios-option, .f2-faturamento-option, .f2-situacao-option, .f2-prazo-option').forEach(o => o.classList.remove('selected'));
     document.querySelectorAll('#modalBox2 .modal-error').forEach(e => e.textContent = '');
     ['f2-expectativa'].forEach(id => {
       const el = document.getElementById(id);
@@ -1084,6 +1102,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.getElementById('f2-err-cargo').textContent = '';
   }
 
+  function f2SelectFuncionarios(btn) {
+    document.querySelectorAll('.f2-funcionarios-option').forEach(o => o.classList.remove('selected'));
+    btn.classList.add('selected');
+    f2SelectedFuncionarios = btn.textContent;
+    document.getElementById('f2-err-funcionarios').textContent = '';
+  }
+
   function f2SelectFaturamento(btn) {
     document.querySelectorAll('.f2-faturamento-option').forEach(o => o.classList.remove('selected'));
     btn.classList.add('selected');
@@ -1110,19 +1135,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       document.getElementById('f2-err-cargo').textContent = 'Selecione uma opção.';
       return false;
     }
-    if (f2CurrentStep === 1 && !f2SelectedFaturamento) {
+    if (f2CurrentStep === 1 && !f2SelectedFuncionarios) {
+      document.getElementById('f2-err-funcionarios').textContent = 'Selecione uma opção.';
+      return false;
+    }
+    if (f2CurrentStep === 2 && !f2SelectedFaturamento) {
       document.getElementById('f2-err-faturamento').textContent = 'Selecione uma opção.';
       return false;
     }
-    if (f2CurrentStep === 2 && !f2SelectedSituacao) {
+    if (f2CurrentStep === 3 && !f2SelectedSituacao) {
       document.getElementById('f2-err-situacao').textContent = 'Selecione uma opção.';
       return false;
     }
-    if (f2CurrentStep === 3 && !f2SelectedPrazo) {
+    if (f2CurrentStep === 4 && !f2SelectedPrazo) {
       document.getElementById('f2-err-prazo').textContent = 'Selecione uma opção.';
       return false;
     }
-    if (f2CurrentStep === 4) {
+    if (f2CurrentStep === 5) {
       const v = document.getElementById('f2-expectativa').value.trim();
       if (!v || v.length < 3) {
         document.getElementById('f2-err-expectativa').textContent = 'Conte rapidamente o que espera resolver.';
@@ -1177,6 +1206,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       segmento:        storedLead.segmento    || '',
       // Dados do formulário 2
       cargo:           f2SelectedCargo,
+      funcionarios:    f2SelectedFuncionarios,
       capital_disponivel: f2SelectedFaturamento,
       situacao_importacao: f2SelectedSituacao,
       prazo:           f2SelectedPrazo,
