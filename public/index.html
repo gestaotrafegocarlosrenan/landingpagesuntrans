@@ -13,20 +13,101 @@
   <meta name="twitter:title" content="SunRocket — Sua importação em órbita" />
   <meta name="twitter:description" content="Importação inteligente do início ao fim. Sourcing, logística e suporte dedicado para empresas brasileiras." />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='20' y='24' width='60' height='60' rx='4' fill='%231a1f5e'/><g transform='translate(56,44) rotate(45)' fill='white'><ellipse cx='0' cy='-2' rx='10' ry='22'/><polygon points='-10,14 -22,28 0,20'/><polygon points='10,14 22,28 0,20'/><circle cx='0' cy='-8' r='4.5' fill='%231a1f5e'/></g><line x1='8' y1='86' x2='38' y2='62' stroke='white' stroke-width='6.5' stroke-linecap='round'/><line x1='4' y1='74' x2='28' y2='56' stroke='white' stroke-width='4.5' stroke-linecap='round'/></svg>" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Inter agora e servida pelo proprio dominio (/fonts). Antes vinha do Google
+       Fonts: um <link> que BLOQUEIA a renderizacao e so depois de baixado revela
+       a URL do .woff2 em um segundo dominio. Eram 2 handshakes TLS + 2 viagens em
+       serie antes da primeira letra aparecer. Agora o preload abaixo busca o
+       arquivo no mesmo instante em que o HTML chega, sem nenhum request externo. -->
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin>
   <!-- Hero: no mobile a imagem e display:none (regra de <=768px), entao o preload
        so vale para desktop. Sem o media, o mobile baixava 693 KB para renderizar 0x0. -->
   <link rel="preload" as="image" media="(min-width: 769px)" imagesrcset="/images/hero-bg-new-1440.webp 1440w, /images/hero-bg-new-1920.webp 1920w, /images/hero-bg-new-2560.webp 2560w, /images/hero-bg-new-2880.webp 2880w, /images/hero-bg-new.webp 5504w" imagesizes="100vw" href="/images/hero-bg-new-1920.webp" fetchpriority="high">
-  <!-- Aquece a conexao dos scripts que o GTM injeta (Meta, Google Ads, Clarity) -->
+  <!-- Aquece a conexao dos scripts que o GTM injeta (Meta, Google Ads, Clarity).
+       O GTM agora sobe depois do primeiro paint (ver o loader no fim da pagina),
+       entao o preconnect adianta o handshake sem disputar banda com o hero. -->
   <link rel="preconnect" href="https://www.googletagmanager.com">
   <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
   <link rel="dns-prefetch" href="https://www.clarity.ms">
   <!-- Resolve o DNS do player de video antes do lead chegar na pagina de obrigado -->
   <link rel="dns-prefetch" href="https://scripts.converteai.net">
   <link rel="dns-prefetch" href="https://cdn.converteai.net">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
+    /* ─── Inter servida pelo proprio dominio (/fonts) ───
+       Reproduz EXATAMENTE o CSS que o Google Fonts entregava: mesmos arquivos
+       .woff2, mesmos pesos declarados (400/600/700/800) e mesmos unicode-range.
+       Isso importa: a pagina tambem usa 500 e 900, que nao sao declarados e
+       portanto caem na face vizinha, igual a antes. Declarar um intervalo
+       variavel (400 800) mudaria a renderizacao do peso 500.
+
+       O ganho e de rede: antes era um <link> que BLOQUEAVA a renderizacao,
+       e so depois de baixado revelava a URL do .woff2 em um segundo dominio
+       (2 handshakes TLS + 2 viagens em serie antes da primeira letra). Agora o
+       preload no <head> busca a fonte junto com o HTML, sem request externo. */
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('/fonts/inter-latin.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url('/fonts/inter-latin.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url('/fonts/inter-latin.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 800;
+      font-display: swap;
+      src: url('/fonts/inter-latin.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('/fonts/inter-latin-ext.woff2') format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url('/fonts/inter-latin-ext.woff2') format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url('/fonts/inter-latin-ext.woff2') format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 800;
+      font-display: swap;
+      src: url('/fonts/inter-latin-ext.woff2') format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -536,15 +617,22 @@
       animation: fadeUp 0.6s ease forwards;
     }
 
-    .hero-content .hero-badge    { animation-delay: 0.4s; }
-    .hero-content h1             { animation-delay: 0.55s; }
-    .hero-content .hero-rule     { animation-delay: 0.65s; }
-    .hero-content .hero-sub      { animation-delay: 0.75s; }
-    .hero-content .hero-cta-link { animation-delay: 0.85s; }
+    /* ── Escalonamento da entrada do hero ──
+       Mesma coreografia de antes (mesma ordem, mesma curva, mesmos 0.6s de
+       duracao), so que comecando quase de imediato em vez de esperar 0.4s
+       parado. O h1 ficava com opacity:0 ate 0.55s e so terminava de aparecer em
+       1.15s — como o navegador nao considera elemento transparente para o LCP,
+       a metrica nem chegava a ser registrada. Com a sequencia comecando em
+       0.06s o titulo pinta logo e a animacao continua visivel do mesmo jeito. */
+    .hero-content .hero-badge    { animation-delay: 0.06s; }
+    .hero-content h1             { animation-delay: 0.10s; }
+    .hero-content .hero-rule     { animation-delay: 0.18s; }
+    .hero-content .hero-sub      { animation-delay: 0.26s; }
+    .hero-content .hero-cta-link { animation-delay: 0.34s; }
 
     .hero-process {
       opacity: 0;
-      animation: fadeUp 0.6s ease 1s forwards;
+      animation: fadeUp 0.6s ease 0.42s forwards;
     }
 
     @keyframes fadeUp {
@@ -611,7 +699,7 @@
     }
     /* Pulso do halo externo aplicado separadamente no botão hero */
     .hero-content > .btn-glow-wrap {
-      animation: fadeUp 0.6s ease 0.85s forwards, pulse-glow-shadow 2s ease-in-out 1.5s infinite;
+      animation: fadeUp 0.6s ease 0.34s forwards, pulse-glow-shadow 2s ease-in-out 1.5s infinite;
       opacity: 0;
       transform: translateY(20px);
     }
@@ -2425,7 +2513,7 @@
                     0 0 52px rgba(192,132,252,0.22);
       }
       .hero-content > .btn-glow-wrap {
-        animation: fadeUp 0.6s ease 0.85s forwards;
+        animation: fadeUp 0.6s ease 0.34s forwards;
         box-shadow: 0 0 12px rgba(192,132,252,0.78),
                     0 0 28px rgba(192,132,252,0.48),
                     0 0 52px rgba(192,132,252,0.22);
@@ -2549,13 +2637,17 @@
       .wave-ship { display: none !important; }
     }
   </style>
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-MFN9MFR3');</script>
-  <!-- End Google Tag Manager -->
+  <!-- ─── Google Tag Manager (carregamento adiado) ───
+       O container injeta ~700 KB de JS de terceiros (Google Ads, Meta Pixel x2,
+       Clarity, LinkedIn, OpenAI). Carregado aqui no <head>, tudo isso disputava
+       CPU e banda com o primeiro paint e era o maior motivo da lentidao.
+
+       Agora so a fila (dataLayer) nasce no <head> — qualquer push feito antes do
+       container subir fica guardado no array e e processado assim que ele carrega,
+       entao NENHUM evento se perde. O gtm.js em si sobe no primeiro sinal de
+       interacao (scroll, toque, clique, tecla, mouse) ou, se nada acontecer,
+       no limite de tempo definido em GTM_MAX_ESPERA (abaixo, no fim da pagina). -->
+  <script>window.dataLayer = window.dataLayer || [];</script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -2764,7 +2856,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- QUEM SOMOS -->
 <section class="quem-somos-section" id="quem-somos">
   <div class="quem-somos-bg">
-    <img src="/images/sunrocket-planet.jpg" alt="SunRocket planeta com contêineres em órbita" loading="lazy" width="600" height="600" />
+    <!-- Era um JPG de 381 KB (1920x1071) servido inteiro para qualquer tela,
+         inclusive celular. Agora sao variantes WebP escolhidas pela largura real
+         da viewport: no mobile caem para ~54 KB (-86%), mesma imagem. -->
+    <img src="/images/sunrocket-planet-1440.webp"
+         srcset="/images/sunrocket-planet-960.webp 960w, /images/sunrocket-planet-1440.webp 1440w, /images/sunrocket-planet-1920.webp 1920w"
+         sizes="100vw"
+         alt="SunRocket planeta com contêineres em órbita" loading="lazy" decoding="async" width="1920" height="1071" />
   </div>
   <div class="container quem-somos-container">
     <div class="quem-somos-content">
@@ -3365,33 +3463,76 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     // Thresholds alinhados com as posições visuais do barco (0–96 para garantir que o último acende)
     const thresholds = [0, 16.67, 33.33, 50, 66.67, 83.33, 96];
     const steps = document.querySelectorAll('.wave-step[data-step-index]');
-    let start = null;
+    const secao = document.querySelector('.wave-section');
+    if (!steps.length || !secao) return;
+
+    // Estado anterior de cada passo. Antes o loop reescrevia classList dos 7
+    // passos a CADA frame (60x por segundo), o que forcava recalculo de estilo
+    // continuamente. Agora so toca no DOM quando o passo realmente muda.
+    const aceso = new Array(steps.length).fill(false);
+
+    // Marcado na execucao do script, nao no primeiro frame: a animacao CSS
+    // sailShip comeca no carregamento da pagina, entao o brilho precisa usar a
+    // mesma origem de tempo mesmo quando o loop so liga ao chegar na secao.
+    let start = performance.now();
+    let rodando = false;
+    let rafId = 0;
+    let visivel = false;
+
+    function aplica(idx, ligar) {
+      if (aceso[idx] === ligar) return;      // nada mudou: nao toca no DOM
+      aceso[idx] = ligar;
+      steps[idx].classList.toggle('lit', ligar);
+    }
 
     function tick(ts) {
-      // Inicia o timer na primeira chamada — sincronizado com o carregamento da página,
-      // igual à animação CSS sailShip, para que o brilho acompanhe o barco corretamente
-      if (!start) start = ts;
       const elapsed = (ts - start) % ANIM_DURATION;
       const pct = (elapsed / ANIM_DURATION) * 100;
 
       // Reset visual no início de cada ciclo
       if (elapsed < 100) {
-        steps.forEach(s => s.classList.remove('lit'));
+        steps.forEach((_, i) => aplica(i, false));
       } else {
-        steps.forEach((step) => {
+        steps.forEach((step, i) => {
           const idx = parseInt(step.dataset.stepIndex);
-          if (pct >= thresholds[idx]) {
-            step.classList.add('lit');
-          } else {
-            step.classList.remove('lit');
-          }
+          aplica(i, pct >= thresholds[idx]);
         });
       }
 
-      requestAnimationFrame(tick);
+      rafId = requestAnimationFrame(tick);
     }
 
-    requestAnimationFrame(tick);
+    function liga() {
+      if (rodando) return;
+      rodando = true;
+      rafId = requestAnimationFrame(tick);
+    }
+
+    function desliga() {
+      if (!rodando) return;
+      rodando = false;
+      cancelAnimationFrame(rafId);
+    }
+
+    function sincroniza() {
+      // So anima quando a secao esta na tela E a aba esta em primeiro plano.
+      // Antes o loop rodava para sempre, mesmo com a secao fora da viewport,
+      // queimando CPU e bateria durante toda a visita.
+      if (visivel && document.visibilityState === 'visible') liga();
+      else desliga();
+    }
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        visivel = entries[0].isIntersecting;
+        sincroniza();
+      }, { rootMargin: '100px' }).observe(secao);
+    } else {
+      visivel = true;
+      sincroniza();
+    }
+
+    document.addEventListener('visibilitychange', sincroniza);
   })();
   function toggleFaq(btn) {
     const item = btn.closest('.faq-item');
@@ -3911,6 +4052,47 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     // Preserva os parâmetros de campanha na URL da página de obrigado
     window.location.assign('/obrigado' + window.location.search);
   }
+</script>
+
+<!-- ─── Loader adiado do Google Tag Manager ───
+     Sobe o container no primeiro sinal de interacao do usuario ou, na ausencia
+     dela, apos GTM_MAX_ESPERA. Qualquer dataLayer.push feito antes disso ja esta
+     na fila e e processado normalmente quando o container carrega. -->
+<script>
+(function (w, d, id) {
+  // Teto de espera. Visitas reais passam bem mais que isso na pagina; se quiser
+  // ser ainda mais conservador com a atribuicao, basta reduzir este numero.
+  var GTM_MAX_ESPERA = 2500;
+
+  var carregado = false;
+  var eventos = ['scroll', 'pointerdown', 'touchstart', 'keydown', 'mousemove', 'wheel'];
+
+  function carregar() {
+    if (carregado) return;
+    carregado = true;
+    eventos.forEach(function (ev) { w.removeEventListener(ev, carregar, opts); });
+    if (timer) clearTimeout(timer);
+
+    w.dataLayer = w.dataLayer || [];
+    w.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+
+    var j = d.createElement('script');
+    j.async = true;
+    j.src = 'https://www.googletagmanager.com/gtm.js?id=' + id;
+    d.head.appendChild(j);
+  }
+
+  var opts = { once: true, passive: true, capture: true };
+  eventos.forEach(function (ev) { w.addEventListener(ev, carregar, opts); });
+
+  // Rede de seguranca: mesmo sem nenhuma interacao o container sobe.
+  var timer = setTimeout(carregar, GTM_MAX_ESPERA);
+
+  // Se a aba for abandonada antes do prazo, sobe na hora para nao perder o hit.
+  d.addEventListener('visibilitychange', function () {
+    if (d.visibilityState === 'hidden') carregar();
+  });
+})(window, document, 'GTM-MFN9MFR3');
 </script>
 
 </body>

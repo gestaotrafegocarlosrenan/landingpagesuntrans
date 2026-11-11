@@ -22,12 +22,79 @@
   <link rel="preload" as="image" href="/images/sunrocket-logo.png" fetchpriority="high">
   <link rel="preconnect" href="https://www.googletagmanager.com">
   <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin>
 
   <style>
 /* ═══ Estilos compartilhados com a landing page (index.html) ═══ */
+/* ─── Inter servida pelo proprio dominio (/fonts) ───
+   Mesmos arquivos .woff2 e mesmos pesos que o Google Fonts entregava, so que
+   sem o <link> externo que bloqueava a renderizacao e sem os 2 handshakes TLS
+   em dominios de terceiros antes da primeira letra aparecer. */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/inter-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/inter-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/inter-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('/fonts/inter-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/inter-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/inter-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/inter-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('/fonts/inter-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -651,13 +718,17 @@ footer {
     }
   </style>
 
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-MFN9MFR3');</script>
-  <!-- End Google Tag Manager -->
+  <!-- ─── Google Tag Manager (carregamento adiado) ───
+       Aqui o que precisa de CPU e banda primeiro e o player do video. O container
+       do GTM injeta ~700 KB de JS de terceiros; carregado no <head> ele disputava
+       com o player e atrasava o inicio da reproducao.
+
+       So a fila (dataLayer) nasce aqui: qualquer push feito antes do container
+       subir fica guardado no array e e processado assim que ele carrega, entao o
+       evento de conversao NAO se perde. A espera maxima e menor que a da landing
+       (ver GTM_MAX_ESPERA no fim da pagina), porque esta pagina so e alcancada
+       por quem acabou de enviar o formulario. -->
+  <script>window.dataLayer = window.dataLayer || [];</script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -1290,6 +1361,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
     observer.observe(document.body, { childList: true, subtree: true });
   })();
+</script>
+
+<!-- ─── Loader adiado do Google Tag Manager ─── -->
+<script>
+(function (w, d, id) {
+  // Teto de espera menor que o da landing: aqui o lead chega logo apos enviar o
+  // formulario, entao a janela ate o container subir e praticamente sem risco.
+  var GTM_MAX_ESPERA = 1500;
+
+  var carregado = false;
+  var eventos = ['scroll', 'pointerdown', 'touchstart', 'keydown', 'mousemove', 'wheel'];
+
+  function carregar() {
+    if (carregado) return;
+    carregado = true;
+    eventos.forEach(function (ev) { w.removeEventListener(ev, carregar, opts); });
+    if (timer) clearTimeout(timer);
+
+    w.dataLayer = w.dataLayer || [];
+    w.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+
+    var j = d.createElement('script');
+    j.async = true;
+    j.src = 'https://www.googletagmanager.com/gtm.js?id=' + id;
+    d.head.appendChild(j);
+  }
+
+  var opts = { once: true, passive: true, capture: true };
+  eventos.forEach(function (ev) { w.addEventListener(ev, carregar, opts); });
+  var timer = setTimeout(carregar, GTM_MAX_ESPERA);
+  d.addEventListener('visibilitychange', function () {
+    if (d.visibilityState === 'hidden') carregar();
+  });
+})(window, document, 'GTM-MFN9MFR3');
 </script>
 
 </body>

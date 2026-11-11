@@ -16,6 +16,10 @@
     {
       "src": "public/images/**",
       "use": "@vercel/static"
+    },
+    {
+      "src": "public/fonts/**",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
@@ -28,6 +32,15 @@
       "dest": "/public/images/$1",
       "headers": {
         "cache-control": "public, max-age=31536000, immutable"
+      }
+    },
+    {
+      "src": "/fonts/(.*)",
+      "dest": "/public/fonts/$1",
+      "headers": {
+        "cache-control": "public, max-age=31536000, immutable",
+        "access-control-allow-origin": "*",
+        "content-type": "font/woff2"
       }
     },
     {
